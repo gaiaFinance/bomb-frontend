@@ -159,7 +159,7 @@ const Home = () => {
         <Grid item xs={12} sm={8}>
           <Paper>
             <Box p={4} style={{ textAlign: 'center' }}>
-              <h2>Welcome to Bomb</h2>
+              <h2 className='bg-red-900'>Welcome to Bomb</h2>
               <p>
                 BOMB is an algocoin which is designed to follow the price of BTC. Enjoy high yields normally only found
                 on high risk assets, but with exposure to BTC instead!
