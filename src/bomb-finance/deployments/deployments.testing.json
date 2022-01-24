@@ -1,6 +1,6 @@
 {
   "BBond": {
-    "address": "0xDA1d9C79240003195d0a67f202efcCCC3F78b994",
+    "address": "0x829fAE0548C656ECF6Ef16027d11BF2264Ae3414",
     "abi": [
       {
         "inputs": [],
@@ -445,7 +445,7 @@
     ]
   },
   "BShare": {
-    "address": "0xbFBCf4d4e80b978409f9DbF31D662a73d3c2146b",
+    "address": "0x4c528F579A2C69Bb9e3803fD820289345cDB2e98",
     "abi": [
       {
         "inputs": [
@@ -1146,13 +1146,13 @@
     ]
   },
   "BShareRewardPool": {
-    "address": "0x66dB49c22B250CC9557189F4f2767a73Efb88FAc",
+    "address": "0xE48d010b4F0A7F65Bb2DC49cD71a661Cff5B09b5",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_bshare",
+            "name": "_gshare",
             "type": "address"
           },
           {
@@ -1300,19 +1300,6 @@
         "type": "function"
       },
       {
-        "inputs": [],
-        "name": "bshare",
-        "outputs": [
-          {
-            "internalType": "contract IERC20",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
         "inputs": [
           {
             "internalType": "uint256",
@@ -1388,6 +1375,19 @@
         "name": "governanceRecoverUnsupported",
         "outputs": [],
         "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "gshare",
+        "outputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
         "type": "function"
       },
       {
@@ -1474,7 +1474,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accBSharePerShare",
+            "name": "accGSharePerShare",
             "type": "uint256"
           },
           {
@@ -1632,25 +1632,72 @@
     ]
   },
   "Boardroom": {
-    "address": "0x4f518029B03AB3f37C90853333ECFf70eb452EA1",
+    "address": "0x61Ac0C633Ba4d17eb54DB94f4758d5fF864aE614",
     "abi": [
       {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_gshare",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_poolStartTime",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
         "anonymous": false,
         "inputs": [
           {
             "indexed": true,
             "internalType": "address",
-            "name": "executor",
+            "name": "user",
             "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "pid",
+            "type": "uint256"
           },
           {
             "indexed": false,
             "internalType": "uint256",
-            "name": "at",
+            "name": "amount",
             "type": "uint256"
           }
         ],
-        "name": "Initialized",
+        "name": "Deposit",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "pid",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "EmergencyWithdraw",
         "type": "event"
       },
       {
@@ -1665,26 +1712,7 @@
           {
             "indexed": false,
             "internalType": "uint256",
-            "name": "reward",
-            "type": "uint256"
-          }
-        ],
-        "name": "RewardAdded",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "internalType": "address",
-            "name": "user",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "reward",
+            "name": "amount",
             "type": "uint256"
           }
         ],
@@ -1701,23 +1729,10 @@
             "type": "address"
           },
           {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "Staked",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
             "indexed": true,
-            "internalType": "address",
-            "name": "user",
-            "type": "address"
+            "internalType": "uint256",
+            "name": "pid",
+            "type": "uint256"
           },
           {
             "indexed": false,
@@ -1726,124 +1741,46 @@
             "type": "uint256"
           }
         ],
-        "name": "Withdrawn",
+        "name": "Withdraw",
         "type": "event"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "allocateSeigniorage",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "address",
-            "name": "account",
-            "type": "address"
-          }
-        ],
-        "name": "balanceOf",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "name": "boardroomHistory",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "time",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "rewardReceived",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "rewardPerShare",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
       },
       {
         "inputs": [],
-        "name": "bomb",
+        "name": "TOTAL_REWARDS",
         "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_allocPoint",
+            "type": "uint256"
+          },
           {
             "internalType": "contract IERC20",
-            "name": "",
+            "name": "_token",
             "type": "address"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "address",
-            "name": "member",
-            "type": "address"
-          }
-        ],
-        "name": "canClaimReward",
-        "outputs": [
+          },
           {
             "internalType": "bool",
-            "name": "",
+            "name": "_withUpdate",
             "type": "bool"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
+          },
           {
-            "internalType": "address",
-            "name": "member",
-            "type": "address"
+            "internalType": "uint256",
+            "name": "_lastRewardTime",
+            "type": "uint256"
           }
         ],
-        "name": "canWithdraw",
-        "outputs": [
-          {
-            "internalType": "bool",
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "claimReward",
+        "name": "add",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -1851,64 +1788,48 @@
       {
         "inputs": [
           {
-            "internalType": "address",
-            "name": "member",
-            "type": "address"
-          }
-        ],
-        "name": "earned",
-        "outputs": [
+            "internalType": "uint256",
+            "name": "_pid",
+            "type": "uint256"
+          },
           {
             "internalType": "uint256",
-            "name": "",
+            "name": "_amount",
             "type": "uint256"
           }
         ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "epoch",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "exit",
+        "name": "deposit",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
       },
       {
-        "inputs": [],
-        "name": "getBombPrice",
-        "outputs": [
+        "inputs": [
           {
             "internalType": "uint256",
-            "name": "",
+            "name": "_pid",
             "type": "uint256"
           }
         ],
-        "stateMutability": "view",
+        "name": "emergencyWithdraw",
+        "outputs": [],
+        "stateMutability": "nonpayable",
         "type": "function"
       },
       {
         "inputs": [
           {
-            "internalType": "address",
-            "name": "member",
-            "type": "address"
+            "internalType": "uint256",
+            "name": "_fromTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_toTime",
+            "type": "uint256"
           }
         ],
-        "name": "getLastSnapshotIndexOf",
+        "name": "getGeneratedReward",
         "outputs": [
           {
             "internalType": "uint256",
@@ -1928,12 +1849,12 @@
           },
           {
             "internalType": "uint256",
-            "name": "_amount",
+            "name": "amount",
             "type": "uint256"
           },
           {
             "internalType": "address",
-            "name": "_to",
+            "name": "to",
             "type": "address"
           }
         ],
@@ -1943,94 +1864,23 @@
         "type": "function"
       },
       {
-        "inputs": [
+        "inputs": [],
+        "name": "gshare",
+        "outputs": [
           {
             "internalType": "contract IERC20",
-            "name": "_bomb",
-            "type": "address"
-          },
-          {
-            "internalType": "contract IERC20",
-            "name": "_share",
-            "type": "address"
-          },
-          {
-            "internalType": "contract ITreasury",
-            "name": "_treasury",
+            "name": "",
             "type": "address"
           }
         ],
-        "name": "initialize",
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "massUpdatePools",
         "outputs": [],
         "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "initialized",
-        "outputs": [
-          {
-            "internalType": "bool",
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "latestSnapshotIndex",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "name": "members",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "lastSnapshotIndex",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "rewardEarned",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "epochTimerStart",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "nextEpochPoint",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
         "type": "function"
       },
       {
@@ -2047,8 +1897,19 @@
         "type": "function"
       },
       {
-        "inputs": [],
-        "name": "rewardLockupEpochs",
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_pid",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "_user",
+            "type": "address"
+          }
+        ],
+        "name": "pendingShare",
         "outputs": [
           {
             "internalType": "uint256",
@@ -2061,7 +1922,7 @@
       },
       {
         "inputs": [],
-        "name": "rewardPerShare",
+        "name": "poolEndTime",
         "outputs": [
           {
             "internalType": "uint256",
@@ -2076,16 +1937,81 @@
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "_withdrawLockupEpochs",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "poolInfo",
+        "outputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "allocPoint",
             "type": "uint256"
           },
           {
             "internalType": "uint256",
-            "name": "_rewardLockupEpochs",
+            "name": "lastRewardTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "accGSharePerShare",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "isStarted",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "poolStartTime",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
             "type": "uint256"
           }
         ],
-        "name": "setLockUp",
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "runningTime",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_pid",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_allocPoint",
+            "type": "uint256"
+          }
+        ],
+        "name": "set",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -2105,12 +2031,25 @@
       },
       {
         "inputs": [],
-        "name": "share",
+        "name": "tSharePerSecond",
         "outputs": [
           {
-            "internalType": "contract IERC20",
+            "internalType": "uint256",
             "name": "",
-            "type": "address"
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "totalAllocPoint",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
           }
         ],
         "stateMutability": "view",
@@ -2120,36 +2059,39 @@
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "amount",
+            "name": "_pid",
             "type": "uint256"
           }
         ],
-        "name": "stake",
+        "name": "updatePool",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
       },
       {
-        "inputs": [],
-        "name": "totalSupply",
-        "outputs": [
+        "inputs": [
           {
             "internalType": "uint256",
             "name": "",
             "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "treasury",
-        "outputs": [
+          },
           {
-            "internalType": "contract ITreasury",
+            "internalType": "address",
             "name": "",
             "type": "address"
+          }
+        ],
+        "name": "userInfo",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rewardDebt",
+            "type": "uint256"
           }
         ],
         "stateMutability": "view",
@@ -2159,7 +2101,12 @@
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "amount",
+            "name": "_pid",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_amount",
             "type": "uint256"
           }
         ],
@@ -2167,24 +2114,11 @@
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "withdrawLockupEpochs",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
       }
     ]
   },
   "Bomb": {
-    "address": "0x522348779DCb2911539e76A1042aA922F9C47Ee3",
+    "address": "0x2497673408fA951ACFD819fBDCeC36413a5684F7",
     "abi": [
       {
         "inputs": [
@@ -2311,32 +2245,6 @@
       },
       {
         "inputs": [],
-        "name": "INITIAL_AIRDROP_WALLET_DISTRIBUTION",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "INITIAL_BOMB_POOL_DISTRIBUTION",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
         "name": "INITIAL_GENESIS_POOL_DISTRIBUTION",
         "outputs": [
           {
@@ -2423,19 +2331,6 @@
             "internalType": "uint256",
             "name": "",
             "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "bombOracle",
-        "outputs": [
-          {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
           }
         ],
         "stateMutability": "view",
@@ -2535,16 +2430,6 @@
             "internalType": "address",
             "name": "_genesisPool",
             "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "_bombPool",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "_airdropWallet",
-            "type": "address"
           }
         ],
         "name": "distributeReward",
@@ -2592,6 +2477,19 @@
             "internalType": "bool",
             "name": "",
             "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "gaiaOracle",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
           }
         ],
         "stateMutability": "view",
@@ -2807,19 +2705,6 @@
       {
         "inputs": [
           {
-            "internalType": "address",
-            "name": "_bombOracle",
-            "type": "address"
-          }
-        ],
-        "name": "setBombOracle",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
             "internalType": "uint256",
             "name": "_burnThreshold",
             "type": "uint256"
@@ -2833,6 +2718,19 @@
             "type": "bool"
           }
         ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_gaiaOracle",
+            "type": "address"
+          }
+        ],
+        "name": "setGaiaOracle",
+        "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
       },
@@ -3612,13 +3510,13 @@
     ]
   },
   "BombRewardPool": {
-    "address": "0x31CFb91FF0e6b4F6aaCf0C6fb4eA50a1Fc6EDAe0",
+    "address": "0x4f4aAa8E34eBE75e8F4a8CBe0A530bEBBA4480B4",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_bomb",
+            "name": "_gaia",
             "type": "address"
           },
           {
@@ -3753,19 +3651,6 @@
         "type": "function"
       },
       {
-        "inputs": [],
-        "name": "bomb",
-        "outputs": [
-          {
-            "internalType": "contract IERC20",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
         "inputs": [
           {
             "internalType": "uint256",
@@ -3804,7 +3689,7 @@
             "type": "uint256"
           }
         ],
-        "name": "epochBombPerSecond",
+        "name": "epochEndTimes",
         "outputs": [
           {
             "internalType": "uint256",
@@ -3823,7 +3708,7 @@
             "type": "uint256"
           }
         ],
-        "name": "epochEndTimes",
+        "name": "epochGaiaPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -3848,6 +3733,19 @@
             "internalType": "uint256",
             "name": "",
             "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "gaia",
+        "outputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "",
+            "type": "address"
           }
         ],
         "stateMutability": "view",
@@ -3933,7 +3831,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingBOMB",
+        "name": "pendingGAIA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -3971,7 +3869,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accBombPerShare",
+            "name": "accGaiaPerShare",
             "type": "uint256"
           },
           {
@@ -4907,7 +4805,7 @@
     ]
   },
   "Treasury": {
-    "address": "0x96816a5a5b81f24b56e202D33A7C17987E7C5c01",
+    "address": "0x1c4fD5165FcF4BFFCC7BffFAbe117456A15205Ad",
     "abi": [
       {
         "anonymous": false,
@@ -4940,7 +4838,7 @@
           {
             "indexed": false,
             "internalType": "uint256",
-            "name": "bombAmount",
+            "name": "gaiaAmount",
             "type": "uint256"
           },
           {
@@ -5033,6 +4931,25 @@
         "anonymous": false,
         "inputs": [
           {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "timestamp",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "seigniorage",
+            "type": "uint256"
+          }
+        ],
+        "name": "MarketingFundFunded",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
             "indexed": true,
             "internalType": "address",
             "name": "from",
@@ -5041,7 +4958,7 @@
           {
             "indexed": false,
             "internalType": "uint256",
-            "name": "bombAmount",
+            "name": "gaiaAmount",
             "type": "uint256"
           },
           {
@@ -5052,6 +4969,31 @@
           }
         ],
         "name": "RedeemedBonds",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "epoch",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "twap",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "expansion",
+            "type": "uint256"
+          }
+        ],
+        "name": "Seigniorage",
         "type": "event"
       },
       {
@@ -5091,19 +5033,6 @@
         "name": "allocateSeigniorage",
         "outputs": [],
         "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "bbond",
-        "outputs": [
-          {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "stateMutability": "view",
         "type": "function"
       },
       {
@@ -5158,6 +5087,19 @@
       {
         "inputs": [
           {
+            "internalType": "address",
+            "name": "_daoFund",
+            "type": "address"
+          }
+        ],
+        "name": "boardroomSetDaoFund",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
             "internalType": "uint256",
             "name": "_withdrawLockupEpochs",
             "type": "uint256"
@@ -5177,6 +5119,19 @@
         "inputs": [
           {
             "internalType": "address",
+            "name": "_marketingFund",
+            "type": "address"
+          }
+        ],
+        "name": "boardroomSetMarketingFund",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
             "name": "_operator",
             "type": "address"
           }
@@ -5188,33 +5143,7 @@
       },
       {
         "inputs": [],
-        "name": "bomb",
-        "outputs": [
-          {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "bombOracle",
-        "outputs": [
-          {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "bombPriceCeiling",
+        "name": "boardroomStakeFee",
         "outputs": [
           {
             "internalType": "uint256",
@@ -5227,7 +5156,7 @@
       },
       {
         "inputs": [],
-        "name": "bombPriceOne",
+        "name": "boardroomWithdrawFee",
         "outputs": [
           {
             "internalType": "uint256",
@@ -5278,23 +5207,10 @@
         "type": "function"
       },
       {
-        "inputs": [],
-        "name": "bshare",
-        "outputs": [
-          {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "_bombAmount",
+            "name": "_gaiaAmount",
             "type": "uint256"
           },
           {
@@ -5420,7 +5336,33 @@
       },
       {
         "inputs": [],
-        "name": "getBombCirculatingSupply",
+        "name": "gaia",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "gaiaOracle",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "gaiaPriceCeiling",
         "outputs": [
           {
             "internalType": "uint256",
@@ -5433,11 +5375,11 @@
       },
       {
         "inputs": [],
-        "name": "getBombPrice",
+        "name": "gaiaPriceOne",
         "outputs": [
           {
             "internalType": "uint256",
-            "name": "bombPrice",
+            "name": "",
             "type": "uint256"
           }
         ],
@@ -5446,12 +5388,12 @@
       },
       {
         "inputs": [],
-        "name": "getBombUpdatedPrice",
+        "name": "gbond",
         "outputs": [
           {
-            "internalType": "uint256",
-            "name": "_bombPrice",
-            "type": "uint256"
+            "internalType": "address",
+            "name": "",
+            "type": "address"
           }
         ],
         "stateMutability": "view",
@@ -5485,11 +5427,50 @@
       },
       {
         "inputs": [],
-        "name": "getBurnableBombLeft",
+        "name": "getBurnableGaiaLeft",
         "outputs": [
           {
             "internalType": "uint256",
-            "name": "_burnableBombLeft",
+            "name": "_burnableGaiaLeft",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "getGaiaCirculatingSupply",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "getGaiaPrice",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "gaiaPrice",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "getGaiaUpdatedPrice",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "_gaiaPrice",
             "type": "uint256"
           }
         ],
@@ -5546,25 +5527,38 @@
         "type": "function"
       },
       {
+        "inputs": [],
+        "name": "gshare",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_bomb",
+            "name": "_gaia",
             "type": "address"
           },
           {
             "internalType": "address",
-            "name": "_bbond",
+            "name": "_gbond",
             "type": "address"
           },
           {
             "internalType": "address",
-            "name": "_bshare",
+            "name": "_gshare",
             "type": "address"
           },
           {
             "internalType": "address",
-            "name": "_bombOracle",
+            "name": "_gaiaOracle",
             "type": "address"
           },
           {
@@ -5604,6 +5598,32 @@
             "internalType": "bool",
             "name": "",
             "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "marketingFund",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "marketingFundSharedPercent",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
           }
         ],
         "stateMutability": "view",
@@ -5760,7 +5780,7 @@
       },
       {
         "inputs": [],
-        "name": "previousEpochBombPrice",
+        "name": "previousEpochGaiaPrice",
         "outputs": [
           {
             "internalType": "uint256",
@@ -5831,12 +5851,12 @@
       {
         "inputs": [
           {
-            "internalType": "address",
-            "name": "_bombOracle",
-            "type": "address"
+            "internalType": "uint256",
+            "name": "_boardroomStakeFee",
+            "type": "uint256"
           }
         ],
-        "name": "setBombOracle",
+        "name": "setBoardroomStakeFee",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -5845,11 +5865,11 @@
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "_bombPriceCeiling",
+            "name": "_boardroomWithdrawFee",
             "type": "uint256"
           }
         ],
-        "name": "setBombPriceCeiling",
+        "name": "setBoardroomWithdrawFee",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -5919,9 +5939,45 @@
             "internalType": "uint256",
             "name": "_devFundSharedPercent",
             "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "_marketingFund",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_marketingFundSharedPercent",
+            "type": "uint256"
           }
         ],
         "name": "setExtraFunds",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_gaiaOracle",
+            "type": "address"
+          }
+        ],
+        "name": "setGaiaOracle",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_gaiaPriceCeiling",
+            "type": "uint256"
+          }
+        ],
+        "name": "setGaiaPriceCeiling",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
