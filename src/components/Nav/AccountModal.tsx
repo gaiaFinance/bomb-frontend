@@ -30,7 +30,7 @@ const AccountModal: React.FC<ModalProps> = ({onDismiss}) => {
 
       <Balances style={{display: 'flex', flexDirection: matches ? 'row' : 'column'}}>
         <StyledBalanceWrapper style={{paddingBottom: '15px'}}>
-          <TokenSymbol symbol="BOMB" />
+          <TokenSymbol symbol="GAIA" />
           <StyledBalance>
             <StyledValue>{displayBombBalance}</StyledValue>
             <Label text="BOMB Available" />
@@ -38,7 +38,7 @@ const AccountModal: React.FC<ModalProps> = ({onDismiss}) => {
         </StyledBalanceWrapper>
 
         <StyledBalanceWrapper style={{paddingBottom: '15px'}}>
-          <TokenSymbol symbol="BSHARE" />
+          <TokenSymbol symbol="GSHARE" />
           <StyledBalance>
             <StyledValue>{displayBshareBalance}</StyledValue>
             <Label text="BSHARE Available" />
@@ -46,7 +46,7 @@ const AccountModal: React.FC<ModalProps> = ({onDismiss}) => {
         </StyledBalanceWrapper>
 
         <StyledBalanceWrapper style={{paddingBottom: '15px'}}>
-          <TokenSymbol symbol="BBOND" />
+          <TokenSymbol symbol="GBOND" />
           <StyledBalance>
             <StyledValue>{displayBbondBalance}</StyledValue>
             <Label text="BBOND Available" />

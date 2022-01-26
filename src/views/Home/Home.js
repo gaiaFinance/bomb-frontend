@@ -297,7 +297,7 @@ const Home = () => {
               </Button>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="BSHARE" />
+                  <TokenSymbol symbol="GSHARE" />
                 </CardIcon>
               </Box>
               <h2 style={{ marginBottom: '10px' }}>BSHARE</h2>
@@ -336,7 +336,7 @@ const Home = () => {
               </Button>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="BBOND" />
+                  <TokenSymbol symbol="GBOND" />
                 </CardIcon>
               </Box>
               <h2 style={{ marginBottom: '10px' }}>BBOND</h2>
