@@ -4,14 +4,14 @@ import {useWallet} from 'use-wallet';
 import {BigNumber} from 'ethers';
 import {parseUnits} from 'ethers/lib/utils';
 
-const useEstimateBShare = (bbondAmount: string) => {
+const useEstimateGShare = (gbondAmount: string) => {
   const [estimateAmount, setEstimateAmount] = useState<string>('');
   const {account} = useWallet();
   const bombFinance = useBombFinance();
 
   const estimateAmountOfBShare = useCallback(async () => {
-    const bbondAmountBn = parseUnits(bbondAmount);
-    const amount = await bombFinance.estimateAmountOfBShare(bbondAmountBn.toString());
+    const gbondAmountBn = parseUnits(gbondAmount);
+    const amount = await bombFinance.estimateAmountOfGShare(gbondAmountBn.toString());
     setEstimateAmount(amount);
   }, [account]);
 
@@ -24,4 +24,4 @@ const useEstimateBShare = (bbondAmount: string) => {
   return estimateAmount;
 };
 
-export default useEstimateBShare;
+export default useEstimateGShare;

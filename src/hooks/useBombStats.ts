@@ -11,7 +11,7 @@ const useBombStats = () => {
   useEffect(() => {
     async function fetchBombPrice() {
       try {
-        setStat(await bombFinance.getBombStat());
+        setStat(await bombFinance.getGaiaStat());
       } catch (err) {
         console.error(err);
       }

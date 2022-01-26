@@ -1,27 +1,27 @@
 import {useEffect, useState} from 'react';
 import useBombFinance from '../useBombFinance';
-import {BShareSwapperStat} from '../../bomb-finance/types';
+import {GShareSwapperStat} from '../../bomb-finance/types';
 import useRefresh from '../useRefresh';
 
-const useBShareSwapperStats = (account: string) => {
-  const [stat, setStat] = useState<BShareSwapperStat>();
+const useGShareSwapperStats = (account: string) => {
+  const [stat, setStat] = useState<GShareSwapperStat>();
   const {fastRefresh /*, slowRefresh*/} = useRefresh();
   const bombFinance = useBombFinance();
 
   useEffect(() => {
-    async function fetchBShareSwapperStat() {
+    async function fetchGShareSwapperStat() {
       try {
         if (bombFinance.myAccount) {
-          setStat(await bombFinance.getBShareSwapperStat(account));
+          setStat(await bombFinance.getGShareSwapperStat(account));
         }
       } catch (err) {
         console.error(err);
       }
     }
-    fetchBShareSwapperStat();
+    fetchGShareSwapperStat();
   }, [setStat, bombFinance, fastRefresh, account]);
 
   return stat;
 };
 
-export default useBShareSwapperStats;
+export default useGShareSwapperStats;

@@ -19,7 +19,7 @@ export enum ApprovalState {
 // returns a variable indicating the state of the approval and a function which approves if necessary or early returns
 function useApproveTaxOffice(): [ApprovalState, () => Promise<void>] {
   const bombFinance = useBombFinance();
-  let token: ERC20 = bombFinance.BOMB;
+  let token: ERC20 = bombFinance.GAIA;
   // if (zappingToken === BNB_TICKER) token = bombFinance.BNB;
   // else if (zappingToken === BOMB_TICKER) token = bombFinance.BOMB;
   // else if (zappingToken === BSHARE_TICKER) token = bombFinance.BSHARE;

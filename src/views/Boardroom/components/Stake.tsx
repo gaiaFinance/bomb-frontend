@@ -32,13 +32,13 @@ import useWithdrawFromBoardroom from '../../../hooks/useWithdrawFromBoardroom';
 
 const Stake: React.FC = () => {
   const bombFinance = useBombFinance();
-  const [approveStatus, approve] = useApprove(bombFinance.BSHARE, bombFinance.contracts.Boardroom.address);
+  const [approveStatus, approve] = useApprove(bombFinance.GSHARE, bombFinance.contracts.Boardroom.address);
 
-  const tokenBalance = useTokenBalance(bombFinance.BSHARE);
+  const tokenBalance = useTokenBalance(bombFinance.GSHARE);
   const stakedBalance = useStakedBalanceOnBoardroom();
   const {from, to} = useUnstakeTimerBoardroom();
 
-  const stakedTokenPriceInDollars = useStakedTokenPriceInDollars('BSHARE', bombFinance.BSHARE);
+  const stakedTokenPriceInDollars = useStakedTokenPriceInDollars('GSHARE', bombFinance.GSHARE);
   const tokenPriceInDollars = useMemo(
     () =>
       stakedTokenPriceInDollars
@@ -59,7 +59,7 @@ const Stake: React.FC = () => {
         onStake(value);
         onDismissDeposit();
       }}
-      tokenName={'BShare'}
+      tokenName={'GShare'}
     />,
   );
 
@@ -70,7 +70,7 @@ const Stake: React.FC = () => {
         onWithdraw(value);
         onDismissWithdraw();
       }}
-      tokenName={'BShare'}
+      tokenName={'GShare'}
     />,
   );
 
@@ -81,11 +81,11 @@ const Stake: React.FC = () => {
           <StyledCardContentInner>
             <StyledCardHeader>
               <CardIcon>
-                <TokenSymbol symbol="BSHARE" />
+                <TokenSymbol symbol="GSHARE" />
               </CardIcon>
               <Value value={getDisplayBalance(stakedBalance)} />
               <Label text={`≈ $${tokenPriceInDollars}`} variant="yellow" />
-              <Label text={'BSHARE Staked'} variant="yellow" />
+              <Label text={'GSHARE Staked'} variant="yellow" />
             </StyledCardHeader>
             <StyledCardActions>
               {approveStatus !== ApprovalState.APPROVED ? (
@@ -95,7 +95,7 @@ const Stake: React.FC = () => {
                   style={{marginTop: '20px'}}
                   onClick={approve}
                 >
-                  Approve BSHARE
+                  Approve GSHARE
                 </Button>
               ) : (
                 <>

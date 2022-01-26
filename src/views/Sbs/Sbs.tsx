@@ -12,7 +12,7 @@ import Spacer from '../../components/Spacer';
 import useBombFinance from '../../hooks/useBombFinance';
 import {getDisplayBalance /*, getBalance*/} from '../../utils/formatBalance';
 import {BigNumber /*, ethers*/} from 'ethers';
-import useSwapBBondToBShare from '../../hooks/BShareSwapper/useSwapBBondToBShare';
+import useSwapGBondToBShare from '../../hooks/BShareSwapper/useSwapBBondToBShare';
 import useApprove, {ApprovalState} from '../../hooks/useApprove';
 import useBShareSwapperStats from '../../hooks/BShareSwapper/useBShareSwapperStats';
 import TokenInput from '../../components/TokenInput';
@@ -39,16 +39,16 @@ const Sbs: React.FC = () => {
   const [bbondAmount, setBbondAmount] = useState('');
   const [bshareAmount, setBshareAmount] = useState('');
 
-  const [approveStatus, approve] = useApprove(bombFinance.BBOND, bombFinance.contracts.BShareSwapper.address);
-  const {onSwapBShare} = useSwapBBondToBShare();
+  const [approveStatus, approve] = useApprove(bombFinance.GBOND, bombFinance.contracts.BShareSwapper.address);
+  const {onSwapBShare} = useSwapGBondToBShare();
   const bshareSwapperStat = useBShareSwapperStats(account);
 
   const bshareBalance = useMemo(
-    () => (bshareSwapperStat ? Number(bshareSwapperStat.bshareBalance) : 0),
+    () => (bshareSwapperStat ? Number(bshareSwapperStat.gshareBalance) : 0),
     [bshareSwapperStat],
   );
   const bondBalance = useMemo(
-    () => (bshareSwapperStat ? Number(bshareSwapperStat.bbondBalance) : 0),
+    () => (bshareSwapperStat ? Number(bshareSwapperStat.gbondBalance) : 0),
     [bshareSwapperStat],
   );
 
@@ -60,22 +60,22 @@ const Sbs: React.FC = () => {
     }
     if (!isNumeric(e.currentTarget.value)) return;
     setBbondAmount(e.currentTarget.value);
-    const updateBShareAmount = await bombFinance.estimateAmountOfBShare(e.currentTarget.value);
-    setBshareAmount(updateBShareAmount);
+    const updateGShareAmount = await bombFinance.estimateAmountOfGShare(e.currentTarget.value);
+    setBshareAmount(updateGShareAmount);
   };
 
   const handleBBondSelectMax = async () => {
     setBbondAmount(String(bondBalance));
-    const updateBShareAmount = await bombFinance.estimateAmountOfBShare(String(bondBalance));
-    setBshareAmount(updateBShareAmount);
+    const updateGShareAmount = await bombFinance.estimateAmountOfGShare(String(bondBalance));
+    setBshareAmount(updateGShareAmount);
   };
 
   const handleBShareSelectMax = async () => {
     setBshareAmount(String(bshareBalance));
-    const rateBSharePerBomb = (await bombFinance.getBShareSwapperStat(account)).rateBSharePerBomb;
+    const rateGSharePerGaia = (await bombFinance.getGShareSwapperStat(account)).rateGSharePerGaia;
     const updateBBondAmount = BigNumber.from(10)
       .pow(30)
-      .div(BigNumber.from(rateBSharePerBomb))
+      .div(BigNumber.from(rateGSharePerGaia))
       .mul(Number(bshareBalance) * 1e6);
     setBbondAmount(getDisplayBalance(updateBBondAmount, 18, 6));
   };
@@ -89,7 +89,7 @@ const Sbs: React.FC = () => {
     }
     if (!isNumeric(inputData)) return;
     setBshareAmount(inputData);
-    const rateBSharePerBomb = (await bombFinance.getBShareSwapperStat(account)).rateBSharePerBomb;
+    const rateBSharePerBomb = (await bombFinance.getGShareSwapperStat(account)).rateGSharePerGaia;
     const updateBBondAmount = BigNumber.from(10)
       .pow(30)
       .div(BigNumber.from(rateBSharePerBomb))
@@ -118,7 +118,7 @@ const Sbs: React.FC = () => {
                             <StyledExchanger>
                               <StyledToken>
                                 <StyledCardIcon>
-                                  <TokenSymbol symbol={bombFinance.BBOND.symbol} size={54} />
+                                  <TokenSymbol symbol={bombFinance.GBOND.symbol} size={54} />
                                 </StyledCardIcon>
                               </StyledToken>
                             </StyledExchanger>
@@ -145,7 +145,7 @@ const Sbs: React.FC = () => {
                             <StyledExchanger>
                               <StyledToken>
                                 <StyledCardIcon>
-                                  <TokenSymbol symbol={bombFinance.BSHARE.symbol} size={54} />
+                                  <TokenSymbol symbol={bombFinance.GSHARE.symbol} size={54} />
                                 </StyledCardIcon>
                               </StyledToken>
                             </StyledExchanger>

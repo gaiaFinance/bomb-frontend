@@ -45,14 +45,14 @@ const Bond: React.FC = () => {
 
   const bondsPurchasable = useBondsPurchasable();
 
-  const bondBalance = useTokenBalance(bombFinance?.BBOND);
+  const bondBalance = useTokenBalance(bombFinance?.GBOND);
   //const scalingFactor = useMemo(() => (cashPrice ? Number(cashPrice) : null), [cashPrice]);
 
   const handleBuyBonds = useCallback(
     async (amount: string) => {
       const tx = await bombFinance.buyBonds(amount);
       addTransaction(tx, {
-        summary: `Buy ${Number(amount).toFixed(2)} BBOND with ${amount} BOMB`,
+        summary: `Buy ${Number(amount).toFixed(2)} GBOND with ${amount} GAIA`,
       });
     },
     [bombFinance, addTransaction],
@@ -61,14 +61,14 @@ const Bond: React.FC = () => {
   const handleRedeemBonds = useCallback(
     async (amount: string) => {
       const tx = await bombFinance.redeemBonds(amount);
-      addTransaction(tx, {summary: `Redeem ${amount} BBOND`});
+      addTransaction(tx, {summary: `Redeem ${amount} GBOND`});
     },
     [bombFinance, addTransaction],
   );
   const isBondRedeemable = useMemo(() => cashPrice.gt(BOND_REDEEM_PRICE_BN), [cashPrice]);
-  const isBondPurchasable = useMemo(() => Number(bondStat?.tokenInFtm) < 1.01, [bondStat]);
-  const isBondPayingPremium = useMemo(() => Number(bondStat?.tokenInFtm) >= 1.1, [bondStat]);
-// console.log("bondstat", Number(bondStat?.tokenInFtm))
+  const isBondPurchasable = useMemo(() => Number(bondStat?.tokenInBnb) < 1.01, [bondStat]);
+  const isBondPayingPremium = useMemo(() => Number(bondStat?.tokenInBnb) >= 1.1, [bondStat]);
+// console.log("bondstat", Number(bondStat?.tokenInBnb))
   const bondScale = (Number(cashPrice) / 100000000000000).toFixed(4); 
 
   return (
@@ -101,14 +101,14 @@ const Bond: React.FC = () => {
               <StyledCardWrapper>
                 <ExchangeCard
                   action="Purchase"
-                  fromToken={bombFinance.BOMB}
-                  fromTokenName="BOMB"
-                  toToken={bombFinance.BBOND}
-                  toTokenName="BBOND"
+                  fromToken={bombFinance.GAIA}
+                  fromTokenName="GAIA"
+                  toToken={bombFinance.GBOND}
+                  toTokenName="GBOND"
                   priceDesc={
                     !isBondPurchasable
-                      ? 'BOMB is over peg'
-                      : getDisplayBalance(bondsPurchasable, 18, 4) + ' BBOND available for purchase'
+                      ? 'GAIA is over peg'
+                      : getDisplayBalance(bondsPurchasable, 18, 4) + ' GBOND available for purchase'
                   }
                   onExchange={handleBuyBonds}
                   disabled={!bondStat || isBondRedeemable}
@@ -116,30 +116,30 @@ const Bond: React.FC = () => {
               </StyledCardWrapper>
               <StyledStatsWrapper>
                 <ExchangeStat
-                  tokenName="10,000 BOMB"
+                  tokenName="10,000 GAIA"
                   description="Last-Hour TWAP Price"
-                  //price={Number(bombStat?.tokenInFtm).toFixed(4) || '-'}
+                  //price={Number(bombStat?.tokenInBnb).toFixed(4) || '-'}
                  price={bondScale || '-'}
 
                 />
                 <Spacer size="md" />
                 <ExchangeStat
-                  tokenName="10,000 BBOND"
-                  description="Current Price: (BOMB)^2"
-                  price={Number(bondStat?.tokenInFtm).toFixed(4) || '-'}
+                  tokenName="10,000 GBOND"
+                  description="Current Price: (GAIA)^2"
+                  price={Number(bondStat?.tokenInBnb).toFixed(4) || '-'}
                 />
               </StyledStatsWrapper>
               <StyledCardWrapper>
                 <ExchangeCard
                   action="Redeem"
-                  fromToken={bombFinance.BBOND}
-                  fromTokenName="BBOND"
-                  toToken={bombFinance.BOMB}
-                  toTokenName="BOMB"
-                  priceDesc={`${getDisplayBalance(bondBalance)} BBOND Available in wallet`}
+                  fromToken={bombFinance.GBOND}
+                  fromTokenName="GBOND"
+                  toToken={bombFinance.GAIA}
+                  toTokenName="GAIA"
+                  priceDesc={`${getDisplayBalance(bondBalance)} GBOND Available in wallet`}
                   onExchange={handleRedeemBonds}
                   disabled={!bondStat || bondBalance.eq(0) || !isBondRedeemable}
-                  disabledDescription={!isBondRedeemable ? `Enabled when 10,000 BOMB > ${BOND_REDEEM_PRICE}BTC` : null}
+                  disabledDescription={!isBondRedeemable ? `Enabled when 10,000 GAIA > ${BOND_REDEEM_PRICE}BTC` : null}
                 />
               </StyledCardWrapper>
             </StyledBond>

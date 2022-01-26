@@ -16,7 +16,7 @@ import btcLogo from '../../assets/img/BCTB-icon.png';
 const logosBySymbol: {[title: string]: string} = {
   //Real tokens
   //=====================
-  BOMB: bombLogo,
+  GAIA: bombLogo,
   BOMBPNG: bombLogoPNG,
   BSHAREPNG: tShareLogoPNG,
   BSHARE: tShareLogo,

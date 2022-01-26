@@ -167,10 +167,10 @@ const Nav = () => {
             >
               <div className="navTokenIcon bomb"></div>{' '}
               <div className="navTokenPrice">${roundAndFormatNumber(Number(bombPriceInDollars), 2)}</div>
-              <div className="navTokenIcon bshare"></div>{' '}
+              {/* <div className="navTokenIcon bshare"></div>{' '}
               <div className="navTokenPrice">${roundAndFormatNumber(Number(sharePriceInDollars), 2)}</div>
               <div className="navTokenIcon btc"></div>{' '}
-              <div className="navTokenPrice">${roundAndFormatNumber(Number(btcPriceInDollars), 2)}</div>
+              <div className="navTokenPrice">${roundAndFormatNumber(Number(btcPriceInDollars), 2)}</div> */}
             </Box>
             <AccountButton text="Connect" />
           </>

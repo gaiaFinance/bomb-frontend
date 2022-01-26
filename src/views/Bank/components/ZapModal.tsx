@@ -15,7 +15,7 @@ import useTokenBalance from '../../../hooks/useTokenBalance';
 import useBombFinance from '../../../hooks/useBombFinance';
 import {useWallet} from 'use-wallet';
 import useApproveZapper, {ApprovalState} from '../../../hooks/useApproveZapper';
-import {BOMB_TICKER, BSHARE_TICKER, BNB_TICKER, BTC_TICKER} from '../../../utils/constants';
+import {GAIA_TICKER, GSHARE_TICKER, BNB_TICKER, BTC_TICKER} from '../../../utils/constants';
 import {Alert} from '@material-ui/lab';
 
 interface ZapProps extends ModalProps {
@@ -28,19 +28,19 @@ const ZapModal: React.FC<ZapProps> = ({onConfirm, onDismiss, tokenName = '', dec
   const bombFinance = useBombFinance();
   const {balance} = useWallet();
   const ftmBalance = (Number(balance) / 1e18).toFixed(4).toString();
-  const bombBalance = useTokenBalance(bombFinance.BOMB);
-  const bshareBalance = useTokenBalance(bombFinance.BSHARE);
-  const btcBalance = useTokenBalance(bombFinance.BTC);
+  const bombBalance = useTokenBalance(bombFinance.GAIA);
+  const bshareBalance = useTokenBalance(bombFinance.GSHARE);
+  const btcBalance = useTokenBalance(bombFinance.BNB);
   const [val, setVal] = useState('');
   const [zappingToken, setZappingToken] = useState(BNB_TICKER);
   const [zappingTokenBalance, setZappingTokenBalance] = useState(ftmBalance);
   const [estimate, setEstimate] = useState({token0: '0', token1: '0'}); // token0 will always be BNB in this case
   const [approveZapperStatus, approveZapper] = useApproveZapper(zappingToken);
-  const bombFtmLpStats = useLpStats('BOMB-BTCB-LP');
-  const tShareFtmLpStats = useLpStats('BSHARE-BNB-LP');
+  const bombFtmLpStats = useLpStats('GAIA-BNB-LP');
+  const tShareFtmLpStats = useLpStats('GSHARE-BNB-LP');
   const bombLPStats = useMemo(() => (bombFtmLpStats ? bombFtmLpStats : null), [bombFtmLpStats]);
   const bshareLPStats = useMemo(() => (tShareFtmLpStats ? tShareFtmLpStats : null), [tShareFtmLpStats]);
-  const ftmAmountPerLP = tokenName.startsWith(BOMB_TICKER) ? bombLPStats?.ftmAmount : bshareLPStats?.ftmAmount;
+  const ftmAmountPerLP = tokenName.startsWith(GAIA_TICKER) ? bombLPStats?.bnbAmount : bshareLPStats?.bnbAmount;
   /**
    * Checks if a value is a valid number or not
    * @param n is the value to be evaluated for a number
@@ -53,10 +53,10 @@ const ZapModal: React.FC<ZapProps> = ({onConfirm, onDismiss, tokenName = '', dec
     const value = event.target.value;
     setZappingToken(value);
     setZappingTokenBalance(ftmBalance);
-    if (event.target.value === BSHARE_TICKER) {
+    if (event.target.value === GSHARE_TICKER) {
       setZappingTokenBalance(getDisplayBalance(bshareBalance, decimals));
     }
-    if (event.target.value === BOMB_TICKER) {
+    if (event.target.value === GAIA_TICKER) {
       setZappingTokenBalance(getDisplayBalance(bombBalance, decimals));
     }
     if (event.target.value === BTC_TICKER) {
@@ -91,10 +91,10 @@ const ZapModal: React.FC<ZapProps> = ({onConfirm, onDismiss, tokenName = '', dec
       </InputLabel>
       <Select onChange={handleChangeAsset} style={{color: '#2c2560'}} labelId="label" id="select" value={zappingToken}>
         <StyledMenuItem value={BNB_TICKER}>BNB</StyledMenuItem>
-        <StyledMenuItem value={BSHARE_TICKER}>BSHARE</StyledMenuItem>
+        <StyledMenuItem value={GSHARE_TICKER}>GSHARE</StyledMenuItem>
         {/* <StyledMenuItem value={BTC_TICKER}>BTC</StyledMenuItem> */}
         {/* Bomb as an input for zapping will be disabled due to issues occuring with the Gatekeeper system */}
-        {/* <StyledMenuItem value={BOMB_TICKER}>BOMB</StyledMenuItem> */}
+        {/* <StyledMenuItem value={GAIA_TICKER}>GAIA</StyledMenuItem> */}
       </Select>
       <TokenInput
         onSelectMax={handleSelectMax}
@@ -110,8 +110,8 @@ const ZapModal: React.FC<ZapProps> = ({onConfirm, onDismiss, tokenName = '', dec
       </StyledDescriptionText>
       <StyledDescriptionText>
         {' '}
-        ({Number(estimate.token0)} {tokenName.startsWith(BSHARE_TICKER) ? BSHARE_TICKER : BNB_TICKER} /{' '}
-        {Number(estimate.token1)} {tokenName.startsWith(BSHARE_TICKER) ? BNB_TICKER : BSHARE_TICKER}){' '}
+        ({Number(estimate.token0)} {tokenName.startsWith(GSHARE_TICKER) ? GSHARE_TICKER : BNB_TICKER} /{' '}
+        {Number(estimate.token1)} {tokenName.startsWith(GSHARE_TICKER) ? BNB_TICKER : GSHARE_TICKER}){' '}
       </StyledDescriptionText>
       <ModalActions>
         <Button

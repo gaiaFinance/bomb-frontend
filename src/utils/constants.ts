@@ -1,6 +1,6 @@
-export const BOMB_TICKER = 'BOMB';
-export const BSHARE_TICKER = 'BSHARE';
-export const BBOND_TICKER = 'BBOND';
+export const GAIA_TICKER = 'GAIA';
+export const GSHARE_TICKER = 'GSHARE';
+export const GBOND_TICKER = 'GBOND';
 export const BNB_TICKER = 'BNB';
 export const WBNB_TICKER = 'WBNB';
 export const BTC_TICKER = 'BTCB';

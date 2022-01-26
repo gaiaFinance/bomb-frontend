@@ -30,7 +30,7 @@ const Banks: React.FC = ({children}) => {
         ...bankInfo,
         address: config.deployments[bankInfo.contract].address,
         depositToken: bombFinance.externalTokens[bankInfo.depositTokenName],
-        earnToken: bankInfo.earnTokenName === 'BOMB' ? bombFinance.BOMB : bombFinance.BSHARE,
+        earnToken: bankInfo.earnTokenName === 'GAIA' ? bombFinance.GAIA : bombFinance.GSHARE,
       });
     }
     banks.sort((a, b) => (a.sort > b.sort ? 1 : -1));

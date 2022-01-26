@@ -4,18 +4,18 @@ import useHandleTransactionReceipt from '../useHandleTransactionReceipt';
 // import { BigNumber } from "ethers";
 import {parseUnits} from 'ethers/lib/utils';
 
-const useSwapBBondToBShare = () => {
+const useSwapGBondToBShare = () => {
   const bombFinance = useBombFinance();
   const handleTransactionReceipt = useHandleTransactionReceipt();
 
   const handleSwapBShare = useCallback(
     (bbondAmount: string) => {
       const bbondAmountBn = parseUnits(bbondAmount, 18);
-      handleTransactionReceipt(bombFinance.swapBBondToBShare(bbondAmountBn), `Swap ${bbondAmount} BBond to BShare`);
+      handleTransactionReceipt(bombFinance.swapGBondToGShare(bbondAmountBn), `Swap ${bbondAmount} BBond to BShare`);
     },
     [bombFinance, handleTransactionReceipt],
   );
   return {onSwapBShare: handleSwapBShare};
 };
 
-export default useSwapBBondToBShare;
+export default useSwapGBondToBShare;

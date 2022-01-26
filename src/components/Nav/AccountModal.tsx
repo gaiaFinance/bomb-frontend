@@ -13,13 +13,13 @@ import {useMediaQuery} from '@material-ui/core';
 const AccountModal: React.FC<ModalProps> = ({onDismiss}) => {
   const bombFinance = useBombFinance();
 
-  const bombBalance = useTokenBalance(bombFinance.BOMB);
+  const bombBalance = useTokenBalance(bombFinance.GAIA);
   const displayBombBalance = useMemo(() => getDisplayBalance(bombBalance), [bombBalance]);
 
-  const bshareBalance = useTokenBalance(bombFinance.BSHARE);
+  const bshareBalance = useTokenBalance(bombFinance.GSHARE);
   const displayBshareBalance = useMemo(() => getDisplayBalance(bshareBalance), [bshareBalance]);
 
-  const bbondBalance = useTokenBalance(bombFinance.BBOND);
+  const bbondBalance = useTokenBalance(bombFinance.GBOND);
   const displayBbondBalance = useMemo(() => getDisplayBalance(bbondBalance), [bbondBalance]);
 
   const matches = useMediaQuery('(min-width:900px)');

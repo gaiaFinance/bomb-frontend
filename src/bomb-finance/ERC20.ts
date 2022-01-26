@@ -350,5 +350,4 @@ const ABI = [
     "stateMutability": "nonpayable",
     "type": "function"
   }
-]
-
+];

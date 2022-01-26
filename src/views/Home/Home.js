@@ -54,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
-  const bombFtmLpStats = useLpStatsBTC('BOMB-BTCB-LP');
-  const bShareFtmLpStats = useLpStats('BSHARE-BNB-LP');
+  const bombFtmLpStats = useLpStatsBTC('GAIA-WBNB-LP');
+  const bShareFtmLpStats = useLpStats('GSHARE-BNB-LP');
   const bombStats = useBombStats();
   const bShareStats = usebShareStats();
   const tBondStats = useBondStats();
@@ -73,10 +73,12 @@ const Home = () => {
 
   const buyBombAddress =
     //  'https://pancakeswap.finance/swap?inputCurrency=0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c&outputCurrency=' +
-    'https://app.bogged.finance/bsc/swap?tokenIn=0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c&tokenOut=' +
-    bomb.address;
+    // 'https://app.bogged.finance/bsc/swap?tokenIn=0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c&tokenOut='+bomb.address;
+    `https://pcs.nhancv.com/#/swap?inputCurrency=BNB&outputCurrency=0xA8EfCE2b9068Df837C68217AaF18559bFA11f912`;
   //https://pancakeswap.finance/swap?outputCurrency=0x531780FAcE85306877D7e1F05d713D1B50a37F7A';
-  const buyBShareAddress = 'https://app.bogged.finance/bsc/swap?tokenIn=BNB&tokenOut=0x531780FAcE85306877D7e1F05d713D1B50a37F7A';
+  const buyBShareAddress = 
+  `https://pcs.nhancv.com/#/swap?inputCurrency=BNB&outputCurrency=${bShare.address}`;
+  // 'https://app.bogged.finance/bsc/swap?tokenIn=BNB&tokenOut=0x4c528F579A2C69Bb9e3803fD820289345cDB2e98';
   const bombLPStats = useMemo(() => (bombFtmLpStats ? bombFtmLpStats : null), [bombFtmLpStats]);
   const bshareLPStats = useMemo(() => (bShareFtmLpStats ? bShareFtmLpStats : null), [bShareFtmLpStats]);
   const bombPriceInDollars = useMemo(
@@ -110,9 +112,10 @@ const Home = () => {
     () => (tBondStats ? String(tBondStats.circulatingSupply) : null),
     [tBondStats],
   );
+  console.log(bombPriceInDollars, bSharePriceInBNB)
   const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
 
-  const bombLpZap = useZap({ depositTokenName: 'BOMB-BTCB-LP' });
+  const bombLpZap = useZap({ depositTokenName: 'GAIA-BNB-LP' });
   const bshareLpZap = useZap({ depositTokenName: 'BSHARE-BNB-LP' });
 
   const [onPresentBombZap, onDissmissBombZap] = useModal(
@@ -123,7 +126,7 @@ const Home = () => {
         bombLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissBombZap();
       }}
-      tokenName={'BOMB-BTCB-LP'}
+      tokenName={'GAIA-BNB-LP'}
     />,
   );
 
@@ -135,7 +138,7 @@ const Home = () => {
         bshareLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissBshareZap();
       }}
-      tokenName={'BSHARE-BNB-LP'}
+      tokenName={'GSHARE-BNB-LP'}
     />,
   );
 
@@ -246,12 +249,12 @@ const Home = () => {
             <CardContent align="center" style={{ position: 'relative' }}>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="BOMB" />
+                  <TokenSymbol symbol="GAIA" />
                 </CardIcon>
               </Box>
               <Button
                 onClick={() => {
-                  bombFinance.watchAssetInMetamask('BOMB');
+                  bombFinance.watchAssetInMetamask('GAIA');
                 }}
                 style={{ position: 'absolute', top: '10px', right: '10px', border: '1px grey solid' }}
               >
@@ -259,14 +262,14 @@ const Home = () => {
                 <b>+</b>&nbsp;&nbsp;
                 <img alt="metamask fox" style={{ width: '20px', filter: 'grayscale(100%)' }} src={MetamaskFox} />
               </Button>
-              <h2 style={{ marginBottom: '10px' }}>BOMB</h2>
+              <h2 style={{ marginBottom: '10px' }}>GAIA</h2>
               10,000 BOMB (1.0 Peg) =
               <Box>
                 <span style={{ fontSize: '30px', color: 'white' }}>{bombPriceInBNB ? bombPriceInBNB : '-.----'} BTC</span>
               </Box>
               <Box>
                 <span style={{ fontSize: '16px', alignContent: 'flex-start' }}>
-                  ${bombPriceInDollars ? roundAndFormatNumber(bombPriceInDollars, 2) : '-.--'} / BOMB
+                  ${bombPriceInDollars ? roundAndFormatNumber(bombPriceInDollars, 2) : '-.--'} / GAIA
                 </span>
               </Box>
               <span style={{ fontSize: '12px' }}>

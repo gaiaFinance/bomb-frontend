@@ -11,7 +11,7 @@ const useLpStatsBTC = (lpTicker: string) => {
   useEffect(() => {
     async function fetchLpPrice() {
       try {
-        setStat(await bombFinance.getLPStatBTC(lpTicker));
+        setStat(await bombFinance.getLPStatBNB(lpTicker));
       } catch (err) {
         console.error(err);
       }

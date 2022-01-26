@@ -10,13 +10,13 @@ const configurations: {[env: string]: Configuration} = {
     defaultProvider: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
     deployments: require('./bomb-finance/deployments/deployments.testing.json'),
     externalTokens: {
-      WBNB: ['0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18],
+      WBNB: ['0x418D75f65a02b3D53B2418FB8E1fe493759c7605', 18],
       FUSDT: ['0x55d398326f99059fF775485246999027B3197955', 18], // This is actually BUSD on mainnet not fusdt
       BTCB: ['0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', 18],
       ZOO: ['0x09e145a1d53c0045f41aeef25d8ff982ae74dd56', 0],
       SHIBA: ['0x9ba3e4f84a34df4e08c112e1a0ff148b81655615', 9],
       'USDT-BNB-LP': ['0xBD5bA679B197E8C6336b39188Cd6C685246B51E9', 18],
-      'BOMB-BTCB-LP': ['0x2A651563C9d3Af67aE0388a5c8F89b867038089e', 18],
+      'GAIA-BNB-LP': ['0xBD5bA679B197E8C6336b39188Cd6C685246B51E9', 18],
       'BSHARE-BNB-LP': ['0x894bc3Fa7681F1eF4538E33df81a0ff9f0105920', 18],
     },
     baseLaunchDate: new Date('2021-11-21 1:00:00Z'),
