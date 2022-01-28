@@ -26,7 +26,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import AccountButton from './AccountButton';
 
-import bombLogo from '../../assets/img/bomb-logo.png';
+import bombLogo from '../../assets/logos/gaia-logo.png';
 import {roundAndFormatNumber} from '../../0x';
 //import TokenSymbol from '../TokenSymbol';
 

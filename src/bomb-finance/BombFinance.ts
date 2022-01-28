@@ -105,7 +105,7 @@ export class BombFinance {
     const gaiaCirculatingSupply = supply.sub(gaiaRewardPoolSupply).sub(gaiaRewardPoolSupply2);
     const priceInBNB = await this.getTokenPriceFromPancakeswap(this.GAIA);
     const priceInBNBstring = priceInBNB.toString();
-    // const priceInBTC = await this.getTokenPriceFromPancakeswapBTC(this.BOMB);
+    // const priceInBTC = await this.getTokenPriceFromPancakeswapBTC(this.GAIA);
     const priceOfOneBNB = await this.getWBNBPriceFromPancakeswap();
     // const priceOfOneBTC = await this.getBTCBPriceFromPancakeswap();
     const priceInDollars = await this.getTokenPriceFromPancakeswapGAIAUSD();
@@ -186,7 +186,7 @@ export class BombFinance {
   }
   /**
    * Use this method to get price for Bomb
-   * @returns TokenStat for BBOND
+   * @returns TokenStat for GBOND
    * priceInBNB
    * priceInDollars
    * TotalSupply
@@ -209,7 +209,7 @@ export class BombFinance {
   }
 
   /**
-   * @returns TokenStat for BSHARE
+   * @returns TokenStat for GSHARE
    * priceInBNB
    * priceInDollars
    * TotalSupply
@@ -363,9 +363,9 @@ export class BombFinance {
         tokenPrice = await this.getLPTokenPrice(token, this.GAIA, true);
       } else if (tokenName === 'GSHARE-BNB-LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.GSHARE, false);
-      } else if (tokenName === 'BSHARE-BNB-APELP') {
+      } else if (tokenName === 'GSHARE-BNB-APELP') {
         tokenPrice = await this.getApeLPTokenPrice(token, this.GSHARE, false);
-      } else if (tokenName === 'BOMB-BTCB-APELP') {
+      } else if (tokenName === 'GAIA-BTCB-APELP') {
         tokenPrice = await this.getApeLPTokenPrice(token, this.GAIA, true);
       } else {
         tokenPrice = await this.getTokenPriceFromPancakeswap(token);
@@ -768,7 +768,7 @@ export class BombFinance {
 
   async stakeShareToBoardroom(amount: string): Promise<TransactionResponse> {
     if (this.isOldBoardroomMember()) {
-      throw new Error("you're using old boardroom. please withdraw and deposit the BSHARE again.");
+      throw new Error("you're using old boardroom. please withdraw and deposit the GSHARE again.");
     }
     const Boardroom = this.currentBoardroom();
     return await Boardroom.stake(decimalToBalance(amount));

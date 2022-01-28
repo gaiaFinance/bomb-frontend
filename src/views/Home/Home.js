@@ -24,7 +24,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import useBombFinance from '../../hooks/useBombFinance';
 import { ReactComponent as IconTelegram } from '../../assets/img/telegram.svg';
 import { Helmet } from 'react-helmet'
-import BombImage from '../../assets/img/bomb.png';
+import BombImage from '../../assets/logos/gaia.png';
 
 import HomeImage from '../../assets/img/background.jpg';
 const BackgroundImage = createGlobalStyle`
@@ -116,7 +116,7 @@ const Home = () => {
   const gBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
 
   const bombLpZap = useZap({ depositTokenName: 'GAIA-BNB-LP' });
-  const bshareLpZap = useZap({ depositTokenName: 'BSHARE-BNB-LP' });
+  const bshareLpZap = useZap({ depositTokenName: 'GSHARE-BNB-LP' });
 
   const [onPresentBombZap, onDissmissBombZap] = useModal(
     <ZapModal
@@ -162,15 +162,15 @@ const Home = () => {
         <Grid item xs={12} sm={8}>
           <Paper>
             <Box p={4} style={{ textAlign: 'center' }}>
-              <h2 className='bg-red-900'>Welcome to Bomb</h2>
+              <h2 className='bg-red-900'>Welcome to Gaia.finance</h2>
               <p>
-                BOMB is an algocoin which is designed to follow the price of BTC. Enjoy high yields normally only found
-                on high risk assets, but with exposure to BTC instead!
+              The first algorithmic token pegged to BNB running on Binance Smart Chain. 
+              Completely decentralized on-chain governance.
               </p>
               <p>
-                <strong>BOMB is pegged via algorithm to a 10,000:1 ratio to BTC. $100k BTC = $10 BOMB PEG</strong>
-                {/* Stake your BOMB-BTC LP in the Farm to earn BSHARE rewards. Then stake your earned BSHARE in the
-                Boardroom to earn more BOMB! */}
+                <strong>GAIA is pegged via algorithm to a 10,000:1 ratio to BTC. $100k BTC = $10 GAIA PEG</strong>
+                {/* Stake your GAIA-BTC LP in the Farm to earn GSHARE rewards. Then stake your earned GSHARE in the
+                Boardroom to earn more GAIA! */}
               </p>
               <p>
                 <IconTelegram alt="telegram" style={{ fill: '#dddfee', height: '15px' }} /> Join our{' '}
@@ -184,6 +184,9 @@ const Home = () => {
                 </a>{' '}
                 to find out more!
               </p>
+              <button>
+                <a href="https://docs.gaiafinance.io/why-gaia.finance">Read More</a>
+              </button>
             </Box>
           </Paper>
         </Grid>
@@ -229,7 +232,7 @@ const Home = () => {
                 style={{ margin: '10px' }}
                 className={'shinyButton ' + classes.button}
               >
-                Buy BOMB
+                Buy GAIA
               </Button>
               <Button
                 target="_blank"
@@ -237,13 +240,13 @@ const Home = () => {
                 className={'shinyButton ' + classes.button}
                 style={{ marginLeft: '10px' }}
               >
-                Buy BSHARE
+                Buy GSHARE
               </Button>
             </CardContent>
           </Card>
         </Grid>
 
-        {/* BOMB */}
+        {/* GAIA */}
         <Grid item xs={12} sm={4}>
           <Card>
             <CardContent align="center" style={{ position: 'relative' }}>
@@ -263,7 +266,7 @@ const Home = () => {
                 <img alt="metamask fox" style={{ width: '20px', filter: 'grayscale(100%)' }} src={MetamaskFox} />
               </Button>
               <h2 style={{ marginBottom: '10px' }}>GAIA</h2>
-              10,000 BOMB (1.0 Peg) =
+              10,000 GAIA (1.0 Peg) =
               <Box>
                 <span style={{ fontSize: '30px', color: 'white' }}>{bombPriceInBNB ? bombPriceInBNB : '-.----'} BNB</span>
               </Box>
@@ -281,7 +284,7 @@ const Home = () => {
           </Card>
         </Grid>
 
-        {/* BSHARE */}
+        {/* GSHARE */}
         <Grid item xs={12} sm={4}>
           <Card>
             <CardContent align="center" style={{ position: 'relative' }}>
@@ -300,7 +303,7 @@ const Home = () => {
                   <TokenSymbol symbol="GSHARE" />
                 </CardIcon>
               </Box>
-              <h2 style={{ marginBottom: '10px' }}>BSHARE</h2>
+              <h2 style={{ marginBottom: '10px' }}>GSHARE</h2>
               Current Price
               <Box>
                 <span style={{ fontSize: '30px', color: 'white' }}>
@@ -308,7 +311,7 @@ const Home = () => {
                 </span>
               </Box>
               <Box>
-                <span style={{ fontSize: '16px' }}>${bSharePriceInDollars ? bSharePriceInDollars : '-.--'} / BSHARE</span>
+                <span style={{ fontSize: '16px' }}>${bSharePriceInDollars ? bSharePriceInDollars : '-.--'} / GSHARE</span>
               </Box>
               <span style={{ fontSize: '12px' }}>
                 Market Cap: ${roundAndFormatNumber((bShareCirculatingSupply * bSharePriceInDollars).toFixed(2), 2)}{' '}
@@ -320,13 +323,13 @@ const Home = () => {
           </Card>
         </Grid>
 
-        {/* BBOND */}
+        {/* GBOND */}
         <Grid item xs={12} sm={4}>
           <Card>
             <CardContent align="center" style={{ position: 'relative' }}>
               <Button
                 onClick={() => {
-                  bombFinance.watchAssetInMetamask('BBOND');
+                  bombFinance.watchAssetInMetamask('GBOND');
                 }}
                 style={{ position: 'absolute', top: '10px', right: '10px', border: '1px grey solid' }}
               >
@@ -339,15 +342,15 @@ const Home = () => {
                   <TokenSymbol symbol="GBOND" />
                 </CardIcon>
               </Box>
-              <h2 style={{ marginBottom: '10px' }}>BBOND</h2>
-              10,000 BBOND
+              <h2 style={{ marginBottom: '10px' }}>GBOND</h2>
+              10,000 GBOND
               <Box>
                 <span style={{ fontSize: '30px', color: 'white' }}>
                   {gBondPriceInBNB ? gBondPriceInBNB : '-.----'} BTC
                 </span>
               </Box>
               <Box>
-                <span style={{ fontSize: '16px' }}>${gBondPriceInDollars ? gBondPriceInDollars : '-.--'} / BBOND</span>
+                <span style={{ fontSize: '16px' }}>${gBondPriceInDollars ? gBondPriceInDollars : '-.--'} / GBOND</span>
               </Box>
               <span style={{ fontSize: '12px' }}>
                 Market Cap: ${roundAndFormatNumber((gBondCirculatingSupply * gBondPriceInDollars).toFixed(2), 2)} <br />
@@ -391,7 +394,7 @@ const Home = () => {
             <CardContent align="center">
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="BSHARE-BNB-LP" />
+                  <TokenSymbol symbol="GSHARE-BNB-LP" />
                 </CardIcon>
               </Box>
               <h2>GSHARE-BNB PancakeSwap LP</h2>

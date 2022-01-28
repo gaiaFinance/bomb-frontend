@@ -95,11 +95,11 @@ const Boardroom = () => {
                 <Card className={classes.gridItem}>
                   <CardContent align="center">
                     <Typography style={{ textTransform: 'uppercase', color: '#f9d749' }}>
-                      BOMB PEG <small>(TWAP)</small>
+                      GAIA PEG <small>(TWAP)</small>
                     </Typography>
                     <Typography>{scalingFactor} BTC</Typography>
                     <Typography>
-                      <small>per 10,000 BOMB</small>
+                      <small>per 10,000 GAIA</small>
                     </Typography>
                   </CardContent>
                 </Card>
@@ -126,7 +126,7 @@ const Boardroom = () => {
               <Box mt={3} style={{ width: '600px' }}>
                 <Alert variant="filled" severity="warning">
                   <b> Boardroom smart contract has been updated! </b><br />
-                  If you have BSHARE in the previous Boardroom, visit here to retrieve it:<br />
+                  If you have GSHARE in the previous Boardroom, visit here to retrieve it:<br />
                   <a href="https://61aadb35c5a5c50007c2a61b--bomb-money.netlify.app/boardroom">https://61aadb35c5a5c50007c2a61b--bomb-money.netlify.app/boardroom</a><br /><br />
                 </Alert>
 

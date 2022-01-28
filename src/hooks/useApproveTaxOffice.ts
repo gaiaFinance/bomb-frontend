@@ -21,8 +21,8 @@ function useApproveTaxOffice(): [ApprovalState, () => Promise<void>] {
   const bombFinance = useBombFinance();
   let token: ERC20 = bombFinance.GAIA;
   // if (zappingToken === BNB_TICKER) token = bombFinance.BNB;
-  // else if (zappingToken === BOMB_TICKER) token = bombFinance.BOMB;
-  // else if (zappingToken === BSHARE_TICKER) token = bombFinance.BSHARE;
+  // else if (zappingToken === BOMB_TICKER) token = bombFinance.GAIA;
+  // else if (zappingToken === BSHARE_TICKER) token = bombFinance.GSHARE;
   const pendingApproval = useHasPendingApproval(token.address, TAX_OFFICE_ADDR);
   const currentAllowance = useAllowance(token, TAX_OFFICE_ADDR, pendingApproval);
 

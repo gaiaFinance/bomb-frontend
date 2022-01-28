@@ -36,12 +36,12 @@ const ProvideLiquidity = () => {
   const bombStats = useBombStats();
   const bombFinance = useBombFinance();
   const [approveTaxOfficeStatus, approveTaxOffice] = useApproveTaxOffice();
-  const bombBalance = useTokenBalance(bombFinance.BOMB);
+  const bombBalance = useTokenBalance(bombFinance.GAIA);
   const btcBalance = useTokenBalance(bombFinance.BTC);
 
   const ftmBalance = (btcBalance / 1e18).toFixed(4);
   const { onProvideBombFtmLP } = useProvideBombFtmLP();
-  const bombBnbLpStats = useLpStats('BOMB-BTCB-LP');
+  const bombBnbLpStats = useLpStats('GAIA-BTCB-LP');
 
   const bombLPStats = useMemo(() => (bombBnbLpStats ? bombBnbLpStats : null), [bombBnbLpStats]);
   const bombPriceInBNB = useMemo(() => (bombStats ? Number(bombStats.tokenInFtm).toFixed(2) : null), [bombStats]);
@@ -54,7 +54,7 @@ const ProvideLiquidity = () => {
     }
     if (!isNumeric(e.currentTarget.value)) return;
     setBombAmount(e.currentTarget.value);
-    const quoteFromSpooky = await bombFinance.quoteFromSpooky(e.currentTarget.value, 'BOMB');
+    const quoteFromSpooky = await bombFinance.quoteFromSpooky(e.currentTarget.value, 'GAIA');
     setFtmAmount(quoteFromSpooky);
     setLpTokensAmount(quoteFromSpooky / bombLPStats.ftmAmount);
   };
@@ -71,7 +71,7 @@ const ProvideLiquidity = () => {
     setLpTokensAmount(quoteFromSpooky / bombLPStats.tokenAmount);
   };
   const handleBombSelectMax = async () => {
-    const quoteFromSpooky = await bombFinance.quoteFromSpooky(getDisplayBalance(bombBalance), 'BOMB');
+    const quoteFromSpooky = await bombFinance.quoteFromSpooky(getDisplayBalance(bombBalance), 'GAIA');
     setBombAmount(getDisplayBalance(bombBalance));
     setFtmAmount(quoteFromSpooky);
     setLpTokensAmount(quoteFromSpooky / bombLPStats.ftmAmount);
@@ -101,7 +101,7 @@ const ProvideLiquidity = () => {
               <a href="https://pancakeswap.finance/" rel="noopener noreferrer" target="_blank">
                 Pancakeswap
               </a>{' '}
-              are the only ways to provide Liquidity on BOMB-BTCB pair without paying tax.
+              are the only ways to provide Liquidity on GAIA-BTCB pair without paying tax.
             </b>
           </Alert>
           <Grid item xs={12} sm={12}>
@@ -116,7 +116,7 @@ const ProvideLiquidity = () => {
                           onChange={handleBombChange}
                           value={bombAmount}
                           max={getDisplayBalance(bombBalance)}
-                          symbol={'BOMB'}
+                          symbol={'GAIA'}
                         ></TokenInput>
                       </Grid>
                       <Grid item xs={12}>
@@ -129,8 +129,8 @@ const ProvideLiquidity = () => {
                         ></TokenInput>
                       </Grid>
                       <Grid item xs={12}>
-                        <p>1 BOMB = {bombPriceInBNB} BNB</p>
-                        <p>1 BNB = {ftmPriceInBOMB} BOMB</p>
+                        <p>1 GAIA = {bombPriceInBNB} BNB</p>
+                        <p>1 BNB = {ftmPriceInBOMB} GAIA</p>
                         <p>LP tokens ≈ {lpTokensAmount.toFixed(2)}</p>
                       </Grid>
                       <Grid xs={12} justifyContent="center" style={{ textAlign: 'center' }}>

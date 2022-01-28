@@ -1,11 +1,11 @@
 import React from 'react';
 
 //Graveyard ecosystem logos
-import bombLogo from '../../assets/img/bomb.png';
+import bombLogo from '../../assets/logos/gaia.png';
 import tShareLogo from '../../assets/img/bshares.png';
-import bombLogoPNG from '../../assets/img/bomb.png';
+import bombLogoPNG from '../../assets/logos/gaia.png';
 import tShareLogoPNG from '../../assets/img/bshares.png';
-import tBondLogo from '../../assets/img/bbond.png';
+import tBondLogo from '../../assets/logos/gbond.png';
 
 import bombFtmLpLogo from '../../assets/img/bomb-bitcoin-LP.png';
 import bshareFtmLpLogo from '../../assets/img/bshare-bnb-LP.png';
@@ -32,10 +32,10 @@ const logosBySymbol: {[title: string]: string} = {
   BTC: btcLogo,
   SVL: bnbLogo,
   'GAIA-BNB-LP': bombFtmLpLogo,
-  'BOMB-BTCB-LP': bombFtmLpLogo,
-  'BSHARE-BNB-LP': bshareFtmLpLogo,
-  'BSHARE-BNB-APELP': bshareFtmLpLogo,
-  'BOMB-BTCB-APELP': bombFtmLpLogo,
+  'GAIA-BTCB-LP': bombFtmLpLogo,
+  'GSHARE-BNB-LP': bshareFtmLpLogo,
+  'GSHARE-BNB-APELP': bshareFtmLpLogo,
+  'GAIA-BTCB-APELP': bombFtmLpLogo,
 };
 
 type LogoProps = {

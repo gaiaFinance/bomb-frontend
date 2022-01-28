@@ -131,7 +131,7 @@ const Sbs: React.FC = () => {
                                 symbol="BBond"
                               ></TokenInput>
                             </Grid>
-                            <StyledDesc>{`${bondBalance} BBOND Available in Wallet`}</StyledDesc>
+                            <StyledDesc>{`${bondBalance} GBOND Available in Wallet`}</StyledDesc>
                           </StyledCardContentInner>
                         </CardContent>
                       </Card>
@@ -158,7 +158,7 @@ const Sbs: React.FC = () => {
                                 symbol="BShare"
                               ></TokenInput>
                             </Grid>
-                            <StyledDesc>{`${bshareBalance} BSHARE Available in Swapper`}</StyledDesc>
+                            <StyledDesc>{`${bshareBalance} GSHARE Available in Swapper`}</StyledDesc>
                           </StyledCardContentInner>
                         </CardContent>
                       </Card>
@@ -182,7 +182,7 @@ const Sbs: React.FC = () => {
                             onClick={approve}
                             size="medium"
                           >
-                            Approve BBOND
+                            Approve GBOND
                           </Button>
                         ) : (
                           <Button

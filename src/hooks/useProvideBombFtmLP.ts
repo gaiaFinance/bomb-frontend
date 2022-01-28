@@ -13,7 +13,7 @@ const useProvideBombFtmLP = () => {
       const bombAmountBn = parseUnits(bombAmount);
       handleTransactionReceipt(
         bombFinance.provideBombFtmLP(ftmAmount, bombAmountBn),
-        `Provide BOMB-BTCB LP ${bombAmount} ${ftmAmount} using ${TAX_OFFICE_ADDR}`,
+        `Provide GAIA-BTCB LP ${bombAmount} ${ftmAmount} using ${TAX_OFFICE_ADDR}`,
       );
     },
     [bombFinance, handleTransactionReceipt],

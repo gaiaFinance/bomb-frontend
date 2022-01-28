@@ -33,7 +33,7 @@ const AccountModal: React.FC<ModalProps> = ({onDismiss}) => {
           <TokenSymbol symbol="GAIA" />
           <StyledBalance>
             <StyledValue>{displayBombBalance}</StyledValue>
-            <Label text="BOMB Available" />
+            <Label text="GAIA Available" />
           </StyledBalance>
         </StyledBalanceWrapper>
 
@@ -41,7 +41,7 @@ const AccountModal: React.FC<ModalProps> = ({onDismiss}) => {
           <TokenSymbol symbol="GSHARE" />
           <StyledBalance>
             <StyledValue>{displayBshareBalance}</StyledValue>
-            <Label text="BSHARE Available" />
+            <Label text="GSHARE Available" />
           </StyledBalance>
         </StyledBalanceWrapper>
 
@@ -49,7 +49,7 @@ const AccountModal: React.FC<ModalProps> = ({onDismiss}) => {
           <TokenSymbol symbol="GBOND" />
           <StyledBalance>
             <StyledValue>{displayBbondBalance}</StyledValue>
-            <Label text="BBOND Available" />
+            <Label text="GBOND Available" />
           </StyledBalance>
         </StyledBalanceWrapper>
       </Balances>

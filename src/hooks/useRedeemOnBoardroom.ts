@@ -7,7 +7,7 @@ const useRedeemOnBoardroom = (description?: string) => {
   const handleTransactionReceipt = useHandleTransactionReceipt();
 
   const handleRedeem = useCallback(() => {
-    const alertDesc = description || 'Redeem BSHARE from Boardroom';
+    const alertDesc = description || 'Redeem GSHARE from Boardroom';
     handleTransactionReceipt(bombFinance.exitFromBoardroom(), alertDesc);
   }, [bombFinance, description, handleTransactionReceipt]);
   return {onRedeem: handleRedeem};

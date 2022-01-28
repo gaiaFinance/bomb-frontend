@@ -39,7 +39,7 @@ const Bank: React.FC = () => {
   const statsOnPool = useStatsForPool(bank);
 
   let vaultUrl: string;
-  if (bank.depositTokenName.includes('BOMB')) {
+  if (bank.depositTokenName.includes('GAIA')) {
     vaultUrl = 'https://www.bomb.farm/#/bsc/vault/bomb-bomb-btcb';
   } else {
     vaultUrl = 'https://www.bomb.farm/#/bsc/vault/bomb-bshare-wbnb';
@@ -129,12 +129,12 @@ const LPTokenHelpText: React.FC<{bank: BankEntity}> = ({bank}) => {
   let pairName: string;
   let uniswapUrl: string;
  // let vaultUrl: string;
-  if (bank.depositTokenName.includes('BOMB')) {
-    pairName = 'BOMB-BTCB pair';
+  if (bank.depositTokenName.includes('GAIA')) {
+    pairName = 'GAIA-BTCB pair';
     uniswapUrl = 'https://pancakeswap.finance/add/0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c/' + bombAddr;
  //   vaultUrl = 'https://www.bomb.farm/#/bsc/vault/bomb-bomb-btcb';
   } else {
-    pairName = 'BSHARE-BNB pair';
+    pairName = 'GSHARE-BNB pair';
     uniswapUrl = 'https://pancakeswap.finance/add/BNB/' + bshareAddr;
  //   vaultUrl = 'https://www.bomb.farm/#/bsc/vault/bomb-bshare-bnb';
 
