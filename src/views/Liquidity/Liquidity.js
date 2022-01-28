@@ -41,9 +41,9 @@ const ProvideLiquidity = () => {
 
   const ftmBalance = (btcBalance / 1e18).toFixed(4);
   const { onProvideBombFtmLP } = useProvideBombFtmLP();
-  const bombFtmLpStats = useLpStats('BOMB-BTCB-LP');
+  const bombBnbLpStats = useLpStats('BOMB-BTCB-LP');
 
-  const bombLPStats = useMemo(() => (bombFtmLpStats ? bombFtmLpStats : null), [bombFtmLpStats]);
+  const bombLPStats = useMemo(() => (bombBnbLpStats ? bombBnbLpStats : null), [bombBnbLpStats]);
   const bombPriceInBNB = useMemo(() => (bombStats ? Number(bombStats.tokenInFtm).toFixed(2) : null), [bombStats]);
   const ftmPriceInBOMB = useMemo(() => (bombStats ? Number(1 / bombStats.tokenInFtm).toFixed(2) : null), [bombStats]);
   // const classes = useStyles();

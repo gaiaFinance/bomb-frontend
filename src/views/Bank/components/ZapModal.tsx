@@ -36,9 +36,9 @@ const ZapModal: React.FC<ZapProps> = ({onConfirm, onDismiss, tokenName = '', dec
   const [zappingTokenBalance, setZappingTokenBalance] = useState(ftmBalance);
   const [estimate, setEstimate] = useState({token0: '0', token1: '0'}); // token0 will always be BNB in this case
   const [approveZapperStatus, approveZapper] = useApproveZapper(zappingToken);
-  const bombFtmLpStats = useLpStats('GAIA-BNB-LP');
+  const bombBnbLpStats = useLpStats('GAIA-BNB-LP');
   const tShareFtmLpStats = useLpStats('GSHARE-BNB-LP');
-  const bombLPStats = useMemo(() => (bombFtmLpStats ? bombFtmLpStats : null), [bombFtmLpStats]);
+  const bombLPStats = useMemo(() => (bombBnbLpStats ? bombBnbLpStats : null), [bombBnbLpStats]);
   const bshareLPStats = useMemo(() => (tShareFtmLpStats ? tShareFtmLpStats : null), [tShareFtmLpStats]);
   const ftmAmountPerLP = tokenName.startsWith(GAIA_TICKER) ? bombLPStats?.bnbAmount : bshareLPStats?.bnbAmount;
   /**

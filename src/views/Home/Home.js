@@ -54,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
-  const bombFtmLpStats = useLpStatsBTC('GAIA-WBNB-LP');
-  const bShareFtmLpStats = useLpStats('GSHARE-BNB-LP');
+  const bombBnbLpStats = useLpStatsBTC('GAIA-WBNB-LP');
+  const bShareBnbLpStats = useLpStats('GSHARE-BNB-LP');
   const bombStats = useBombStats();
   const bShareStats = usebShareStats();
   const tBondStats = useBondStats();
@@ -74,13 +74,13 @@ const Home = () => {
   const buyBombAddress =
     //  'https://pancakeswap.finance/swap?inputCurrency=0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c&outputCurrency=' +
     // 'https://app.bogged.finance/bsc/swap?tokenIn=0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c&tokenOut='+bomb.address;
-    `https://pcs.nhancv.com/#/swap?inputCurrency=BNB&outputCurrency=0xA8EfCE2b9068Df837C68217AaF18559bFA11f912`;
+    `https://pcs.nhancv.com/#/swap?inputCurrency=BNB&outputCurrency=${bomb.address}`;
   //https://pancakeswap.finance/swap?outputCurrency=0x531780FAcE85306877D7e1F05d713D1B50a37F7A';
   const buyBShareAddress = 
   `https://pcs.nhancv.com/#/swap?inputCurrency=BNB&outputCurrency=${bShare.address}`;
   // 'https://app.bogged.finance/bsc/swap?tokenIn=BNB&tokenOut=0x4c528F579A2C69Bb9e3803fD820289345cDB2e98';
-  const bombLPStats = useMemo(() => (bombFtmLpStats ? bombFtmLpStats : null), [bombFtmLpStats]);
-  const bshareLPStats = useMemo(() => (bShareFtmLpStats ? bShareFtmLpStats : null), [bShareFtmLpStats]);
+  const gaiaLPStats = useMemo(() => (bombBnbLpStats ? bombBnbLpStats : null), [bombBnbLpStats]);
+  const gshareLPStats = useMemo(() => (bShareBnbLpStats ? bShareBnbLpStats : null), [bShareBnbLpStats]);
   const bombPriceInDollars = useMemo(
     () => (bombStats ? Number(bombStats.priceInDollars).toFixed(2) : null),
     [bombStats],
@@ -103,17 +103,17 @@ const Home = () => {
   );
   const bShareTotalSupply = useMemo(() => (bShareStats ? String(bShareStats.totalSupply) : null), [bShareStats]);
 
-  const tBondPriceInDollars = useMemo(
+  const gBondPriceInDollars = useMemo(
     () => (tBondStats ? Number(tBondStats.priceInDollars).toFixed(2) : null),
     [tBondStats],
   );
-  const tBondPriceInBNB = useMemo(() => (tBondStats ? Number(tBondStats.tokenInFtm).toFixed(4) : null), [tBondStats]);
-  const tBondCirculatingSupply = useMemo(
+  const gBondPriceInBNB = useMemo(() => (tBondStats ? Number(tBondStats.tokenInFtm).toFixed(4) : null), [tBondStats]);
+  const gBondCirculatingSupply = useMemo(
     () => (tBondStats ? String(tBondStats.circulatingSupply) : null),
     [tBondStats],
   );
   console.log(bombPriceInDollars, bSharePriceInBNB)
-  const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
+  const gBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
 
   const bombLpZap = useZap({ depositTokenName: 'GAIA-BNB-LP' });
   const bshareLpZap = useZap({ depositTokenName: 'BSHARE-BNB-LP' });
@@ -265,7 +265,7 @@ const Home = () => {
               <h2 style={{ marginBottom: '10px' }}>GAIA</h2>
               10,000 BOMB (1.0 Peg) =
               <Box>
-                <span style={{ fontSize: '30px', color: 'white' }}>{bombPriceInBNB ? bombPriceInBNB : '-.----'} BTC</span>
+                <span style={{ fontSize: '30px', color: 'white' }}>{bombPriceInBNB ? bombPriceInBNB : '-.----'} BNB</span>
               </Box>
               <Box>
                 <span style={{ fontSize: '16px', alignContent: 'flex-start' }}>
@@ -287,7 +287,7 @@ const Home = () => {
             <CardContent align="center" style={{ position: 'relative' }}>
               <Button
                 onClick={() => {
-                  bombFinance.watchAssetInMetamask('BSHARE');
+                  bombFinance.watchAssetInMetamask('GSHARE');
                 }}
                 style={{ position: 'absolute', top: '10px', right: '10px', border: '1px grey solid' }}
               >
@@ -343,16 +343,16 @@ const Home = () => {
               10,000 BBOND
               <Box>
                 <span style={{ fontSize: '30px', color: 'white' }}>
-                  {tBondPriceInBNB ? tBondPriceInBNB : '-.----'} BTC
+                  {gBondPriceInBNB ? gBondPriceInBNB : '-.----'} BTC
                 </span>
               </Box>
               <Box>
-                <span style={{ fontSize: '16px' }}>${tBondPriceInDollars ? tBondPriceInDollars : '-.--'} / BBOND</span>
+                <span style={{ fontSize: '16px' }}>${gBondPriceInDollars ? gBondPriceInDollars : '-.--'} / BBOND</span>
               </Box>
               <span style={{ fontSize: '12px' }}>
-                Market Cap: ${roundAndFormatNumber((tBondCirculatingSupply * tBondPriceInDollars).toFixed(2), 2)} <br />
-                Circulating Supply: {roundAndFormatNumber(tBondCirculatingSupply, 2)} <br />
-                Total Supply: {roundAndFormatNumber(tBondTotalSupply, 2)}
+                Market Cap: ${roundAndFormatNumber((gBondCirculatingSupply * gBondPriceInDollars).toFixed(2), 2)} <br />
+                Circulating Supply: {roundAndFormatNumber(gBondCirculatingSupply, 2)} <br />
+                Total Supply: {roundAndFormatNumber(gBondTotalSupply, 2)}
               </span>
             </CardContent>
           </Card>
@@ -362,10 +362,10 @@ const Home = () => {
             <CardContent align="center">
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="BOMB-BTCB-LP" />
+                  <TokenSymbol symbol="GAIA-BNB-LP" />
                 </CardIcon>
               </Box>
-              <h2>BOMB-BTCB PancakeSwap LP</h2>
+              <h2>GAIA-BNB PancakeSwap LP</h2>
               <Box mt={2}>
                 <Button disabled onClick={onPresentBombZap} className="shinyButtonDisabledSecondary">
                   Zap In
@@ -373,15 +373,15 @@ const Home = () => {
               </Box>
               <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
-                  {bombLPStats?.tokenAmount ? bombLPStats?.tokenAmount : '-.--'} BOMB /{' '}
-                  {bombLPStats?.ftmAmount ? bombLPStats?.ftmAmount : '-.--'} BTCB
+                  {gaiaLPStats?.tokenAmount ? gaiaLPStats?.tokenAmount : '-.--'} GAIA /{' '}
+                  {gaiaLPStats?.ftmAmount ? gaiaLPStats?.ftmAmount : '-.--'} WBNB
                 </span>
               </Box>
-              <Box>${bombLPStats?.priceOfOne ? bombLPStats.priceOfOne : '-.--'}</Box>
+              <Box>${gaiaLPStats?.priceOfOne ? gaiaLPStats.priceOfOne : '-.--'}</Box>
               <span style={{ fontSize: '12px' }}>
-                Liquidity: ${bombLPStats?.totalLiquidity ? roundAndFormatNumber(bombLPStats.totalLiquidity, 2) : '-.--'}{' '}
+                Liquidity: ${gaiaLPStats?.totalLiquidity ? roundAndFormatNumber(gaiaLPStats.totalLiquidity, 2) : '-.--'}{' '}
                 <br />
-                Total Supply: {bombLPStats?.totalSupply ? roundAndFormatNumber(bombLPStats.totalSupply, 2) : '-.--'}
+                Total Supply: {gaiaLPStats?.totalSupply ? roundAndFormatNumber(gaiaLPStats.totalSupply, 2) : '-.--'}
               </span>
             </CardContent>
           </Card>
@@ -394,7 +394,7 @@ const Home = () => {
                   <TokenSymbol symbol="BSHARE-BNB-LP" />
                 </CardIcon>
               </Box>
-              <h2>BSHARE-BNB PancakeSwap LP</h2>
+              <h2>GSHARE-BNB PancakeSwap LP</h2>
               <Box mt={2}>
                 <Button onClick={onPresentBshareZap} className="shinyButtonSecondary">
                   Zap In
@@ -402,16 +402,16 @@ const Home = () => {
               </Box>
               <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
-                  {bshareLPStats?.tokenAmount ? bshareLPStats?.tokenAmount : '-.--'} BSHARE /{' '}
-                  {bshareLPStats?.ftmAmount ? bshareLPStats?.ftmAmount : '-.--'} BNB
+                  {gshareLPStats?.tokenAmount ? gshareLPStats?.tokenAmount : '-.--'} GSHARE /{' '}
+                  {gshareLPStats?.ftmAmount ? gshareLPStats?.ftmAmount : '-.--'} BNB
                 </span>
               </Box>
-              <Box>${bshareLPStats?.priceOfOne ? bshareLPStats.priceOfOne : '-.--'}</Box>
+              <Box>${gshareLPStats?.priceOfOne ? gshareLPStats.priceOfOne : '-.--'}</Box>
               <span style={{ fontSize: '12px' }}>
                 Liquidity: $
-                {bshareLPStats?.totalLiquidity ? roundAndFormatNumber(bshareLPStats.totalLiquidity, 2) : '-.--'}
+                {gshareLPStats?.totalLiquidity ? roundAndFormatNumber(gshareLPStats.totalLiquidity, 2) : '-.--'}
                 <br />
-                Total Supply: {bshareLPStats?.totalSupply ? roundAndFormatNumber(bshareLPStats.totalSupply, 2) : '-.--'}
+                Total Supply: {gshareLPStats?.totalSupply ? roundAndFormatNumber(gshareLPStats.totalSupply, 2) : '-.--'}
               </span>
             </CardContent>
           </Card>

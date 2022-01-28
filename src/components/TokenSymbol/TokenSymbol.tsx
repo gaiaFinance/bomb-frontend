@@ -31,7 +31,7 @@ const logosBySymbol: {[title: string]: string} = {
   BTCB: btcLogo,
   BTC: btcLogo,
   SVL: bnbLogo,
-  'BOMB-BNB-LP': bombFtmLpLogo,
+  'GAIA-BNB-LP': bombFtmLpLogo,
   'BOMB-BTCB-LP': bombFtmLpLogo,
   'BSHARE-BNB-LP': bshareFtmLpLogo,
   'BSHARE-BNB-APELP': bshareFtmLpLogo,

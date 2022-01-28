@@ -13,7 +13,7 @@ import IUniswapV2PairABI from './IUniswapV2Pair.abi.json';
 import config, {bankDefinitions} from '../config';
 import moment from 'moment';
 import {parseUnits} from 'ethers/lib/utils';
-import {BNB_TICKER, SPOOKY_ROUTER_ADDR, GAIA_TICKER} from '../utils/constants';
+import {BNB_TICKER, PANCAKESWAP_ROUTER_ADDR, GAIA_TICKER} from '../utils/constants';
 /**
  * An API module of Bomb Money contracts.
  * All contract-interacting domain logic should be defined in here.
@@ -103,7 +103,7 @@ export class BombFinance {
     const gaiaRewardPoolSupply = await this.GAIA.balanceOf(GaiaGenesisRewardPool.address);
     const gaiaRewardPoolSupply2 = await this.GAIA.balanceOf(GaiaRewardPool.address);
     const gaiaCirculatingSupply = supply.sub(gaiaRewardPoolSupply).sub(gaiaRewardPoolSupply2);
-     const priceInBNB = await this.getTokenPriceFromPancakeswap(this.GAIA);
+    const priceInBNB = await this.getTokenPriceFromPancakeswap(this.GAIA);
     const priceInBNBstring = priceInBNB.toString();
     // const priceInBTC = await this.getTokenPriceFromPancakeswapBTC(this.BOMB);
     const priceOfOneBNB = await this.getWBNBPriceFromPancakeswap();
@@ -1016,13 +1016,13 @@ export class BombFinance {
     const lpToken = this.externalTokens[lpName];
     let estimate;
     if (tokenName === BNB_TICKER) {
-      estimate = await zapper.estimateZapIn(lpToken.address, SPOOKY_ROUTER_ADDR, parseUnits(amount, 18));
+      estimate = await zapper.estimateZapIn(lpToken.address, PANCAKESWAP_ROUTER_ADDR, parseUnits(amount, 18));
     } else {
       const token = tokenName === GAIA_TICKER ? this.GAIA : this.GSHARE;
       estimate = await zapper.estimateZapInToken(
         token.address,
         lpToken.address,
-        SPOOKY_ROUTER_ADDR,
+        PANCAKESWAP_ROUTER_ADDR,
         parseUnits(amount, 18),
       );
     }
@@ -1035,14 +1035,14 @@ export class BombFinance {
       let overrides = {
         value: parseUnits(amount, 18),
       };
-      return await zapper.zapIn(lpToken.address, SPOOKY_ROUTER_ADDR, this.myAccount, overrides);
+      return await zapper.zapIn(lpToken.address, PANCAKESWAP_ROUTER_ADDR, this.myAccount, overrides);
     } else {
       const token = tokenName === GAIA_TICKER ? this.GAIA : this.GSHARE;
       return await zapper.zapInToken(
         token.address,
         parseUnits(amount, 18),
         lpToken.address,
-        SPOOKY_ROUTER_ADDR,
+        PANCAKESWAP_ROUTER_ADDR,
         this.myAccount,
       );
     }
