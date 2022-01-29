@@ -47,9 +47,9 @@ export class BombFinance {
     for (const [symbol, [address, decimal]] of Object.entries(externalTokens)) {
       this.externalTokens[symbol] = new ERC20(address, provider, symbol, decimal);
     }
-    this.GAIA = new ERC20(deployments.Bomb.address, provider, 'GAIA');
-    this.GSHARE = new ERC20(deployments.BShare.address, provider, 'GSHARE');
-    this.GBOND = new ERC20(deployments.BBond.address, provider, 'GBOND');
+    this.GAIA = new ERC20(deployments.Gaia.address, provider, 'GAIA');
+    this.GSHARE = new ERC20(deployments.GShare.address, provider, 'GSHARE');
+    this.GBOND = new ERC20(deployments.GBond.address, provider, 'GBOND');
     this.BNB = this.externalTokens['WBNB'];
     // this.BTC = this.externalTokens['BTCB'];
 

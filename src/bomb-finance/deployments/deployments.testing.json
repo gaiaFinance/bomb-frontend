@@ -1,5 +1,5 @@
 {
-  "BBond": {
+  "GBond": {
     "address": "0x829fAE0548C656ECF6Ef16027d11BF2264Ae3414",
     "abi": [
       {
@@ -444,7 +444,7 @@
       }
     ]
   },
-  "BShare": {
+  "GShare": {
     "address": "0x4c528F579A2C69Bb9e3803fD820289345cDB2e98",
     "abi": [
       {
@@ -1145,7 +1145,7 @@
       }
     ]
   },
-  "BShareRewardPool": {
+  "GShareRewardPool": {
     "address": "0xE48d010b4F0A7F65Bb2DC49cD71a661Cff5B09b5",
     "abi": [
       {
@@ -2117,7 +2117,7 @@
       }
     ]
   },
-  "Bomb": {
+  "Gaia": {
     "address": "0x2497673408fA951ACFD819fBDCeC36413a5684F7",
     "abi": [
       {
@@ -3005,7 +3005,7 @@
       }
     ]
   },
-  "BombGenesisRewardPool": {
+  "GaiaGenesisRewardPool": {
     "address": "0x4f4aAa8E34eBE75e8F4a8CBe0A530bEBBA4480B4",
     "abi": [
   {
@@ -3509,7 +3509,7 @@
   }
     ]
   },
-  "BombRewardPool": {
+  "GaiaRewardPool": {
     "address": "0x4f4aAa8E34eBE75e8F4a8CBe0A530bEBBA4480B4",
     "abi": [
       {
@@ -4000,14 +4000,14 @@
       }
     ]
   },
-  "BombTaxOracle": {
+  "GaiaTaxOracle": {
     "address": "0xe05b8829b0F1eD627B77CF5B53AB558098afD256",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_bomb",
+            "name": "_Gaia",
             "type": "address"
           },
           {
@@ -4045,7 +4045,7 @@
       },
       {
         "inputs": [],
-        "name": "bomb",
+        "name": "Gaia",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -4117,11 +4117,11 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_bomb",
+            "name": "_Gaia",
             "type": "address"
           }
         ],
-        "name": "setBomb",
+        "name": "setGaia",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
