@@ -10,8 +10,8 @@ const configurations: {[env: string]: Configuration} = {
     defaultProvider: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
     deployments: require('./bomb-finance/deployments/deployments.testing.json'),
     externalTokens: {
-      WBNB: ['0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18],
-      // WBNB: ['0x094616f0bdfb0b526bd735bf66eca0ad254ca81f', 18],
+      // WBNB: ['0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18],
+      WBNB: ['0x0dE8FCAE8421fc79B29adE9ffF97854a424Cad09', 18],
       FUSDT: ['0xb87da937ab04c83480760e6f53c1360cf9719b62', 18], // This is actually BUSD on mainnet not fusdt
       BTCB: ['0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', 18],
       ZOO: ['0x09e145a1d53c0045f41aeef25d8ff982ae74dd56', 0],
@@ -62,7 +62,7 @@ const configurations: {[env: string]: Configuration} = {
     defaultProvider: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
     deployments: require('./bomb-finance/deployments/deployments.testing.json'),
     externalTokens: {
-      WBNB: ['0x094616f0bdfb0b526bd735bf66eca0ad254ca81f', 18],
+      WBNB: ['0x0dE8FCAE8421fc79B29adE9ffF97854a424Cad09', 18],
       FUSDT: ['0xb87da937ab04c83480760e6f53c1360cf9719b62', 18], // This is actually BUSD on mainnet not fusdt
       BTCB: ['0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', 18],
       ZOO: ['0x09e145a1d53c0045f41aeef25d8ff982ae74dd56', 0],

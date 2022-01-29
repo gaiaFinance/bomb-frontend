@@ -1,6 +1,7 @@
 // import { Fetcher, Route, Token } from '@uniswap/sdk';
 //import { Fetcher as FetcherSpirit, Token as TokenSpirit } from '@spiritswap/sdk';
-import {Fetcher, Route, Token} from '@pancakeswap/sdk';
+// import {Fetcher, Route, Token} from '@pancakeswap/sdk';
+import {Fetcher, Route, Token} from 'pancakeswap-v2-testnet-sdk';
 import {Configuration} from './config';
 import {ContractName, TokenStat, AllocationTime, LPStat, Bank, PoolStats, GShareSwapperStat} from './types';
 import {BigNumber, Contract, ethers, EventFilter} from 'ethers';
@@ -98,27 +99,40 @@ export class BombFinance {
   //===================================================================
 
   async getGaiaStat(): Promise<TokenStat> {
-    const {GaiaRewardPool, GaiaGenesisRewardPool} = this.contracts;
-    const supply = await this.GAIA.totalSupply();
-    const gaiaRewardPoolSupply = await this.GAIA.balanceOf(GaiaGenesisRewardPool.address);
-    const gaiaRewardPoolSupply2 = await this.GAIA.balanceOf(GaiaRewardPool.address);
-    const gaiaCirculatingSupply = supply.sub(gaiaRewardPoolSupply).sub(gaiaRewardPoolSupply2);
-    const priceInBNB = await this.getTokenPriceFromPancakeswap(this.GAIA);
-    const priceInBNBstring = priceInBNB.toString();
-    // const priceInBTC = await this.getTokenPriceFromPancakeswapBTC(this.GAIA);
-    const priceOfOneBNB = await this.getWBNBPriceFromPancakeswap();
-    // const priceOfOneBTC = await this.getBTCBPriceFromPancakeswap();
-    const priceInDollars = await this.getTokenPriceFromPancakeswapGAIAUSD();
-    const priceOfBombInDollars = ((Number(priceInBNB) * Number(priceOfOneBNB)) / 10000).toFixed(2);
-    console.log('priceOfBombInDollars', priceOfBombInDollars, priceInBNB, priceInBNBstring, priceInDollars);
 
-    return {
-       tokenInBnb: (Number(priceInBNB) * 100).toString(),
-      // tokenInBnb: priceInBTC.toString(),
-      priceInDollars: priceOfBombInDollars,
-      totalSupply: getDisplayBalance(supply, this.GAIA.decimal, 0),
-      circulatingSupply: getDisplayBalance(gaiaCirculatingSupply, this.GAIA.decimal, 0),
-    };
+    try {
+      const {GaiaRewardPool, GaiaGenesisRewardPool} = this.contracts;
+      const supply = await this.GAIA.totalSupply();
+
+      const gaiaRewardPoolSupply = await this.GAIA.balanceOf(GaiaGenesisRewardPool.address);
+
+      const gaiaRewardPoolSupply2 = await this.GAIA.balanceOf(GaiaRewardPool.address);
+
+      const gaiaCirculatingSupply = supply.sub(gaiaRewardPoolSupply).sub(gaiaRewardPoolSupply2);
+
+      const priceInBNB = await this.getTokenPriceFromPancakeswap(this.GAIA);
+
+      console.log({priceInBNB})
+      const priceInBNBstring = priceInBNB?.toString();
+      console.log({priceInBNBstring})
+      // const priceInBTC = await this.getTokenPriceFromPancakeswapBTC(this.GAIA);
+      const priceOfOneBNB = await this.getWBNBPriceFromPancakeswap();
+      // const priceOfOneBTC = await this.getBTCBPriceFromPancakeswap();
+      const priceInDollars = await this.getTokenPriceFromPancakeswapGAIAUSD();
+      const priceOfBombInDollars = ((Number(priceInBNB) * Number(priceOfOneBNB)) / 10000).toFixed(2);
+      console.log('priceOfBombInDollars!!!!!!!!!', priceOfBombInDollars, priceInBNB, priceInBNBstring, priceInDollars);
+
+      return {
+        tokenInBnb: (Number(priceInBNB) * 100).toString(),
+        // tokenInBnb: priceInBTC.toString(),
+        priceInDollars: priceOfBombInDollars,
+        totalSupply: getDisplayBalance(supply, this.GAIA.decimal, 0),
+        circulatingSupply: getDisplayBalance(gaiaCirculatingSupply, this.GAIA.decimal, 0),
+      };
+    }catch (e) {
+      console.log({e})
+    }
+
   }
 
 
@@ -565,10 +579,11 @@ export class BombFinance {
     const token = new Token(chainId, tokenContract.address, tokenContract.decimal, tokenContract.symbol);
     try {
       const wftmToToken = await Fetcher.fetchPairData(wftm, token, this.provider);
+      console.log({wftmToToken})
       const priceInBUSD = new Route([wftmToToken], token);
       return priceInBUSD.midPrice.toFixed(4);
     } catch (err) {
-      console.error(`Failed to fetch token price of ${tokenContract.symbol}: ${err}`);
+      console.log(`Failed to fetch token price of ${tokenContract.symbol}: ${err}`);
     }
   }
 
