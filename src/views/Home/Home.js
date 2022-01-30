@@ -13,7 +13,7 @@ import useBondStats from '../../hooks/useBondStats';
 import usebShareStats from '../../hooks/usebShareStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
 import { Gaia as bombTesting, GShare as bShareTesting } from '../../bomb-finance/deployments/deployments.testing.json';
-import { Gaia as bombProd, GShare as bShareProd } from '../../bomb-finance/deployments/deployments.mainnet.json';
+import { Bomb as bombProd, BShare as bShareProd } from '../../bomb-finance/deployments/deployments.mainnet.json';
 import { roundAndFormatNumber } from '../../0x';
 import MetamaskFox from '../../assets/img/metamask-fox.svg';
 import { Box, Button, Card, CardContent, Grid, Paper } from '@material-ui/core';
