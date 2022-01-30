@@ -110,17 +110,19 @@ export class BombFinance {
 
       const gaiaCirculatingSupply = supply.sub(gaiaRewardPoolSupply).sub(gaiaRewardPoolSupply2);
 
+      console.log("getting prince in BNB!!!!!!!!!")
       const priceInBNB = await this.getTokenPriceFromPancakeswap(this.GAIA);
-
+      console.log("gotp price in bnb!!!!!!! as ", priceInBNB)
       console.log({priceInBNB})
       const priceInBNBstring = priceInBNB?.toString();
       console.log({priceInBNBstring})
       // const priceInBTC = await this.getTokenPriceFromPancakeswapBTC(this.GAIA);
       const priceOfOneBNB = await this.getWBNBPriceFromPancakeswap();
       // const priceOfOneBTC = await this.getBTCBPriceFromPancakeswap();
-      const priceInDollars = await this.getTokenPriceFromPancakeswapGAIAUSD();
+      // const priceInDollars = await this.getTokenPriceFromPancakeswapGAIAUSD();
+      console.log({priceInBNB,priceOfOneBNB })
       const priceOfBombInDollars = ((Number(priceInBNB) * Number(priceOfOneBNB)) / 10000).toFixed(2);
-      console.log('priceOfBombInDollars!!!!!!!!!', priceOfBombInDollars, priceInBNB, priceInBNBstring, priceInDollars);
+      // console.log('priceOfBombInDollars!!!!!!!!!', priceOfBombInDollars, priceInBNB, priceInBNBstring, priceInDollars);
 
       return {
         tokenInBnb: (Number(priceInBNB) * 100).toString(),
@@ -235,11 +237,24 @@ export class BombFinance {
     const supply = await this.GSHARE.totalSupply();
 
     const priceInBNB = await this.getTokenPriceFromPancakeswap(this.GSHARE);
+    console.log({priceInBNB})
     const bombRewardPoolSupply = await this.GSHARE.balanceOf(GShareRewardPool.address);
     const tShareCirculatingSupply = supply.sub(bombRewardPoolSupply);
     const priceOfOneBNB = await this.getWBNBPriceFromPancakeswap();
+
+    console.log({priceInBNB, priceOfOneBNB})
     const priceOfSharesInDollars = (Number(priceInBNB) * Number(priceOfOneBNB)).toFixed(2);
 
+
+    const data = {
+      tokenInBnb: priceInBNB,
+      priceInDollars: priceOfSharesInDollars,
+      totalSupply: getDisplayBalance(supply, this.GSHARE.decimal, 0),
+      circulatingSupply: getDisplayBalance(tShareCirculatingSupply, this.GSHARE.decimal, 0),
+
+    }
+
+    // console.log({data})
     return {
       tokenInBnb: priceInBNB,
       priceInDollars: priceOfSharesInDollars,
@@ -579,9 +594,11 @@ export class BombFinance {
     const token = new Token(chainId, tokenContract.address, tokenContract.decimal, tokenContract.symbol);
     try {
       const wftmToToken = await Fetcher.fetchPairData(wftm, token, this.provider);
-      console.log({wftmToToken})
       const priceInBUSD = new Route([wftmToToken], token);
-      return priceInBUSD.midPrice.toFixed(4);
+
+      const value = priceInBUSD.midPrice.toFixed(4)
+      console.log("price in BUSD " , {value})
+      return(value ? value : "0")
     } catch (err) {
       console.log(`Failed to fetch token price of ${tokenContract.symbol}: ${err}`);
     }
@@ -676,11 +693,18 @@ export class BombFinance {
     const {WBNB, FUSDT} = this.externalTokens;
     try {
       const fusdt_wbnb_lp_pair = this.externalTokens['USDT-BNB-LP'];
+
       let ftm_amount_BN = await WBNB.balanceOf(fusdt_wbnb_lp_pair.address);
+
       let ftm_amount = Number(getFullDisplayBalance(ftm_amount_BN, WBNB.decimal));
+
       let fusdt_amount_BN = await FUSDT.balanceOf(fusdt_wbnb_lp_pair.address);
+
       let fusdt_amount = Number(getFullDisplayBalance(fusdt_amount_BN, FUSDT.decimal));
-      return (fusdt_amount / ftm_amount).toString();
+
+      const value = (fusdt_amount / ftm_amount) ? (fusdt_amount / ftm_amount).toString() : "0"
+      console.log({value})
+      return value
     } catch (err) {
       console.error(`Failed to fetch token price of WBNB: ${err}`);
     }
