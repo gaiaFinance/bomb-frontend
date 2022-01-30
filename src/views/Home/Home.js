@@ -61,6 +61,7 @@ const Home = () => {
   const tBondStats = useBondStats();
   const bombFinance = useBombFinance();
 
+  // console.log({bShareStats})
   let bomb;
   let bShare;
   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
@@ -112,7 +113,7 @@ const Home = () => {
     () => (tBondStats ? String(tBondStats.circulatingSupply) : null),
     [tBondStats],
   );
-  console.log(bombPriceInDollars, bSharePriceInBNB)
+  console.log({bombPriceInDollars, bSharePriceInBNB})
   const gBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
 
   const bombLpZap = useZap({ depositTokenName: 'GAIA-BNB-LP' });
