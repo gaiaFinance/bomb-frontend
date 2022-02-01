@@ -68,7 +68,7 @@ const Bond: React.FC = () => {
   const isBondPurchasable = useMemo(() => Number(bondStat?.tokenInBnb) < 1.01, [bondStat]);
   const isBondPayingPremium = useMemo(() => Number(bondStat?.tokenInBnb) >= 1.1, [bondStat]);
 // console.log("bondstat", Number(bondStat?.tokenInBnb))
-  const bondScale = (Number(cashPrice) / 100000000000000).toFixed(4); 
+  const bondScale = (Number(cashPrice) / 1000000000000000000).toFixed(4); 
 
   return (
     <Switch>
@@ -115,15 +115,15 @@ const Bond: React.FC = () => {
               </StyledCardWrapper>
               <StyledStatsWrapper>
                 <ExchangeStat
-                  tokenName="10,000 GAIA"
+                  tokenName="GAIA"
                   description="Last-Hour TWAP Price"
-                  //price={Number(bombStat?.tokenInBnb).toFixed(4) || '-'}
+                  // price={Number(bondStat?.tokenInBnb).toFixed(4) || '-'}
                  price={bondScale || '-'}
 
                 />
                 <Spacer size="md" />
                 <ExchangeStat
-                  tokenName="10,000 GBOND"
+                  tokenName="GBOND"
                   description="Current Price: (GAIA)^2"
                   price={Number(bondStat?.tokenInBnb).toFixed(4) || '-'}
                 />
