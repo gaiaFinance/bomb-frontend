@@ -24,7 +24,6 @@ import { Alert } from '@material-ui/lab';
 import HomeImage from '../../assets/img/background.jpg';
 import { Grid, Box } from '@material-ui/core';
 import { Helmet } from 'react-helmet';
-
 const BackgroundImage = createGlobalStyle`
   body {
     background: url(${HomeImage}) repeat !important;

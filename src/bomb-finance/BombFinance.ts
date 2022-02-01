@@ -110,7 +110,7 @@ export class BombFinance {
 
       const gaiaCirculatingSupply = supply.sub(gaiaRewardPoolSupply).sub(gaiaRewardPoolSupply2);
 
-      console.log("getting prince in BNB!!!!!!!!!")
+      console.log("getting price in BNB!!!!!!!!!")
       const priceInBNB = await this.getTokenPriceFromPancakeswap(this.GAIA);
       console.log("gotp price in bnb!!!!!!! as ", priceInBNB)
       console.log({priceInBNB})
@@ -121,11 +121,11 @@ export class BombFinance {
       // const priceOfOneBTC = await this.getBTCBPriceFromPancakeswap();
       // const priceInDollars = await this.getTokenPriceFromPancakeswapGAIAUSD();
       console.log({priceInBNB,priceOfOneBNB })
-      const priceOfBombInDollars = ((Number(priceInBNB) * Number(priceOfOneBNB)) / 10000).toFixed(2);
+      const priceOfBombInDollars = (Number(priceInBNB) * Number(priceOfOneBNB)).toFixed(2);
       // console.log('priceOfBombInDollars!!!!!!!!!', priceOfBombInDollars, priceInBNB, priceInBNBstring, priceInDollars);
 
       return {
-        tokenInBnb: (Number(priceInBNB) * 100).toString(),
+        tokenInBnb: (Number(priceInBNB)).toString(),
         // tokenInBnb: priceInBTC.toString(),
         priceInDollars: priceOfBombInDollars,
         totalSupply: getDisplayBalance(supply, this.GAIA.decimal, 0),
@@ -265,7 +265,7 @@ export class BombFinance {
 
   async getBombStatInEstimatedTWAP(): Promise<TokenStat> {
     const {Oracle, GaiaRewardPool} = this.contracts;
-    const expectedPrice = await Oracle.twap(this.GAIA.address, ethers.utils.parseEther('10000'));
+    const expectedPrice = await Oracle.twap(this.GAIA.address, ethers.utils.parseEther('1'));
 
     const supply = await this.GAIA.totalSupply();
     const gaiaRewardPoolSupply = await this.GAIA.balanceOf(GaiaRewardPool.address);
@@ -280,7 +280,7 @@ export class BombFinance {
 
   async getBombPriceInLastTWAP(): Promise<BigNumber> {
     const { Treasury } = this.contracts;
-    return Treasury.getBombUpdatedPrice();
+    return Treasury.getGaiaUpdatedPrice();
   }
 
   // async getBombPegTWAP(): Promise<any> {

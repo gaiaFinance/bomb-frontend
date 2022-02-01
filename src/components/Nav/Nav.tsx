@@ -120,15 +120,15 @@ const Nav = () => {
             <Typography variant="h6" color="inherit" noWrap style={{flexGrow: '0'}} className={classes.toolbarTitle}>
               {/* <a className={ classes.brandLink } href="/">Bomb Money</a> */}
               <Link to="/" color="inherit" className={classes.brandLink}>
-                <img alt="bomb.money" src={bombLogo} height="60px" />
+                {/* <img alt="bomb.money" src={bombLogo} height="60px" /> */}
               </Link>
             </Typography>
             <Box style={{paddingLeft: '15px', paddingTop: '10px', fontSize: '1rem', flexGrow: '1'}}>
               <Link to="/" className={'navLink ' + classes.link}>
                 Home
               </Link>
-              <Link to="/farm" className={'navLink ' + classes.link}>
-                Farm
+              <Link to="/bank" className={'navLink ' + classes.link}>
+                Bank
               </Link>
               <Link to="/boardroom" className={'navLink ' + classes.link}>
                 Boardroom

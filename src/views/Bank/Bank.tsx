@@ -31,20 +31,21 @@ const useStyles = makeStyles((theme) => ({
 const Bank: React.FC = () => {
   useEffect(() => window.scrollTo(0, 0));
   const classes = useStyles();
-  const {bankId} = useParams();
+  const { bankId } = useParams();
+  console.log(bankId)
   const bank = useBank(bankId);
 
   const {account} = useWallet();
   const {onRedeem} = useRedeem(bank);
   const statsOnPool = useStatsForPool(bank);
 
-  let vaultUrl: string;
-  if (bank.depositTokenName.includes('GAIA')) {
-    vaultUrl = 'https://www.bomb.farm/#/bsc/vault/bomb-bomb-btcb';
-  } else {
-    vaultUrl = 'https://www.bomb.farm/#/bsc/vault/bomb-bshare-wbnb';
+  // let vaultUrl: string;
+  // if (bank.depositTokenName.includes('GAIA')) {
+  //   vaultUrl = 'https://www.bomb.farm/#/bsc/vault/bomb-bomb-btcb';
+  // } else {
+  //   vaultUrl = 'https://www.bomb.farm/#/bsc/vault/bomb-bshare-wbnb';
 
-  }
+  // }
 
   return account && bank ? (
     <>
@@ -54,15 +55,13 @@ const Bank: React.FC = () => {
         title={bank?.name}
       />
          <Box mt={5}>
-                <Grid container justify="center" spacing={3} style={{ marginBottom: '30px' }}>
-
-        <Alert variant="filled" severity="info">
-            <h3>Our autocompounding vaults are live!</h3><br />
-            We support zapping tokens, and auto-compound every 2 hours!<br />
-            Check it out here: <a href={vaultUrl}>{vaultUrl}</a>
-
-
-        </Alert></Grid>
+            <Grid container justify="center" spacing={3} style={{ marginBottom: '30px' }}>
+              {/* <Alert variant="filled" severity="info">
+                  <h3>Our autocompounding vaults are live!</h3><br />
+                  We support zapping tokens, and auto-compound every 2 hours!<br />
+                  Check it out here: <a href={vaultUrl}>{vaultUrl}</a>
+              </Alert> */}
+            </Grid>
         </Box>
       <Box>
         <Grid container justify="center" spacing={3} style={{marginBottom: '50px'}}>
@@ -130,12 +129,14 @@ const LPTokenHelpText: React.FC<{bank: BankEntity}> = ({bank}) => {
   let uniswapUrl: string;
  // let vaultUrl: string;
   if (bank.depositTokenName.includes('GAIA')) {
-    pairName = 'GAIA-BTCB pair';
-    uniswapUrl = 'https://pancakeswap.finance/add/0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c/' + bombAddr;
+    pairName = 'GAIA-BNB pair';
+    // uniswapUrl = 'https://pancakeswap.finance/add/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c/' + bombAddr;
+    uniswapUrl = `https://pcs.nhancv.com/#/add/BNB/${bombAddr}`;
  //   vaultUrl = 'https://www.bomb.farm/#/bsc/vault/bomb-bomb-btcb';
   } else {
     pairName = 'GSHARE-BNB pair';
-    uniswapUrl = 'https://pancakeswap.finance/add/BNB/' + bshareAddr;
+    // uniswapUrl = `https://pancakeswap.finance/add/BNB/${bshareAddr}`;
+    uniswapUrl = `https://pcs.nhancv.com/#/add/BNB/${bshareAddr}`;
  //   vaultUrl = 'https://www.bomb.farm/#/bsc/vault/bomb-bshare-bnb';
 
   }

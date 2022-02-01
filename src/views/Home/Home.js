@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
-  const bombBnbLpStats = useLpStatsBTC('GAIA-WBNB-LP');
+  const bombBnbLpStats = useLpStatsBTC('GAIA-BNB-LP');
   const bShareBnbLpStats = useLpStats('GSHARE-BNB-LP');
   const bombStats = useBombStats();
   const bShareStats = usebShareStats();
@@ -80,13 +80,13 @@ const Home = () => {
   const buyBShareAddress = 
   `https://pcs.nhancv.com/#/swap?inputCurrency=BNB&outputCurrency=${bShare.address}`;
   // 'https://app.bogged.finance/bsc/swap?tokenIn=BNB&tokenOut=0x4c528F579A2C69Bb9e3803fD820289345cDB2e98';
-  const gaiaLPStats = useMemo(() => (bombBnbLpStats ? bombBnbLpStats : null), [bombBnbLpStats]);
-  const gshareLPStats = useMemo(() => (bShareBnbLpStats ? bShareBnbLpStats : null), [bShareBnbLpStats]);
+  const bombLPStats = useMemo(() => (bombBnbLpStats ? bombBnbLpStats : null), [bombBnbLpStats]);
+  const bShareLPStats = useMemo(() => (bShareBnbLpStats ? bShareBnbLpStats : null), [bShareBnbLpStats]);
   const bombPriceInDollars = useMemo(
     () => (bombStats ? Number(bombStats.priceInDollars).toFixed(2) : null),
     [bombStats],
   );
-  const bombPriceInBNB = useMemo(() => (bombStats ? Number(bombStats.tokenInFtm).toFixed(4) : null), [bombStats]);
+  const bombPriceInBNB = useMemo(() => (bombStats ? Number(bombStats.tokenInBnb).toFixed(4) : null), [bombStats]);
   const bombCirculatingSupply = useMemo(() => (bombStats ? String(bombStats.circulatingSupply) : null), [bombStats]);
   const bombTotalSupply = useMemo(() => (bombStats ? String(bombStats.totalSupply) : null), [bombStats]);
 
@@ -95,7 +95,7 @@ const Home = () => {
     [bShareStats],
   );
   const bSharePriceInBNB = useMemo(
-    () => (bShareStats ? Number(bShareStats.tokenInFtm).toFixed(4) : null),
+    () => (bShareStats ? Number(bShareStats.tokenInBnb).toFixed(4) : null),
     [bShareStats],
   );
   const bShareCirculatingSupply = useMemo(
@@ -108,7 +108,7 @@ const Home = () => {
     () => (tBondStats ? Number(tBondStats.priceInDollars).toFixed(2) : null),
     [tBondStats],
   );
-  const gBondPriceInBNB = useMemo(() => (tBondStats ? Number(tBondStats.tokenInFtm).toFixed(4) : null), [tBondStats]);
+  const gBondPriceInBNB = useMemo(() => (tBondStats ? Number(tBondStats.tokenInBnb).toFixed(4) : null), [tBondStats]);
   const gBondCirculatingSupply = useMemo(
     () => (tBondStats ? String(tBondStats.circulatingSupply) : null),
     [tBondStats],
@@ -163,7 +163,7 @@ const Home = () => {
         <Grid item xs={12} sm={8}>
           <Paper>
             <Box p={4} style={{ textAlign: 'center' }}>
-              <h2 className='bg-red-900'>Welcome to Gaia.finance</h2>
+              <h2 className='bg-blue-900 text-bold'>Welcome to Gaia.finance</h2>
               <p>
               The first algorithmic token pegged to BNB running on Binance Smart Chain. 
               Completely decentralized on-chain governance.
@@ -347,7 +347,7 @@ const Home = () => {
               10,000 GBOND
               <Box>
                 <span style={{ fontSize: '30px', color: 'white' }}>
-                  {gBondPriceInBNB ? gBondPriceInBNB : '-.----'} BTC
+                  {gBondPriceInBNB ? gBondPriceInBNB : '-.----'} BNB
                 </span>
               </Box>
               <Box>
@@ -361,7 +361,7 @@ const Home = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        {/* <Grid item xs={12} sm={6}>
           <Card>
             <CardContent align="center">
               <Box mt={2}>
@@ -389,8 +389,8 @@ const Home = () => {
               </span>
             </CardContent>
           </Card>
-        </Grid>
-        <Grid item xs={12} sm={6}>
+        </Grid> */}
+        {/* <Grid item xs={12} sm={6}>
           <Card>
             <CardContent align="center">
               <Box mt={2}>
@@ -419,7 +419,7 @@ const Home = () => {
               </span>
             </CardContent>
           </Card>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Page>
   );

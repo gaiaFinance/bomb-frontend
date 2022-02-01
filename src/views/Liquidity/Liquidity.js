@@ -26,7 +26,7 @@ const BackgroundImage = createGlobalStyle`
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
-const TITLE = 'bomb.money |'
+const TITLE = 'gaia.finance |'
 
 const ProvideLiquidity = () => {
   const [bombAmount, setBombAmount] = useState(0);
@@ -41,11 +41,13 @@ const ProvideLiquidity = () => {
 
   const ftmBalance = (btcBalance / 1e18).toFixed(4);
   const { onProvideBombFtmLP } = useProvideBombFtmLP();
-  const bombBnbLpStats = useLpStats('GAIA-BTCB-LP');
+  const bombBnbLpStats = useLpStats('GAIA-BNB-LP');
 
   const bombLPStats = useMemo(() => (bombBnbLpStats ? bombBnbLpStats : null), [bombBnbLpStats]);
   const bombPriceInBNB = useMemo(() => (bombStats ? Number(bombStats.tokenInFtm).toFixed(2) : null), [bombStats]);
   const ftmPriceInBOMB = useMemo(() => (bombStats ? Number(1 / bombStats.tokenInFtm).toFixed(2) : null), [bombStats]);
+  console.log('bombLPStats', bombLPStats)
+
   // const classes = useStyles();
 
   const handleBombChange = async (e) => {
@@ -65,7 +67,7 @@ const ProvideLiquidity = () => {
     }
     if (!isNumeric(e.currentTarget.value)) return;
     setFtmAmount(e.currentTarget.value);
-    const quoteFromSpooky = await bombFinance.quoteFromSpooky(e.currentTarget.value, 'BTCB');
+    const quoteFromSpooky = await bombFinance.quoteFromSpooky(e.currentTarget.value, 'BNB');
     setBombAmount(quoteFromSpooky);
 
     setLpTokensAmount(quoteFromSpooky / bombLPStats.tokenAmount);
