@@ -693,14 +693,20 @@ export class BombFinance {
     const {WBNB, FUSDT} = this.externalTokens;
     try {
       const fusdt_wbnb_lp_pair = this.externalTokens['USDT-BNB-LP'];
+      console.log("fusdt_wbnb_lp_pair", fusdt_wbnb_lp_pair)
 
       let ftm_amount_BN = await WBNB.balanceOf(fusdt_wbnb_lp_pair.address);
+      console.log('ftm_amount_BN', ftm_amount_BN)
 
       let ftm_amount = Number(getFullDisplayBalance(ftm_amount_BN, WBNB.decimal));
+      console.log('WBNB', WBNB)
+      console.log('ftm_amount', ftm_amount)
 
       let fusdt_amount_BN = await FUSDT.balanceOf(fusdt_wbnb_lp_pair.address);
+      console.log('fusdt_amount_BN', fusdt_amount_BN)
 
       let fusdt_amount = Number(getFullDisplayBalance(fusdt_amount_BN, FUSDT.decimal));
+      console.log('fusdt_amount', fusdt_amount)
 
       const value = (fusdt_amount / ftm_amount) ? (fusdt_amount / ftm_amount).toString() : "0"
       console.log({value})

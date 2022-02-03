@@ -39,6 +39,7 @@ const Bond: React.FC = () => {
   const bombFinance = useBombFinance();
   const addTransaction = useTransactionAdder();
   const bondStat = useBondStats();
+  console.log('Bond stat', !bondStat)
   //const bombStat = useBombStats();
   const cashPrice = useCashPriceInLastTWAP();
 
@@ -67,6 +68,8 @@ const Bond: React.FC = () => {
   const isBondRedeemable = useMemo(() => cashPrice.gt(BOND_REDEEM_PRICE_BN), [cashPrice]);
   const isBondPurchasable = useMemo(() => Number(bondStat?.tokenInBnb) < 1.01, [bondStat]);
   const isBondPayingPremium = useMemo(() => Number(bondStat?.tokenInBnb) >= 1.1, [bondStat]);
+
+  console.log(Number(bondStat?.tokenInBnb) < 1.01, [bondStat])
 // console.log("bondstat", Number(bondStat?.tokenInBnb))
   const bondScale = (Number(cashPrice) / 1000000000000000000).toFixed(4); 
 
