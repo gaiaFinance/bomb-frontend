@@ -136,6 +136,9 @@ const Nav = () => {
               <Link to="/bond" className={'navLink ' + classes.link}>
                 Bond
               </Link>
+              <Link to="/farm" className={'navLink ' + classes.link}>
+                Farm
+              </Link>
 
               {/* <Link color="textPrimary" to="/sbs" className={classes.link}>
                 SBS

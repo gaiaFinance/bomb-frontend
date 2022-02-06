@@ -61,6 +61,9 @@ const App: React.FC = () => {
             <Route path="/bond">
               <Bond />
             </Route>
+            <Route path="/farm">
+              <Farm />
+            </Route>
             {/* <Route path="/sbs">
               <SBS />
             </Route> */}
