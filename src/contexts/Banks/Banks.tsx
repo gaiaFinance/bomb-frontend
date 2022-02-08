@@ -5,6 +5,7 @@ import {Bank} from '../../bomb-finance';
 import config, {bankDefinitions} from '../../config';
 
 const Banks: React.FC = ({children}) => {
+  console.log("Bank Definitions", bankDefinitions)
   const [banks, setBanks] = useState<Bank[]>([]);
   const bombFinance = useBombFinance();
   const isUnlocked = bombFinance?.isUnlocked;
@@ -13,7 +14,10 @@ const Banks: React.FC = ({children}) => {
     const banks: Bank[] = [];
 
     for (const bankInfo of Object.values(bankDefinitions)) {
-      if (bankInfo.finished) {
+    localStorage.setItem("Bank Info", JSON.stringify(bankInfo))
+    localStorage.setItem("Bank definition", JSON.stringify(bankDefinitions))
+
+      // if (bankInfo.finished) {
         if (!bombFinance.isUnlocked) continue;
 
         // only show pools staked by user
@@ -25,7 +29,7 @@ const Banks: React.FC = ({children}) => {
         if (balance.lte(0)) {
           continue;
         }
-      }
+      // }
       banks.push({
         ...bankInfo,
         address: config.deployments[bankInfo.contract].address,
@@ -38,6 +42,8 @@ const Banks: React.FC = ({children}) => {
   }, [bombFinance, setBanks]);
 
   useEffect(() => {
+    
+    
     if (bombFinance) {
       fetchPools().catch((err) => console.error(`Failed to fetch pools: ${err.stack}`));
     }
