@@ -26,7 +26,7 @@ import { ReactComponent as IconTelegram } from '../../assets/img/telegram.svg';
 import { Helmet } from 'react-helmet'
 import BombImage from '../../assets/logos/gaia.png';
 
-import HomeImage from '../../assets/img/background.jpg';
+import HomeImage from '../../assets/img/bg2.svg';
 const BackgroundImage = createGlobalStyle`
   body {
     background: url(${HomeImage}) repeat !important;

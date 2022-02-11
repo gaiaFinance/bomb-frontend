@@ -16,7 +16,7 @@ import { createGlobalStyle } from 'styled-components';
 import useBanks from '../../hooks/useBanks';
 import { Helmet } from 'react-helmet'
 
-import HomeImage from '../../assets/img/background.jpg';
+import HomeImage from '../../assets/img/bg2.svg';
 const BackgroundImage = createGlobalStyle`
   body {
     background: url(${HomeImage}) repeat !important;

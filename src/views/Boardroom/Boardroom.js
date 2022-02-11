@@ -29,10 +29,10 @@ import ProgressCountdown from './components/ProgressCountdown';
 import { createGlobalStyle } from 'styled-components';
 import { Helmet } from 'react-helmet'
 
-import HomeImage from '../../assets/img/background.jpg';
+import HomeImage from '../../assets/img/bg2.svg';
 const BackgroundImage = createGlobalStyle`
   body {
-    background: url(${HomeImage}) repeat !important;
+    background: url(${HomeImage}) repeat fixed !important;
     background-size: cover !important;
     background-color: #171923;
   }
@@ -64,7 +64,7 @@ const Boardroom = () => {
 
   return (
     <Page>
-      {/* <BackgroundImage /> */}
+      <BackgroundImage />
       <Helmet>
         <title>{TITLE}</title>
       </Helmet>

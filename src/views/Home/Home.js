@@ -26,22 +26,22 @@ import { ReactComponent as IconTelegram } from '../../assets/img/telegram.svg';
 import { Helmet } from 'react-helmet'
 import BombImage from '../../assets/logos/gaia.png';
 
-import HomeImage from '../../assets/img/background.jpg';
-// const BackgroundImage = createGlobalStyle`
-//   body {
-//     background: url(${HomeImage}) repeat !important;
-//     background-size: cover !important;
-//     background-color: #33333;
-//   }
-// `;
-const TITLE = 'gaia.finance | BNB pegged algocoin'
-
+import HomeImage from '../../assets/img/bg2.svg';
 const BackgroundImage = createGlobalStyle`
   body {
-    background-color: grey;
+    background: url(${HomeImage}) repeat fixed !important;
     background-size: cover !important;
+    background-color: #33333;
   }
 `;
+const TITLE = 'gaia.finance | BNB pegged algocoin'
+
+// const BackgroundImage = createGlobalStyle`
+//   body {
+//     background-color: grey;
+//     background-size: cover !important;
+//   }
+// `;
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -148,7 +148,7 @@ const Home = () => {
       <Helmet>
         <title>{TITLE}</title>
       </Helmet>
-      {/* <BackgroundImage /> */}
+      <BackgroundImage />
       <Grid container spacing={3}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={12} justify="center" style={{ margin: '12px', display: 'flex' }}>
@@ -193,7 +193,7 @@ const Home = () => {
       <div className="flex flex-wrap md:flex-nowrap justify-between md:space-x-9 space-y-9 md:space-y-0 w-full mt-20">
 
         {/* GAIA */}
-        <div  style={{borderRadius: '10px', background: '#000'}} className="w-full p-5 h-max-screen">
+        <div  style={{borderRadius: '10px'}} className="border border-gray-800 w-full p-5 h-max-screen">
           <div>
             <div style={{position: 'relative'}}> 
               <Button
@@ -257,7 +257,7 @@ const Home = () => {
           </div>
 
         {/* GSHARE */}
-        <div  style={{borderRadius: '10px', background: '#000'}} className="w-full p-5 h-max-screen">
+        <div  style={{borderRadius: '10px'}} className="border border-gray-800 w-full p-5 h-max-screen">
             <div>
               <div style={{position: 'relative'}} >
                 <Button
@@ -325,7 +325,7 @@ const Home = () => {
         
 
         {/* GBOND */}
-        <div  style={{borderRadius: '10px', background: '#000'}} className="w-full p-5 h-max-screen">
+        <div  style={{borderRadius: '10px'}} className="border border-gray-800 w-full p-5 h-max-screen">
           <div>
             <div style={{ position: 'relative' }} className="">
               <Button

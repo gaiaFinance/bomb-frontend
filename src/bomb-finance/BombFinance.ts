@@ -211,7 +211,7 @@ export class BombFinance {
     const {Treasury} = this.contracts;
     const gaiaStat = await this.getGaiaStat();
     const bondGaiaRatioBN = await Treasury.getBondPremiumRate();
-    const modifier = bondGaiaRatioBN / 1e14 > 1 ? bondGaiaRatioBN / 1e14 : 1;
+    const modifier = bondGaiaRatioBN / 1e18 > 1 ? bondGaiaRatioBN / 1e18 : 1;
     const bondPriceInBNB = (Number(gaiaStat.tokenInBnb) * modifier).toFixed(4);
     const priceOfBBondInDollars = (Number(gaiaStat.priceInDollars) * modifier).toFixed(4);
     const supply = await this.GBOND.displayedTotalSupply();

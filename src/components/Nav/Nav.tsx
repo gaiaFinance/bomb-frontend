@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useState} from 'react';
 import clsx from 'clsx';
 import {Link} from 'react-router-dom';
 import {
@@ -114,8 +114,25 @@ const Nav = () => {
     [shareStats],
   );
 
+  // const activeNavStyle = {
+  //   backgroundColor: '#000'
+  // }
+
+  const [navActive, setNavActive] = useState(false)
+
+  function handleScroll() {
+    if(window.scrollY >= 89){
+      setNavActive(true)
+    }else{
+      setNavActive(false)
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll)
+
   return (
-    <AppBar position="sticky" elevation={0} className={classes.appBar}>
+    <nav  className="fixed w-full pt-2 px-5  z-50 h-20 " style={{background: navActive ? '#1C1800' : 'transparent'}}>   
+     
       <Toolbar className={classes.toolbar}>
         {matches ? (
           <>
@@ -156,7 +173,7 @@ const Nav = () => {
               </a> */}
             </Box>
 
-          <div className="bg-black p-5 rounded-md flex absoulte top-0 right-10 items-center justify-between space-x-10 w-64">
+          <div className="bg-gaiagray p-5 py-2 rounded-md rounded-t-none flex absoulte top-0 right-10 -mt-2 items-center justify-between space-x-10 w-72 absolute">
             <Box
               style={{
                 flexGrow: '0',
@@ -176,7 +193,7 @@ const Nav = () => {
             />
               
               <div className="navTokenIcon bomb"></div>{' '}
-              <div className="navTokenPrice ml-2">${roundAndFormatNumber(Number(bombPriceInDollars), 2)}</div>
+              <div className="navTokenPrice ml-2 text-white font-bold">${roundAndFormatNumber(Number(bombPriceInDollars), 2)}</div>
               {/* <div className="navTokenIcon bshare"></div>{' '}
               <div className="navTokenPrice">${roundAndFormatNumber(Number(sharePriceInDollars), 2)}</div>
               <div className="navTokenIcon btc"></div>{' '}
@@ -247,7 +264,7 @@ const Nav = () => {
           </>
         )}
       </Toolbar>
-    </AppBar>
+    </nav>
   );
 };
 

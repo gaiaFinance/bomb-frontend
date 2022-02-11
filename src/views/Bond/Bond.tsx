@@ -21,7 +21,7 @@ import { BOND_REDEEM_PRICE, BOND_REDEEM_PRICE_BN } from '../../bomb-finance/cons
 import { Alert } from '@material-ui/lab';
 
 
-import HomeImage from '../../assets/img/background.jpg';
+import HomeImage from '../../assets/img/bg2.svg';
 import { Grid, Box } from '@material-ui/core';
 import { Helmet } from 'react-helmet';
 const BackgroundImage = createGlobalStyle`
@@ -76,7 +76,7 @@ const Bond: React.FC = () => {
   return (
     <Switch>
       <Page>
-        {/* <BackgroundImage /> */}
+        <BackgroundImage />
               <Helmet>
         <title>{TITLE}</title>
       </Helmet>
