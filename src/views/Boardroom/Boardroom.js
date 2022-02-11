@@ -64,63 +64,53 @@ const Boardroom = () => {
 
   return (
     <Page>
-      <BackgroundImage />
+      {/* <BackgroundImage /> */}
       <Helmet>
         <title>{TITLE}</title>
       </Helmet>
       {!!account ? (
         <>
-          <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
+          {/* <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
             Boardroom
-          </Typography>
-          <Box mt={5}>
-            <Grid container justify="center" spacing={3}>
-              <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-                <Card className={classes.gridItem}>
-                  <CardContent style={{ textAlign: 'center' }}>
-                    <Typography style={{ textTransform: 'uppercase', color: '#f9d749' }}>Next Epoch</Typography>
-                    <ProgressCountdown base={moment().toDate()} hideBar={true} deadline={to} description="Next Epoch" />
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-                <Card className={classes.gridItem}>
-                  <CardContent align="center">
-                    <Typography style={{ textTransform: 'uppercase', color: '#f9d749' }}>Current Epoch</Typography>
-                    <Typography>{Number(currentEpoch)}</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-                <Card className={classes.gridItem}>
-                  <CardContent align="center">
-                    <Typography style={{ textTransform: 'uppercase', color: '#f9d749' }}>
+          </Typography> */}
+          <Box mt={5} className="flex md:flex-row flex-col">
+            <div style={{flexDirection: "column"}} className="w-full md:w-1/4 mr-5" >
+                <div className="border-gray-700 border rounded-md p-3 w-full mb-5 h-32 flex flex-col justify-center">
+                  <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
+                    <Typography style={{ textTransform: 'uppercase', color: '#fff', fontSize: '12px', marginBottom: '10px' }}>Next Epoch</Typography>
+                    <ProgressCountdown base={moment().toDate()} hideBar={true} deadline={to} description="Next Epoch" style={{color: 'yellow', fontSize: '20px'}} />
+                  </div>
+                </div>
+                <div className="border-gray-700 border rounded-md p-5 w-full mb-5 h-32 flex flex-col justify-center">
+                  <div align="left">
+                    <Typography style={{ textTransform: 'uppercase', color: '#fff', fontSize: '12px', marginBottom: '10px' }}>Current Epoch</Typography>
+                    <Typography className="text-primary text-lg">{Number(currentEpoch)}</Typography>
+                  </div>
+                </div>
+                <div className="border-gray-700 border rounded-md p-5 w-full mb-5 h-32 flex flex-col justify-center">
+                  <div align="left">
+                    <Typography style={{ textTransform: 'uppercase', color: '#fff', fontSize: '12px', marginBottom: '10px' }}>
                       GAIA PEG <small>(TWAP)</small>
                     </Typography>
-                    <Typography>{scalingFactor} BTC</Typography>
-                    <Typography>
+                    <Typography className="text-primary text-lg">{scalingFactor} BTC</Typography>
+                    <Typography className="text-primary text-lg">
                       <small>per 10,000 GAIA</small>
                     </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-                <Card className={classes.gridItem}>
-                  <CardContent align="center">
-                    <Typography style={{ textTransform: 'uppercase', color: '#f9d749' }}>APR</Typography>
-                    <Typography>{boardroomAPR.toFixed(2)}%</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item xs={12} md={2} lg={2}>
-                <Card className={classes.gridItem}>
-                  <CardContent align="center">
-                    <Typography style={{ textTransform: 'uppercase', color: '#f9d749' }}>BSHARES Staked</Typography>
-                    <Typography>{getDisplayBalance(totalStaked)}</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid>
+                  </div>
+                </div>
+                <div className="border-gray-700 border rounded-md p-5 w-full mb-5 h-32 flex flex-col justify-center">
+                  <div align="left">
+                    <Typography style={{ textTransform: 'uppercase', color: '#fff', fontSize: '12px', marginBottom: '10px' }}>APR</Typography>
+                    <Typography className="text-primary text-lg">{boardroomAPR.toFixed(2)}%</Typography>
+                  </div>
+                </div>
+                <div className="border-gray-700 border rounded-md p-5 w-full mb-5 h-32 flex flex-col justify-center">
+                  <div align="left">
+                    <Typography style={{ textTransform: 'uppercase', color: '#fff', fontSize: '12px', marginBottom: '10px' }}>BSHARES Staked</Typography>
+                    <Typography className="text-primary text-lg">{getDisplayBalance(totalStaked)}</Typography>
+                  </div>
+                </div>
+            </div>
 
             {/* <Grid container justify="center">
               <Box mt={3} style={{ width: '600px' }}>
@@ -133,8 +123,8 @@ const Boardroom = () => {
               </Box>
             </Grid> */}
 
-            <Box mt={4}>
-              <StyledBoardroom>
+            <div className='md:w-3/4 w-full'>
+              <div>
                 <StyledCardsWrapper>
                   <StyledCardWrapper>
                     <Harvest />
@@ -144,8 +134,8 @@ const Boardroom = () => {
                     <Stake />
                   </StyledCardWrapper>
                 </StyledCardsWrapper>
-              </StyledBoardroom>
-            </Box>
+              </div>
+            </div>
 
             {/* <Grid container justify="center" spacing={3}>
             <Grid item xs={4}>
@@ -212,7 +202,7 @@ const StyledBoardroom = styled.div`
 
 const StyledCardsWrapper = styled.div`
   display: flex;
-  width: 600px;
+
   @media (max-width: 768px) {
     width: 100%;
     flex-flow: column nowrap;
@@ -225,7 +215,7 @@ const StyledCardWrapper = styled.div`
   flex: 1;
   flex-direction: column;
   @media (max-width: 768px) {
-    width: 80%;
+    width: 100%;
   }
 `;
 

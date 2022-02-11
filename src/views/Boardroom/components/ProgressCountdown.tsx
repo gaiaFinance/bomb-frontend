@@ -21,7 +21,7 @@ const ProgressCountdown: React.FC<ProgressCountdownProps> = ({base, deadline, hi
     const m = String(minutes);
     const s = String(seconds);
     return (
-      <StyledCountdown>
+      <StyledCountdown className='text-primary'>
         {h.padStart(2, '0')}:{m.padStart(2, '0')}:{s.padStart(2, '0')}
       </StyledCountdown>
     );
@@ -44,9 +44,9 @@ const ProgressCountdown: React.FC<ProgressCountdownProps> = ({base, deadline, hi
 };
 
 const StyledCountdown = styled.p`
-  // font-size: 14px;
-  font-weight: 700;
-  // color: ${(props) => props.theme.color.grey[100]};
+  font-size: 20px;
+  font-weight: 400;
+  // color: yellow;
   margin: 0 0 6px 0;
 `;
 
@@ -67,7 +67,7 @@ const StyledProgress = styled.div<{progress: number}>`
 const StyledCardContentInner = styled.div`
   height: 100%;
   display: flex;
-  align-items: center;
+  align-items: left;
   justify-content: center;
   flex-direction: column;
   // padding: ${(props) => props.theme.spacing[2]}px ${(props) => props.theme.spacing[4]}px;
