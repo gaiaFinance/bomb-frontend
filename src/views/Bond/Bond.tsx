@@ -76,14 +76,34 @@ const Bond: React.FC = () => {
   return (
     <Switch>
       <Page>
-        <BackgroundImage />
+        {/* <BackgroundImage /> */}
               <Helmet>
         <title>{TITLE}</title>
       </Helmet>
         {!!account ? (
-          <>
+          <div className='mx-0 md:mx-20'>
             <Route exact path={path}>
-              <PageHeader icon={'💣'} title="Buy &amp; Redeem Bonds" subtitle="Earn premiums upon redemption" />
+              {/* <PageHeader icon={'💣'} title="Buy &amp; Redeem Bonds" subtitle="Earn premiums upon redemption" /> */}
+              <div className='bg-black p-5 mb-20 flex sm:flex-row md:flex-row flex-col justify-between items-center border-b-4 border-gaiagray rounded-md'>
+                <div>
+                  <h2 className='text-white font-bold text-3xl mb-5'>Buy &amp; Redeem Bonds</h2>
+                  <p className='text-white text-base'>Earn premiums upon redemption</p>
+                </div>
+                <div className='flex md:flex-row sm:flex-row flex-col md:space-x-9'>
+                  <ExchangeStat
+                    tokenName="GAIA"
+                    description="Last-Hour TWAP Price"
+                    // price={Number(bondStat?.tokenInBnb).toFixed(4) || '-'}
+                  price={bondScale || '-'}
+
+                  />
+                  <ExchangeStat
+                    tokenName="GBOND"
+                    description="Current Price: (GAIA)^2"
+                    price={Number(bondStat?.tokenInBnb).toFixed(4) || '-'}
+                  />
+                </div>
+              </div>
             </Route>
             {isBondPayingPremium === false ? (
 
@@ -116,21 +136,6 @@ const Bond: React.FC = () => {
                   disabled={!bondStat || isBondRedeemable}
                 />
               </StyledCardWrapper>
-              <StyledStatsWrapper>
-                <ExchangeStat
-                  tokenName="GAIA"
-                  description="Last-Hour TWAP Price"
-                  // price={Number(bondStat?.tokenInBnb).toFixed(4) || '-'}
-                 price={bondScale || '-'}
-
-                />
-                <Spacer size="md" />
-                <ExchangeStat
-                  tokenName="GBOND"
-                  description="Current Price: (GAIA)^2"
-                  price={Number(bondStat?.tokenInBnb).toFixed(4) || '-'}
-                />
-              </StyledStatsWrapper>
               <StyledCardWrapper>
                 <ExchangeCard
                   action="Redeem"
@@ -145,7 +150,7 @@ const Bond: React.FC = () => {
                 />
               </StyledCardWrapper>
             </StyledBond>
-          </>
+          </div>
         ) : (
           <UnlockWallet />
         )}
@@ -168,7 +173,7 @@ const StyledCardWrapper = styled.div`
   flex: 1;
   flex-direction: column;
   @media (max-width: 768px) {
-    width: 80%;
+    width: 100%;
   }
 `;
 

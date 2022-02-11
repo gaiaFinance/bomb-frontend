@@ -11,33 +11,14 @@ interface ExchangeStatProps {
 
 const ExchangeStat: React.FC<ExchangeStatProps> = ({tokenName, description, price}) => {
   return (
-    <Card>
-      <StyledCardContentInner>
-        <StyledCardTitle>{`💰 ${tokenName} = ${price} BTC`}</StyledCardTitle>
-        <StyledDesc>{description}</StyledDesc>
-      </StyledCardContentInner>
-    </Card>
+    <div className='border border-primary text-white rounded-md p-5 md:w-80 h-40 md:my-0 my-5'>
+      <div className='text-center'>
+        <p className='mb-2'>{description}</p>
+        <p className='font-bold text-2xl text-primary'>{` ${tokenName} = ${price} BTC`}</p>
+      </div>
+    </div>
   );
 };
-
-const StyledCardTitle = styled.div`
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: ${(props) => props.theme.spacing[2]}px;
-`;
-
-const StyledDesc = styled.span`
-  //color: ${(props) => props.theme.color.grey[300]};
-  text-align: center;
-`;
-
-const StyledCardContentInner = styled.div`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: ${(props) => props.theme.spacing[2]}px;
-`;
+// 💰
 
 export default ExchangeStat;

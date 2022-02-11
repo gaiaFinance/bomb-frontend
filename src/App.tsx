@@ -18,7 +18,7 @@ import Popups from './components/Popups';
 //import Regulations from './views/Regulations/Regulations';
 import {RefreshContextProvider} from './contexts/RefreshContext';
 import './style.css'
-import './index.css'
+// import './index.css'
 
 const Home = lazy(() => import('./views/Home'));
 const Farm = lazy(() => import('./views/Farm'));

@@ -17,7 +17,7 @@ const Banks: React.FC = ({children}) => {
     localStorage.setItem("Bank Info", JSON.stringify(bankInfo))
     localStorage.setItem("Bank definition", JSON.stringify(bankDefinitions))
 
-      // if (bankInfo.finished) {
+      if (bankInfo.finished) {
         if (!bombFinance.isUnlocked) continue;
 
         // only show pools staked by user
@@ -29,7 +29,7 @@ const Banks: React.FC = ({children}) => {
         if (balance.lte(0)) {
           continue;
         }
-      // }
+      }
       banks.push({
         ...bankInfo,
         address: config.deployments[bankInfo.contract].address,

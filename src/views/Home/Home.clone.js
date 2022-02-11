@@ -27,21 +27,21 @@ import { Helmet } from 'react-helmet'
 import BombImage from '../../assets/logos/gaia.png';
 
 import HomeImage from '../../assets/img/background.jpg';
-// const BackgroundImage = createGlobalStyle`
-//   body {
-//     background: url(${HomeImage}) repeat !important;
-//     background-size: cover !important;
-//     background-color: #33333;
-//   }
-// `;
-const TITLE = 'gaia.finance | BNB pegged algocoin'
-
 const BackgroundImage = createGlobalStyle`
   body {
-    background-color: grey;
+    background: url(${HomeImage}) repeat !important;
     background-size: cover !important;
+    background-color: #171923;
   }
 `;
+const TITLE = 'bomb.money | BTC pegged algocoin'
+
+// const BackgroundImage = createGlobalStyle`
+//   body {
+//     background-color: grey;
+//     background-size: cover !important;
+//   }
+// `;
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -148,8 +148,50 @@ const Home = () => {
       <Helmet>
         <title>{TITLE}</title>
       </Helmet>
-      {/* <BackgroundImage /> */}
+      <BackgroundImage />
       <Grid container spacing={3}>
+        {/* Logo */}
+        <Grid
+          item
+          xs={12}
+          sm={4}
+          style={{ display: 'flex', justifyContent: 'center', verticalAlign: 'middle', overflow: 'hidden' }}
+        >
+          <img src={BombImage} alt='Bomb.money' style={{ maxHeight: '240px' }} />
+        </Grid>
+        {/* Explanation text */}
+        <Grid item xs={12} sm={8}>
+          <Paper>
+            <Box p={4} style={{ textAlign: 'center' }}>
+              <h2 className='bg-red-900 text-bold'>Welcome to Gaia.finance</h2>
+              <p>
+              The first algorithmic token pegged to BNB running on Binance Smart Chain. 
+              Completely decentralized on-chain governance.
+              </p>
+              <p>
+                <strong>GAIA is pegged via algorithm to a 10,000:1 ratio to BTC. $100k BTC = $10 GAIA PEG</strong>
+                {/* Stake your GAIA-BTC LP in the Farm to earn GSHARE rewards. Then stake your earned GSHARE in the
+                Boardroom to earn more GAIA! */}
+              </p>
+              <p>
+                <IconTelegram alt="telegram" style={{ fill: '#dddfee', height: '15px' }} /> Join our{' '}
+                <a
+                  href="https://t.me/bombmoneybsc"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  style={{ color: '#dddfee' }}
+                >
+                  Telegram
+                </a>{' '}
+                to find out more!
+              </p>
+              <button>
+                <a href="https://docs.gaiafinance.io/why-gaia.finance">Read More</a>
+              </button>
+            </Box>
+          </Paper>
+        </Grid>
+
         <Grid container spacing={3}>
           <Grid item xs={12} sm={12} justify="center" style={{ margin: '12px', display: 'flex' }}>
 
@@ -163,39 +205,57 @@ const Home = () => {
 
           </Grid>
         </Grid>
-        <div className='flex flex-col md:flex-row sm:flex-col p-5 rounded-md bg-black md:space-x-9 items-center justify-center relative mt-20 md:h-64 h-max'>
-        {/* Logo */}
-          <img src={BombImage} alt='Bomb.money' className='-ml-0 md:-ml-16 max-h-64 md:max-h-96' />
-          {/* Explanation text */}
-          <div className='text-left text-white space-y-5 md:space-y-3 my-12 md:mt-0 md:w-2/5 w-full '>
-            <h2 className='font-bold text-3xl'>Welcome to Gaia.finance</h2>
-            <p>
-            The first algorithmic token pegged to BNB running on Binance Smart Chain. 
-            Completely decentralized on-chain governance.
-            </p>
-            <button className="border rounded-md px-3 py-2">
-              <a href="https://docs.gaiafinance.io/why-gaia.finance">Read More</a>
-            </button>
-          </div>
 
-           {/* TVL */}
-          <div class="bg-primary hidden md:block p-10 rounded-md md:-mt-24 mt-5 h-52 w-full md:w-1/2">
-              <h2 className='font-bold text-xl'>Total Value Locked</h2>
-              <CountUp style={{ fontSize: '70px', fontWeight: 'bold' }} end={TVL} separator="," prefix="$" />
-          </div>
-        </div>
-           {/* TVL */}
-           <div class="bg-primary md:hidden p-10 rounded-md md:-mt-24 mt-5 h-52 w-full md:w-1/2">
-              <h2 className='font-bold text-xl'>Total Value Locked</h2>
-              <CountUp style={{ fontSize: '70px', fontWeight: 'bold' }} end={TVL} separator="," prefix="$" />
-          </div>
+        {/* TVL */}
+        <Grid item xs={12} sm={4}>
+          <Card>
+            <CardContent align="center">
+              <h2>Total Value Locked</h2>
+              <CountUp style={{ fontSize: '25px' }} end={TVL} separator="," prefix="$" />
+            </CardContent>
+          </Card>
+        </Grid>
 
-      <div className="flex flex-wrap md:flex-nowrap justify-between md:space-x-9 space-y-9 md:space-y-0 w-full mt-20">
+        {/* Wallet */}
+        <Grid item xs={12} sm={8}>
+          <Card style={{ height: '100%' }}>
+            <CardContent align="center" style={{ marginTop: '2.5%' }}>
+              {/* <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2> */}
+              <Button href="/boardroom" className="shinyButton" style={{ margin: '10px' }}>
+                Stake Now
+              </Button>
+              <Button href="/farm" className="shinyButton" style={{ margin: '10px' }}>
+                Farm Now
+              </Button>
+              <Button
+                target="_blank"
+                href={buyBombAddress}
+                style={{ margin: '10px' }}
+                className={'shinyButton ' + classes.button}
+              >
+                Buy GAIA
+              </Button>
+              <Button
+                target="_blank"
+                href={buyBShareAddress}
+                className={'shinyButton ' + classes.button}
+                style={{ marginLeft: '10px' }}
+              >
+                Buy GSHARE
+              </Button>
+            </CardContent>
+          </Card>
+        </Grid>
 
         {/* GAIA */}
-        <div  style={{borderRadius: '10px', background: '#000'}} className="w-full p-5 h-max-screen">
-          <div>
-            <div style={{position: 'relative'}}> 
+        <Grid item xs={12} sm={4}>
+          <Card>
+            <CardContent align="center" style={{ position: 'relative' }}>
+              <Box mt={2}>
+                <CardIcon>
+                  <TokenSymbol symbol="GAIA" />
+                </CardIcon>
+              </Box>
               <Button
                 onClick={() => {
                   bombFinance.watchAssetInMetamask('GAIA');
@@ -206,128 +266,68 @@ const Home = () => {
                 <b>+</b>&nbsp;&nbsp;
                 <img alt="metamask fox" style={{ width: '20px', filter: 'grayscale(100%)' }} src={MetamaskFox} />
               </Button>
-              <Box mt={2}>
-                <div>
-                  <TokenSymbol symbol="GAIA" />
-                </div>
+              <h2 style={{ marginBottom: '10px' }}>GAIA</h2>
+              10,000 GAIA (1.0 Peg) =
+              <Box>
+                <span style={{ fontSize: '30px', color: 'white' }}>{bombPriceInBNB ? bombPriceInBNB : '-.----'} BNB</span>
               </Box>
-              <h2 style={{ marginBottom: '5px', fontWeight: 'bold', fontSize: '30px' }} className='text-xl text-gray-200 font-bold mt-2'>GAIA</h2>
-              <p style={{ marginBottom: '20px'}} className='text-base text-gray-400'>GAIA</p>
-              {/* 10,000 GAIA (1.0 Peg) = */}
-              <div className='rounded-md bg-gaiagray h-40 p-5 w-full flex-col flex items-center mt-16'>
-                <p className='text-base text-gray-300'>Current Price</p>
-                <p style={{ fontSize: '30px', color: 'white' }}>{bombPriceInBNB ? bombPriceInBNB : '-.----'} BNB</p>
-                <Box>
-                  <span style={{ fontSize: '16px',  color: 'white',  alignContent: 'flex-center' }}>
-                    ${bombPriceInDollars ? roundAndFormatNumber(bombPriceInDollars, 2) : '-.--'} / GAIA
-                  </span>
-                </Box>
-              </div>
-              <div style={{ fontSize: '12px' }} className="space-y-3 w-full my-10">
-                <p className='flex w-full justify-between text-base text-gray-400'>
-                  Market Cap: 
-                  <span className='font-bold text-white'>
-                    ${roundAndFormatNumber(bombCirculatingSupply * bombPriceInDollars, 2)}
-                  </span>
-                </p>
-                <p className='flex w-full justify-between text-base text-gray-400'>
-                  Circulating Supply: 
-                  <span className='font-bold text-white'>
-                    {roundAndFormatNumber(bombCirculatingSupply, 2)}
-                  </span>
-                </p>
-                <p className='flex w-full justify-between text-base text-gray-400'>
-                  Total Supply:
-                  <span className='font-bold text-white'>
-                    {roundAndFormatNumber(bombTotalSupply, 2)}
-                  </span> 
-                </p>
-              </div>
-            </div>
-            <button
-                className='bg-primary p-3 text-gray-800 w-full font-bold'
-              >
-                <a 
-                target="_blank"
-                href={buyBombAddress}>
-                  Buy GAIA
-                </a>
-            </button>
-            </div>
-          </div>
+              <Box>
+                <span style={{ fontSize: '16px', alignContent: 'flex-start' }}>
+                  ${bombPriceInDollars ? roundAndFormatNumber(bombPriceInDollars, 2) : '-.--'} / GAIA
+                </span>
+              </Box>
+              <span style={{ fontSize: '12px' }}>
+                Market Cap: ${roundAndFormatNumber(bombCirculatingSupply * bombPriceInDollars, 2)} <br />
+                Circulating Supply: {roundAndFormatNumber(bombCirculatingSupply, 2)} <br />
+                Total Supply: {roundAndFormatNumber(bombTotalSupply, 2)}
+              </span>
+            </CardContent>
+          </Card>
+        </Grid>
 
         {/* GSHARE */}
-        <div  style={{borderRadius: '10px', background: '#000'}} className="w-full p-5 h-max-screen">
-            <div>
-              <div style={{position: 'relative'}} >
-                <Button
-                  onClick={() => {
-                    bombFinance.watchAssetInMetamask('GSHARE');
-                  }}
-                  style={{ position: 'absolute', top: '10px', right: '10px', border: '1px grey solid' }}
-                >
-                  {' '}
-                  <b>+</b>&nbsp;&nbsp;
-                  <img alt="metamask fox" style={{ width: '20px', filter: 'grayscale(100%)' }} src={MetamaskFox} />
-                </Button>
-                <Box mt={2}>
-                  <div>
-                    <TokenSymbol symbol="GSHARE" />
-                  </div>
-                </Box>
-                <h2 style={{ marginBottom: '5px', fontWeight: 'bold', fontSize: '30px' }} className='text-xl text-gray-200 font-bold mt-2'>Gaia Share</h2>
-                <p style={{ marginBottom: '20px'}} className='text-base text-gray-400'>GSHARE</p>
-
-                <div className='rounded-md bg-gaiagray h-40 p-5 w-full flex-col flex items-center mt-16'>
-                  <p className='text-base text-gray-300'>Current Price</p>
-                  <p style={{ fontSize: '30px', color: 'white' }}>{bombPriceInBNB ? bombPriceInBNB : '-.----'} BNB</p>
-                  <Box>
-                    <span style={{ fontSize: '16px',  color: 'white',  alignContent: 'flex-center' }}>
-                      {bSharePriceInBNB ? bSharePriceInBNB : '-.----'} BNB
-                    </span>
-                  </Box>
-                  <Box>
-                    <span style={{ fontSize: '16px',  color: 'white',  alignContent: 'flex-center' }}>${bSharePriceInDollars ? bSharePriceInDollars : '-.--'} / GSHARE</span>
-                  </Box>
-                </div>
-                <div style={{ fontSize: '12px' }} className="space-y-3 w-full my-10">
-                  <p className='flex w-full justify-between text-base text-gray-400'>
-                  Market Cap: 
-                    <span className='font-bold text-white'>
-                      ${roundAndFormatNumber((bShareCirculatingSupply * bSharePriceInDollars).toFixed(2), 2)}{' '}
-                    </span>
-                  </p>
-                  <p className='flex w-full justify-between text-base text-gray-400'>
-                  Circulating Supply: 
-                    <span className='font-bold text-white'>
-                      {roundAndFormatNumber(bShareCirculatingSupply, 2)}
-                    </span>
-                  </p>
-                  <p className='flex w-full justify-between text-base text-gray-400'>
-                  Total Supply: 
-                    <span className='font-bold text-white'>
-                    {roundAndFormatNumber(bShareTotalSupply, 2)}
-                    </span>
-                  </p>
-                </div>
-              </div>
-              <button
-                  className='bg-primary p-3 text-gray-800 w-full font-bold'
-                >
-                  <a
-                    target="_blank"
-                    href={buyBShareAddress}>
-                    Buy GSHARE
-                    </a>
-                </button>
-              </div>
-          </div>
-        
+        <Grid item xs={12} sm={4}>
+          <Card>
+            <CardContent align="center" style={{ position: 'relative' }}>
+              <Button
+                onClick={() => {
+                  bombFinance.watchAssetInMetamask('GSHARE');
+                }}
+                style={{ position: 'absolute', top: '10px', right: '10px', border: '1px grey solid' }}
+              >
+                {' '}
+                <b>+</b>&nbsp;&nbsp;
+                <img alt="metamask fox" style={{ width: '20px', filter: 'grayscale(100%)' }} src={MetamaskFox} />
+              </Button>
+              <Box mt={2}>
+                <CardIcon>
+                  <TokenSymbol symbol="GSHARE" />
+                </CardIcon>
+              </Box>
+              <h2 style={{ marginBottom: '10px' }}>GSHARE</h2>
+              Current Price
+              <Box>
+                <span style={{ fontSize: '30px', color: 'white' }}>
+                  {bSharePriceInBNB ? bSharePriceInBNB : '-.----'} BNB
+                </span>
+              </Box>
+              <Box>
+                <span style={{ fontSize: '16px' }}>${bSharePriceInDollars ? bSharePriceInDollars : '-.--'} / GSHARE</span>
+              </Box>
+              <span style={{ fontSize: '12px' }}>
+                Market Cap: ${roundAndFormatNumber((bShareCirculatingSupply * bSharePriceInDollars).toFixed(2), 2)}{' '}
+                <br />
+                Circulating Supply: {roundAndFormatNumber(bShareCirculatingSupply, 2)} <br />
+                Total Supply: {roundAndFormatNumber(bShareTotalSupply, 2)}
+              </span>
+            </CardContent>
+          </Card>
+        </Grid>
 
         {/* GBOND */}
-        <div  style={{borderRadius: '10px', background: '#000'}} className="w-full p-5 h-max-screen">
-          <div>
-            <div style={{ position: 'relative' }} className="">
+        <Grid item xs={12} sm={4}>
+          <Card>
+            <CardContent align="center" style={{ position: 'relative' }}>
               <Button
                 onClick={() => {
                   bombFinance.watchAssetInMetamask('GBOND');
@@ -339,49 +339,28 @@ const Home = () => {
                 <img alt="metamask fox" style={{ width: '20px', filter: 'grayscale(100%)' }} src={MetamaskFox} />
               </Button>
               <Box mt={2}>
-                <div>
+                <CardIcon>
                   <TokenSymbol symbol="GBOND" />
-                </div>
+                </CardIcon>
               </Box>
-              <h2 style={{ marginBottom: '5px', fontWeight: 'bold', fontSize: '30px' }} className='text-xl text-gray-200 font-bold mt-2'>Gaia Bond</h2>
-              <p style={{ marginBottom: '20px'}} className='text-base text-gray-400'>GBOND</p>
-              {/* 10,000 GBOND */}
-              <div className='rounded-md bg-gaiagray h-40 p-5 w-full flex-col flex items-center mt-16'>
-                <p className='text-base text-gray-300'>Current Price</p>
-                <Box>
-                  <span style={{ fontSize: '30px', color: 'white' }}>
-                    {gBondPriceInBNB ? gBondPriceInBNB : '-.----'} BNB
-                  </span>
-                </Box>
-                <Box>
-                  <span style={{ fontSize: '16px', color: 'white' }}>${gBondPriceInDollars ? gBondPriceInDollars : '-.--'} / GBOND</span>
-                </Box>
-              </div>
-              <div style={{ fontSize: '12px' }} className="space-y-3 w-full my-10">
-                <p className='flex w-full justify-between text-base text-gray-400'>
-                  Market Cap:
-                  <span className='font-bold text-white'>
-                    ${roundAndFormatNumber((gBondCirculatingSupply * gBondPriceInDollars).toFixed(2), 2)}
-                  </span>
-                </p>
-                <p className='flex w-full justify-between text-base text-gray-400'>
-                  Circulating Supply: 
-                  <span className='font-bold text-white'>
-                    {roundAndFormatNumber(gBondCirculatingSupply, 2)}
-                  </span>
-                </p> 
-                  <p className='flex w-full justify-between text-base text-gray-400'>
-                    Total Supply:
-                    <span className='font-bold text-white'>
-                      {roundAndFormatNumber(gBondTotalSupply, 2)}
-                    </span> 
-                  </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
+              <h2 style={{ marginBottom: '10px' }}>GBOND</h2>
+              10,000 GBOND
+              <Box>
+                <span style={{ fontSize: '30px', color: 'white' }}>
+                  {gBondPriceInBNB ? gBondPriceInBNB : '-.----'} BNB
+                </span>
+              </Box>
+              <Box>
+                <span style={{ fontSize: '16px' }}>${gBondPriceInDollars ? gBondPriceInDollars : '-.--'} / GBOND</span>
+              </Box>
+              <span style={{ fontSize: '12px' }}>
+                Market Cap: ${roundAndFormatNumber((gBondCirculatingSupply * gBondPriceInDollars).toFixed(2), 2)} <br />
+                Circulating Supply: {roundAndFormatNumber(gBondCirculatingSupply, 2)} <br />
+                Total Supply: {roundAndFormatNumber(gBondTotalSupply, 2)}
+              </span>
+            </CardContent>
+          </Card>
+        </Grid>
         {/* <Grid item xs={12} sm={6}>
           <Card>
             <CardContent align="center">

@@ -34,7 +34,7 @@ const Farm = () => {
   const { account } = useWallet();
   const activeBanks = banks.filter((bank) => !bank.finished);
 
-  console.log("Account", banks)
+  console.log("Banks", banks)
   console.log('Active Banks', activeBanks)
   return (
     <Switch>

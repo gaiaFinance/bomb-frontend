@@ -62,8 +62,8 @@ const ExchangeCard: React.FC<ExchangeCardProps> = ({
     />,
   );
   return (
-    <Card>
-      <CardContent>
+    <div className='rounded-md md:mx-3 sm:mb-0 md:mb-5 mb-5 bg-black border-b-4 border-gaiagray h-96 p-3'>
+      <div className='space-y-10 px-5 h-full '>
         <StyledCardContentInner>
           <StyledCardTitle>{`${action} ${toTokenName}`}</StyledCardTitle>
           <StyledExchanger>
@@ -71,41 +71,41 @@ const ExchangeCard: React.FC<ExchangeCardProps> = ({
               <StyledCardIcon>
                 <TokenSymbol symbol={fromToken.symbol} size={54} />
               </StyledCardIcon>
-              <Label text={fromTokenName} variant="yellow" />
+              <Label text={fromTokenName} color="white" />
             </StyledToken>
-            <StyledExchangeArrow>
+            {/* <StyledExchangeArrow>
               <FontAwesomeIcon icon={faArrowRight} />
-            </StyledExchangeArrow>
+            </StyledExchangeArrow> */}
             <StyledToken>
               <StyledCardIcon>
                 <TokenSymbol symbol={toToken.symbol} size={54} />
               </StyledCardIcon>
-              <Label text={toTokenName} variant="yellow" />
+              <Label text={toTokenName} color="white" />
             </StyledToken>
           </StyledExchanger>
           <StyledDesc>{priceDesc}</StyledDesc>
           <StyledCardActions>
             {approveStatus !== ApprovalState.APPROVED && !disabled ? (
-              <Button
-                className="shinyButton"
+              <button
+                className={`text-black font-bold w-full px-3 py-3 rounded-md mb-3 ${disabled ? 'bg-gray-700 text-gray-900' : 'bg-primary text-black'}`}
                 disabled={approveStatus === ApprovalState.PENDING || approveStatus === ApprovalState.UNKNOWN}
                 onClick={() => catchError(approve(), `Unable to approve ${fromTokenName}`)}
               >
                 {`Approve ${fromTokenName}`}
-              </Button>
+              </button>
             ) : (
-              <Button
-                className={disabled ? 'shinyButtonDisabled' : 'shinyButton'}
+              <button
+                className={`font-bold w-full px-3 py-3 rounded-md ${disabled ? 'bg-gray-700 text-gray-900 ' : 'bg-primary text-black '}`}
                 onClick={onPresent}
                 disabled={disabled}
               >
                 {disabledDescription || action}
-              </Button>
+              </button>
             )}
           </StyledCardActions>
         </StyledCardContentInner>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 
@@ -116,7 +116,7 @@ const StyledCardTitle = styled.div`
   font-weight: 700;
   height: 64px;
   justify-content: center;
-  color: #f9d749;
+  color: #fff;
   margin-top: ${(props) => -props.theme.spacing[3]}px;
 `;
 
@@ -134,6 +134,8 @@ const StyledCardIcon = styled.div`
 const StyledExchanger = styled.div`
   align-items: center;
   display: flex;
+  justify-content: space-between;
+  width: 50%;
   margin-bottom: ${(props) => props.theme.spacing[5]}px;
 `;
 
@@ -154,11 +156,14 @@ const StyledToken = styled.div`
 const StyledCardActions = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: ${(props) => props.theme.spacing[3]}px;
+  margin-top: 70px;
   width: 100%;
 `;
 
-const StyledDesc = styled.span``;
+const StyledDesc = styled.span`
+  color: white;
+  margin-bottom: 1rem
+`;
 
 const StyledCardContentInner = styled.div`
   align-items: center;

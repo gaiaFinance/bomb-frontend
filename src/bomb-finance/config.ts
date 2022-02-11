@@ -1,5 +1,6 @@
 import {Deployments} from './deployments';
-import {ChainId} from '@pancakeswap/sdk';
+// import {ChainId} from '@pancakeswap/sdk';
+import {ChainId} from 'pancakeswap-v2-testnet-sdk';
 
 export type Configuration = {
   chainId: ChainId;

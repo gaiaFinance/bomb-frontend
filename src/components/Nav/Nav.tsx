@@ -27,7 +27,9 @@ import {makeStyles, useTheme} from '@material-ui/core/styles';
 import AccountButton from './AccountButton';
 
 import bombLogo from '../../assets/logos/gaia-logo.png';
+import gaiaCoinLogo from '../../assets/logos/gaia.png';
 import {roundAndFormatNumber} from '../../0x';
+import TokenSymbol from '../TokenSymbol';
 //import TokenSymbol from '../TokenSymbol';
 
 const useStyles = makeStyles((theme) => ({
@@ -117,18 +119,15 @@ const Nav = () => {
       <Toolbar className={classes.toolbar}>
         {matches ? (
           <>
-            <Typography variant="h6" color="inherit" noWrap style={{flexGrow: '0'}} className={classes.toolbarTitle}>
+            {/* <Typography variant="h6" color="inherit" noWrap style={{flexGrow: '0'}} className={classes.toolbarTitle}> */}
               {/* <a className={ classes.brandLink } href="/">Bomb Money</a> */}
-              <Link to="/" color="inherit" className={classes.brandLink}>
-                {/* <img alt="bomb.money" src={bombLogo} height="60px" /> */}
+              <Link to="/" color="inherit">
+                <img alt="bomb.money" src={bombLogo} className="w-32 " />
               </Link>
-            </Typography>
+            {/* </Typography> */}
             <Box style={{paddingLeft: '15px', paddingTop: '10px', fontSize: '1rem', flexGrow: '1'}}>
               <Link to="/" className={'navLink ' + classes.link}>
                 Home
-              </Link>
-              <Link to="/bank" className={'navLink ' + classes.link}>
-                Bank
               </Link>
               <Link to="/boardroom" className={'navLink ' + classes.link}>
                 Boardroom
@@ -152,30 +151,39 @@ const Nav = () => {
               <a href="https://docs.bomb.money" className={'navLink ' + classes.link} rel="noopener noreferrer" target="_blank">
                 Docs
               </a>
-                <a href="https://bomb.farm" className={'navLink ' + classes.link} rel="noopener noreferrer" target="_blank">
+                {/* <a href="https://bomb.farm" className={'navLink ' + classes.link} rel="noopener noreferrer" target="_blank">
                 AutoVaults
-              </a>
+              </a> */}
             </Box>
 
+          <div className="bg-black p-5 rounded-md flex absoulte top-0 right-10 items-center justify-between space-x-10 w-64">
             <Box
               style={{
                 flexGrow: '0',
-                paddingLeft: '15px',
-                paddingTop: '5px',
+                // paddingLeft: '15px',
+                // paddingTop: '5px',
                 fontSize: '1rem',
-                paddingRight: '15px',
-                height: '30px',
+                // paddingRight: '15px',
+                // height: 'max',
                 display: 'flex',
+                alignItems: 'center'
               }}
             >
+              <img
+              alt="bomb.money"
+              src={gaiaCoinLogo}
+              style={{height: '40px', }}
+            />
+              
               <div className="navTokenIcon bomb"></div>{' '}
-              <div className="navTokenPrice">${roundAndFormatNumber(Number(bombPriceInDollars), 2)}</div>
+              <div className="navTokenPrice ml-2">${roundAndFormatNumber(Number(bombPriceInDollars), 2)}</div>
               {/* <div className="navTokenIcon bshare"></div>{' '}
               <div className="navTokenPrice">${roundAndFormatNumber(Number(sharePriceInDollars), 2)}</div>
               <div className="navTokenIcon btc"></div>{' '}
               <div className="navTokenPrice">${roundAndFormatNumber(Number(btcPriceInDollars), 2)}</div> */}
             </Box>
             <AccountButton text="Connect" />
+          </div>
           </>
         ) : (
           <>

@@ -1,6 +1,6 @@
 {
   "GBond": {
-    "address": "0xBD4a443174ea0687144d5f840E86372730062493",
+    "address": "0xf95C1218efdcE766d079B75B64763cCFd69D345B",
     "abi": [
       {
         "inputs": [],
@@ -4921,7 +4921,7 @@
     
   },
   "Treasury": {
-    "address": "0x1c4fD5165FcF4BFFCC7BffFAbe117456A15205Ad",
+    "address": "0xd17D85866739A2E8b41e4359bA3D9841b58EEd19",
     "abi": [
       {
         "anonymous": false,

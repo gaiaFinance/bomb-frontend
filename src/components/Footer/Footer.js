@@ -11,8 +11,8 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     position: 'absolute',
     bottom: '0',
-    paddingTop: '15px',
-    paddingBottom: '15px',
+    paddingTop: '20px',
+    paddingBottom: '20px',
     width: '100%',
     color: 'white',
     backgroundColor: '#191b26',
@@ -40,17 +40,18 @@ const Footer = () => {
   return (
     <footer className={classes.footer}>
       <Container maxWidth="lg">
-        <Grid container>
-          <Grid item xs={6}>
+        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+          <div item xs={6}>
             <Typography variant="body2" color="textPrimary" align="left">
               {'Copyright © '}
               <Link color="inherit" href="/">
-                Bomb Money
+                Gaia Finance
               </Link>{' '}
-              {new Date().getFullYear()}
+              {new Date().getFullYear()},
+              All rights reserved
             </Typography>
-          </Grid>
-          <Grid item xs={6} style={{textAlign: 'right', height: '20px'}}>
+          </div>
+          <div style={{textAlign: 'right', height: '20px', display: 'flex'}}>
             <a
               href="https://twitter.com/BombMoneyBSC"
               rel="noopener noreferrer"
@@ -59,7 +60,7 @@ const Footer = () => {
             >
               <IconTwitter style={{fill: '#dddfee'}} />
             </a>
-            <a href="https://github.com/bombmoney" rel="noopener noreferrer" target="_blank" className={classes.link}>
+            <a href="https://github.com/gaiaFinance/gaia-frontend" rel="noopener noreferrer" target="_blank" className={classes.link}>
               <IconGithub style={{fill: '#dddfee', height: '20px'}} />
             </a>
             <a href="https://t.me/bombmoneybsc" rel="noopener noreferrer" target="_blank" className={classes.link}>
@@ -68,8 +69,8 @@ const Footer = () => {
             <a href="http://discord.bomb.money/" rel="noopener noreferrer" target="_blank" className={classes.link}>
               <IconDiscord style={{fill: '#dddfee', height: '20px'}} />
             </a>
-          </Grid>
-        </Grid>
+          </div>
+        </div>
       </Container>
     </footer>
   );

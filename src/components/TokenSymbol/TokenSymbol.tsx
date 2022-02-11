@@ -2,9 +2,9 @@ import React from 'react';
 
 //Graveyard ecosystem logos
 import bombLogo from '../../assets/logos/gaia.png';
-import tShareLogo from '../../assets/img/bshares.png';
+import tShareLogo from '../../assets/logos/gShare-coin-logo.png';
 import bombLogoPNG from '../../assets/logos/gaia.png';
-import tShareLogoPNG from '../../assets/img/bshares.png';
+import tShareLogoPNG from '../../assets/logos/gShare-coin-logo.png';
 import tBondLogo from '../../assets/logos/gbond.png';
 
 import bombFtmLpLogo from '../../assets/img/bomb-bitcoin-LP.png';
@@ -31,9 +31,10 @@ const logosBySymbol: {[title: string]: string} = {
   BTCB: btcLogo,
   BTC: btcLogo,
   SVL: bnbLogo,
-  'GAIA-BNB-LP': bombFtmLpLogo,
+  BUSD: bnbLogo,
+  'GAIA-WBNB-LP': bombFtmLpLogo,
   'GAIA-BTCB-LP': bombFtmLpLogo,
-  'GSHARE-BNB-LP': bshareFtmLpLogo,
+  'GSHARE-WBNB-LP': bshareFtmLpLogo,
   'GSHARE-BNB-APELP': bshareFtmLpLogo,
   'GAIA-BTCB-APELP': bombFtmLpLogo,
 };
