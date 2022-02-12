@@ -26,7 +26,7 @@ import { Grid, Box } from '@material-ui/core';
 import { Helmet } from 'react-helmet';
 const BackgroundImage = createGlobalStyle`
   body {
-    background: url(${HomeImage}) repeat !important;
+    background: url(${HomeImage}) repeat fixed !important;
     background-size: cover !important;
     background-color: #171923;
   }

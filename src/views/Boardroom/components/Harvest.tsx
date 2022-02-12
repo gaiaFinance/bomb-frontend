@@ -15,6 +15,25 @@ import useEarningsOnBoardroom from '../../../hooks/useEarningsOnBoardroom';
 import useBombStats from '../../../hooks/useBombStats';
 import {getDisplayBalance} from '../../../utils/formatBalance';
 
+
+interface stakeInfo  {
+  h3: string,
+  p1: string,
+  p2?: string
+}
+
+export const StakeInfo = ({h3, p1, p2}: stakeInfo) => {
+  return(
+    <div className='p-5 border-gray-800 border rounded-md mt-7 h-72'>
+        <div className='text-gray-400'>
+          <h3 className='font-bold mb-7 text-white'>{h3}</h3>
+          <p className='my-5'>{p1}</p>
+          <p>{p2}</p>
+        </div>
+      </div>
+  )
+}
+
 const Harvest: React.FC = () => {
   const bombStats = useBombStats();
   const {onReward} = useHarvestFromBoardroom();
@@ -55,6 +74,8 @@ const Harvest: React.FC = () => {
           </StyledCardContentInner>
         </CardContent>
       </Card>
+      <StakeInfo h3="Stake &amp; Unstake" p1=" There is a 2% tax fee per stake. The unstake fee is 0% during expansion, and 2% on contraction period. These fees will be used to buyback DARK." p2=" Upon stake, the fund will be locked for 6 epochs. Any time the user claims rewards or stakes more funds or unstakes fully/partially, both lock and reward counter will be reset."/>
+      
       <Box mt={2} style={{color: '#FFF'}}>
         {canClaimReward ? (
           ''

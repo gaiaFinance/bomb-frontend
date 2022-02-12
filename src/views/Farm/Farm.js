@@ -17,9 +17,10 @@ import useBanks from '../../hooks/useBanks';
 import { Helmet } from 'react-helmet'
 
 import HomeImage from '../../assets/img/bg2.svg';
+import { FarmItem } from './components/FarmItem';
 const BackgroundImage = createGlobalStyle`
   body {
-    background: url(${HomeImage}) repeat !important;
+    background: url(${HomeImage}) repeat fixed !important;
     background-size: cover !important;
     background-color: #171923;
   }
@@ -51,6 +52,7 @@ const Farm = () => {
                 Farm
               </Typography> */}
 
+              <FarmItem/>
               <Box mt={5}>
                 <div hidden={banks.filter((bank) => bank.sectionInUI === 2).length === 0}>
                   
@@ -78,9 +80,10 @@ const Farm = () => {
                   <Typography color="textPrimary" variant="h4" gutterBottom style={{ marginTop: '20px' }}>
                     Inactive ApeSwap Farms
                   </Typography>
-                  <Alert variant="filled" severity="warning">
+                  {/* <Alert variant="filled" severity="warning">
                     Please remove funds from all farms which are not active.
-                  </Alert>
+                  </Alert> */}
+                  <h2 className='text-white'>Hello</h2>
                   <Grid container spacing={3} style={{ marginTop: '20px', display: 'flex', alignItems: 'center' }}>
                     {activeBanks
                       .filter((bank) => bank.sectionInUI === 1)

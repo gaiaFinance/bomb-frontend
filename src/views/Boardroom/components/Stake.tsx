@@ -30,6 +30,8 @@ import TokenSymbol from '../../../components/TokenSymbol';
 import useStakeToBoardroom from '../../../hooks/useStakeToBoardroom';
 import useWithdrawFromBoardroom from '../../../hooks/useWithdrawFromBoardroom';
 
+import { StakeInfo } from './Harvest';
+
 const Stake: React.FC = () => {
   const bombFinance = useBombFinance();
   const [approveStatus, approve] = useApprove(bombFinance.GSHARE, bombFinance.contracts.Boardroom.address);
@@ -112,6 +114,7 @@ const Stake: React.FC = () => {
           </StyledCardContentInner>
         </CardContent>
       </Card>
+      <StakeInfo h3='Claim DARK reward' p1='Rewards can be claimed after 3 epochs after deposit. Each time rewards claimed, both locked and reward counter will be reset.' />
       <Box mt={2} style={{color: '#FFF'}}>
         {canWithdrawFromBoardroom ? (
           ''

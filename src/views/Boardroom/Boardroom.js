@@ -128,10 +128,12 @@ const Boardroom = () => {
                 <StyledCardsWrapper>
                   <StyledCardWrapper>
                     <Harvest />
+                   
                   </StyledCardWrapper>
                   <Spacer />
                   <StyledCardWrapper>
                     <Stake />
+                    
                   </StyledCardWrapper>
                 </StyledCardsWrapper>
               </div>
