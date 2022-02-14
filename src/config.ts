@@ -3,6 +3,8 @@ import {ChainId} from 'pancakeswap-v2-testnet-sdk';
 import {Configuration} from './bomb-finance/config';
 import {BankInfo} from './bomb-finance';
 
+
+
 const configurations: {[env: string]: Configuration} = {
   development: {
     chainId: 97,
@@ -219,7 +221,7 @@ export const bankDefinitions: {[contractName: string]: BankInfo} = {
   GShareRewardPoolpoolGshareLP: {
     name: 'Earn GSHARE by GSHARE-WBNB LP',
     poolId: 0,
-    sectionInUI: 1,
+    sectionInUI: 2,
     contract: 'GShareRewardPool',
     depositTokenName: 'GSHARE-WBNB-LP',
     earnTokenName: 'GSHARE',
