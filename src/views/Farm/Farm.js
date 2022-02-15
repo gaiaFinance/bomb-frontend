@@ -147,8 +147,8 @@ const Farm = () => {
                   
                 </section>
               </main>
-              <Box mt={5}>
-                <div hidden={banks.filter((bank) => bank.sectionInUI === 2).length === 0}>
+              {/* <Box mt={5}> */}
+                {/* <div hidden={banks.filter((bank) => bank.sectionInUI === 2).length === 0}>
                   
                 
                   <Typography color="textYellow" align="center" variant="h4" gutterBottom>
@@ -164,9 +164,9 @@ const Farm = () => {
                         </React.Fragment>
                       ))}
                   </Grid>
-                </div>
+                </div> */}
 
-                <div hidden={banks.filter((bank) => bank.sectionInUI === 1).length === 0}>
+                {/* <div hidden={banks.filter((bank) => bank.sectionInUI === 1).length === 0}>
                 
                   <Typography color="textPrimary" variant="h4" gutterBottom style={{ marginTop: '20px' }}>
                     Inactive ApeSwap Farms
@@ -182,8 +182,8 @@ const Farm = () => {
                         </React.Fragment>
                       ))}
                   </Grid>
-                </div>
-
+                </div> */}
+{/* 
                 <div hidden={banks.filter((bank) => bank.sectionInUI === 0).length === 0}>
                 
                   <Typography color="textPrimary" variant="h4" gutterBottom style={{ marginTop: '20px' }}>
@@ -201,8 +201,8 @@ const Farm = () => {
                         </React.Fragment>
                       ))}
                   </Grid>
-                </div>
-              </Box>
+                </div> */}
+              {/* </Box> */}
             </div>
             )
            : (
