@@ -778,14 +778,14 @@ export class BombFinance {
     const latestSnapshotIndex = await Boardroom.latestSnapshotIndex();
     const lastHistory = await Boardroom.boardroomHistory(latestSnapshotIndex);
 
-    const lastRewardsReceived = lastHistory[1];
+    const lastRewardsReceived = lastHistory.rewardPerShare;
 
     const GSHAREPrice = (await this.getShareStat()).priceInDollars;
     const GAIAPrice = (await this.getGaiaStat()).priceInDollars;
     const epochRewardsPerShare = lastRewardsReceived / 1e18;
 
     //Mgod formula
-    const amountOfRewardsPerDay = epochRewardsPerShare * Number(GAIAPrice) * 4;
+    const amountOfRewardsPerDay = epochRewardsPerShare * Number(GAIAPrice) * 3;
     const boardroomtShareBalanceOf = await this.GSHARE.balanceOf(Boardroom.address);
     const boardroomTVL = Number(getDisplayBalance(boardroomtShareBalanceOf, this.GSHARE.decimal)) * Number(GSHAREPrice);
     const realAPR = ((amountOfRewardsPerDay * 100) / boardroomTVL) * 365;
