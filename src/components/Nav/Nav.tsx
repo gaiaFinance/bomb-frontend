@@ -26,7 +26,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import AccountButton from './AccountButton';
 
-import bombLogo from '../../assets/logos/gaia-logo.png';
+import gaiaLogo from '../../assets/logos/gaia-logo.png';
 import gaiaCoinLogo from '../../assets/logos/gaia.png';
 import {roundAndFormatNumber} from '../../0x';
 import TokenSymbol from '../TokenSymbol';
@@ -139,7 +139,7 @@ const Nav = () => {
             {/* <Typography variant="h6" color="inherit" noWrap style={{flexGrow: '0'}} className={classes.toolbarTitle}> */}
               {/* <a className={ classes.brandLink } href="/">Bomb Money</a> */}
               <Link to="/" color="inherit">
-                <img alt="bomb.money" src={bombLogo} className="w-32 " />
+                <img alt="bomb.money" src={gaiaLogo} className="w-32 " />
               </Link>
             {/* </Typography> */}
             <Box style={{paddingLeft: '15px', paddingTop: '10px', fontSize: '1rem', flexGrow: '1'}}>
@@ -165,7 +165,7 @@ const Nav = () => {
               <Link color="textPrimary" to="/regulations" className={classes.link}>
                 Regulations
               </Link> */}
-              <a href="https://docs.bomb.money" className={'navLink ' + classes.link} rel="noopener noreferrer" target="_blank">
+              <a href="https://docs.gaiafinance.io/" className={'navLink ' + classes.link} rel="noopener noreferrer" target="_blank">
                 Docs
               </a>
                 {/* <a href="https://bomb.farm" className={'navLink ' + classes.link} rel="noopener noreferrer" target="_blank">
@@ -216,7 +216,7 @@ const Nav = () => {
 
             <img
               alt="bomb.money"
-              src={bombLogo}
+              src={gaiaLogo}
               style={{height: '40px', marginTop: '-10px', marginLeft: '10px', marginRight: '15px'}}
             />
             <AccountButton text="Connect" />

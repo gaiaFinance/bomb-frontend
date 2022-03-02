@@ -150,8 +150,8 @@ const Home = () => {
       </Helmet>
       <BackgroundImage />
       <Grid container spacing={3}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={12} justify="center" style={{ margin: '12px', display: 'flex' }}>
+        {/* <Grid container spacing={3}> */}
+          <Grid item xs={12} sm={12} justify="center" style={{ display: 'flex', margin: "2px", marginBottom: "10px" }}>
 
             <Alert variant="filled" severity="info">
               <strong>Please Note:</strong> We were not impacted by any of the recent exploits. &nbsp;
@@ -162,8 +162,8 @@ const Home = () => {
             </Alert>
 
           </Grid>
-        </Grid>
-        <div className='flex flex-col md:flex-row sm:flex-col p-5 rounded-md bg-black md:space-x-9 items-center justify-center relative mt-20 md:h-64 h-max'>
+        {/* </Grid> */}
+        <div className='flex flex-col md:flex-row sm:flex-col p-5 rounded-md bg-black md:space-x-9 items-center justify-center relative  md:h-64 h-max'>
         {/* Logo */}
           <img src={BombImage} alt='Bomb.money' className='-ml-0 md:-ml-16 max-h-64 md:max-h-96' />
           {/* Explanation text */}
@@ -204,7 +204,7 @@ const Home = () => {
               >
                 {' '}
                 <b>+</b>&nbsp;&nbsp;
-                <img alt="metamask fox" style={{ width: '20px', filter: 'grayscale(100%)' }} src={MetamaskFox} />
+                <img alt="metamask fox" style={{ width: '20px' }} src={MetamaskFox} />
               </Button>
               <Box mt={2}>
                 <div>
@@ -268,7 +268,7 @@ const Home = () => {
                 >
                   {' '}
                   <b>+</b>&nbsp;&nbsp;
-                  <img alt="metamask fox" style={{ width: '20px', filter: 'grayscale(100%)' }} src={MetamaskFox} />
+                  <img alt="metamask fox" style={{ width: '20px' }} src={MetamaskFox} />
                 </Button>
                 <Box mt={2}>
                   <div>
@@ -336,7 +336,7 @@ const Home = () => {
               >
                 {' '}
                 <b>+</b>&nbsp;&nbsp;
-                <img alt="metamask fox" style={{ width: '20px', filter: 'grayscale(100%)' }} src={MetamaskFox} />
+                <img alt="metamask fox" style={{ width: '20px' }} src={MetamaskFox} />
               </Button>
               <Box mt={2}>
                 <div>

@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     bottom: '0',
     paddingTop: '20px',
-    paddingBottom: '20px',
+    paddingBottom: '40px',
     width: '100%',
     color: 'white',
     backgroundColor: '#191b26',
@@ -63,10 +63,10 @@ const Footer = () => {
             <a href="https://github.com/gaiaFinance/gaia-frontend" rel="noopener noreferrer" target="_blank" className={classes.link}>
               <IconGithub style={{fill: '#dddfee', height: '20px'}} />
             </a>
-            <a href="https://t.me/bombmoneybsc" rel="noopener noreferrer" target="_blank" className={classes.link}>
+            <a href="#" rel="noopener noreferrer" target="_blank" className={classes.link}>
               <IconTelegram style={{fill: '#dddfee', height: '20px'}} />
             </a>
-            <a href="http://discord.bomb.money/" rel="noopener noreferrer" target="_blank" className={classes.link}>
+            <a href="#" rel="noopener noreferrer" target="_blank" className={classes.link}>
               <IconDiscord style={{fill: '#dddfee', height: '20px'}} />
             </a>
           </div>

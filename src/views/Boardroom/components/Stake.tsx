@@ -120,7 +120,7 @@ const Stake: React.FC = () => {
           ''
         ) : (
           <Card>
-            <CardContent>
+            <CardContent style={{alignItems: "center", justifyContent: "center"}}>
               <Typography style={{textAlign: 'center'}}>Withdraw possible in</Typography>
               <ProgressCountdown hideBar={true} base={from} deadline={to} description="Withdraw available in" />
             </CardContent>

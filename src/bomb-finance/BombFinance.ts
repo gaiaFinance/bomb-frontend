@@ -15,6 +15,7 @@ import config, {bankDefinitions} from '../config';
 import moment from 'moment';
 import {parseUnits} from 'ethers/lib/utils';
 import {BNB_TICKER, PANCAKESWAP_ROUTER_ADDR, GAIA_TICKER} from '../utils/constants';
+import { gShareLogo, gBondLogo, gaiaLogo } from '../assets/logos';
 /**
  * An API module of Bomb Money contracts.
  * All contract-interacting domain logic should be defined in here.
@@ -948,13 +949,13 @@ export class BombFinance {
       let assetUrl;
       if (assetName === 'GAIA') {
         asset = this.GAIA;
-        assetUrl = 'https://raw.githubusercontent.com/bombmoney/bomb-assets/master/bomb-512.png';
+        assetUrl = gaiaLogo
       } else if (assetName === 'GSHARE') {
         asset = this.GSHARE;
-        assetUrl = 'https://raw.githubusercontent.com/bombmoney/bomb-assets/master/bshare-512.png';
+        assetUrl = gShareLogo;
       } else if (assetName === 'GBOND') {
         asset = this.GBOND;
-        assetUrl = 'https://raw.githubusercontent.com/bombmoney/bomb-assets/master/bbond-512.png';
+        assetUrl = gBondLogo;
       }
       await ethereum.request({
         method: 'wallet_watchAsset',

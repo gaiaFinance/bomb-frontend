@@ -75,7 +75,7 @@ const Farm = () => {
               <div className='flex w-full border-b border-gaiagray'>
                 <button
                 onClick={() => handleSwitch("gaia")}
-                className={`p-3 rounded-t-md outline-none ${activeBtnState === 'gaia' ? 'bg-gaiagray' : 'bg-gray-600' } flex text-white space-x-1 items-center`}>
+                className={`p-3 rounded-t-md outline-none ${activeBtnState === 'gaia' ? 'bg-gaiagray' : 'bg-gray-900' } flex text-white space-x-1 items-center`}>
                   <img
                   alt="bomb.money"
                   src={gaiaLogo}
@@ -85,7 +85,7 @@ const Farm = () => {
                 </button>
                 <button 
                 onClick={() => handleSwitch("gshare")}
-                className={`p-3 rounded-t-md outline-none ${activeBtnState === 'gshare' ? 'bg-gaiagray' : 'bg-gray-600'} flex text-white space-x-1 items-center`}>
+                className={`p-3 rounded-t-md outline-none ${activeBtnState === 'gshare' ? 'bg-gaiagray' : 'bg-gray-900'} flex  text-white space-x-1 items-center`}>
                   <img
                   alt="bomb.money"
                   src={gaiaLogo}
@@ -100,7 +100,7 @@ const Farm = () => {
                   <div className='py-7 rounded-md flex justify-between items-center mb-10'>
                     <div className='text-white'>
                       <p className='mb-3 font-bold text-4xl'>Pick a bank</p>
-                      <p classNmae='text-base'>Earn GAIA by providing liquidity</p>
+                      <p classNmae='text-base'>Earn {activeBtnState === 'gaia' ? "Gaia" : "Gshare"} by providing liquidity</p>
                     </div>
                     <img
                       alt="bomb.money"

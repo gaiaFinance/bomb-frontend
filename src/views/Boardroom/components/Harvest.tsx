@@ -75,16 +75,16 @@ const Harvest: React.FC = () => {
         </CardContent>
       </Card>
       <StakeInfo h3="Stake &amp; Unstake" p1=" There is a 2% tax fee per stake. The unstake fee is 0% during expansion, and 2% on contraction period. These fees will be used to buyback DARK." p2=" Upon stake, the fund will be locked for 6 epochs. Any time the user claims rewards or stakes more funds or unstakes fully/partially, both lock and reward counter will be reset."/>
-      
+
       <Box mt={2} style={{color: '#FFF'}}>
         {canClaimReward ? (
           ''
         ) : (
           <Card>
-            <CardContent>
+            <div style={{alignItems: "center", justifyContent: "center"}} className="items-center justify-center">
               <Typography style={{textAlign: 'center'}}>Claim possible in</Typography>
               <ProgressCountdown hideBar={true} base={from} deadline={to} description="Claim available in" />
-            </CardContent>
+            </div>
           </Card>
         )}
       </Box>

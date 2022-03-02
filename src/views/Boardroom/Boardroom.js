@@ -78,7 +78,7 @@ const Boardroom = () => {
                 <div className="border-gray-700 border rounded-md p-3 w-full mb-5 h-32 flex flex-col justify-center">
                   <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
                     <Typography style={{ textTransform: 'uppercase', color: '#fff', fontSize: '12px', marginBottom: '10px' }}>Next Epoch</Typography>
-                    <ProgressCountdown base={moment().toDate()} hideBar={true} deadline={to} description="Next Epoch" style={{color: 'yellow', fontSize: '20px'}} />
+                    <ProgressCountdown base={moment().toDate()} hideBar={true} deadline={to} description="Next Epoch" style={{color: 'yellow', fontSize: '20px', textAlign: 'left'}} />
                   </div>
                 </div>
                 <div className="border-gray-700 border rounded-md p-5 w-full mb-5 h-32 flex flex-col justify-center">
@@ -92,7 +92,7 @@ const Boardroom = () => {
                     <Typography style={{ textTransform: 'uppercase', color: '#fff', fontSize: '12px', marginBottom: '10px' }}>
                       GAIA PEG <small>(TWAP)</small>
                     </Typography>
-                    <Typography className="text-primary text-lg">{scalingFactor} BTC</Typography>
+                    <Typography className="text-primary text-lg">{scalingFactor} BNB</Typography>
                     <Typography className="text-primary text-lg">
                       <small>per 10,000 GAIA</small>
                     </Typography>
@@ -106,7 +106,7 @@ const Boardroom = () => {
                 </div>
                 <div className="border-gray-700 border rounded-md p-5 w-full mb-5 h-32 flex flex-col justify-center">
                   <div align="left">
-                    <Typography style={{ textTransform: 'uppercase', color: '#fff', fontSize: '12px', marginBottom: '10px' }}>BSHARES Staked</Typography>
+                    <Typography style={{ textTransform: 'uppercase', color: '#fff', fontSize: '12px', marginBottom: '10px' }}>GSHARE Staked</Typography>
                     <Typography className="text-primary text-lg">{getDisplayBalance(totalStaked)}</Typography>
                   </div>
                 </div>

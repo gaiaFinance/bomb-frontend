@@ -21,7 +21,7 @@ const ProgressCountdown: React.FC<ProgressCountdownProps> = ({base, deadline, hi
     const m = String(minutes);
     const s = String(seconds);
     return (
-      <StyledCountdown className='text-primary'>
+      <StyledCountdown className='text-primary text-center'>
         {h.padStart(2, '0')}:{m.padStart(2, '0')}:{s.padStart(2, '0')}
       </StyledCountdown>
     );

@@ -100,7 +100,7 @@ const Bond: React.FC = () => {
                   <ExchangeStat
                     tokenName="GBOND"
                     description="Current Price: (GAIA)^2"
-                    price={Number(bondStat?.tokenInBnb).toFixed(4) || '-'}
+                    price= {  !(bondStat?.tokenInBnb) ? "-----_-" : (Number(bondStat?.tokenInBnb).toFixed(4) || '-') }
                   />
                 </div>
               </div>
