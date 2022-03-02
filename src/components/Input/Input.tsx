@@ -28,14 +28,16 @@ const StyledInputWrapper = styled.div`
 `;
 
 const StyledInput = styled.input`
-  background: none;
+  background: #ccc;
   border: 0;
-  color: ${(props) => props.theme.color.grey[600]};
+  color: #000;
   font-size: 18px;
   flex: 1;
-  height: 56px;
+  // height: 56px;
   margin: 0;
-  padding: 0;
+  padding: .5rem;
+  width: 100%;
+  // paddingX: 1rem:
   outline: none;
 `;
 

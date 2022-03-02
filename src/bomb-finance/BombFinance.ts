@@ -306,21 +306,9 @@ export class BombFinance {
     const poolContract = this.contracts[bank.contract];
     const depositTokenPrice = await this.getDepositTokenPriceInDollars(bank.depositTokenName, depositToken);
 
-    // works
-    console.log(depositToken, 'deposit token')
-
-    //works 
-    console.log(bank.depositTokenName, "Bank deposit token name")
-
-    // NAN
-    console.log(depositTokenPrice, 'deposit token price');
-
     const stakeInPool = await depositToken.balanceOf(bank.address);
-
-    // works
     console.log(stakeInPool, "Stake In pool")
 
-    // NAN
     const TVL = Number(depositTokenPrice) * Number(getDisplayBalance(stakeInPool, depositToken.decimal));
 
     console.log(TVL, 'TVL')

@@ -22,9 +22,9 @@ const TokenInput: React.FC<TokenInputProps> = ({max, symbol, onChange, onSelectM
             {/* <StyledTokenSymbol>{symbol}</StyledTokenSymbol> */}
             <StyledSpacer />
             <div>
-              <Button size="small" color="primary" variant="contained" onClick={onSelectMax}>
+              <button className='px-3 py-2 bg-primary text-black font-bold rounded-md' onClick={onSelectMax}>
                 Max
-              </Button>
+              </button>
             </div>
           </StyledTokenAdornmentWrapper>
         }
