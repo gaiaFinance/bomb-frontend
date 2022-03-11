@@ -3,8 +3,6 @@ import {ChainId} from 'pancakeswap-v2-testnet-sdk';
 import {Configuration} from './bomb-finance/config';
 import {BankInfo} from './bomb-finance';
 
-
-
 const configurations: {[env: string]: Configuration} = {
   development: {
     chainId: 97,
@@ -14,16 +12,16 @@ const configurations: {[env: string]: Configuration} = {
     deployments: require('./bomb-finance/deployments/deployments.testing.json'),
     externalTokens: {
       // WBNB: ['0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18],
-      WBNB: ['0x0de8fcae8421fc79b29ade9fff97854a424cad09', 18], 
+      WBNB: ['0x0dE8FCAE8421fc79B29adE9ffF97854a424Cad09', 18],
       FUSDT: ['0xe0dfffc2e01a7f051069649ad4eb3f518430b6a4', 18], // This is actually BUSD on mainnet not fusdt
       BUSD: ['0xe0dfffc2e01a7f051069649ad4eb3f518430b6a4', 18],
       BTCB: ['0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', 18],
       ZOO: ['0x09e145a1d53c0045f41aeef25d8ff982ae74dd56', 0],
       SHIBA: ['0x9ba3e4f84a34df4e08c112e1a0ff148b81655615', 9],
       'WBNB-BUSD-LP': ['0x8e95e57241bbfa9aafbe5eeadde58f07e7a20b43', 18],
-      'GAIA-WBNB-LP': ['0xBD5bA679B197E8C6336b39188Cd6C685246B51E9', 18],
+      'GAIA-WBNB-LP': ['0x48267A3A6C2c0c85483467aD7DdD552eED5f2F21', 18],
       // 'GAIA-BNB-LP': ['0xBD5bA679B197E8C6336b39188Cd6C685246B51E9', 18],
-      'GSHARE-WBNB-LP': ['0xbE823F0f5943EAb513f5E737a77d7e65A9de8B34', 18],
+      'GSHARE-WBNB-LP': ['0x0eB38A0C9c1da6E19086D5cE32F35849a079EE40', 18],
     },
     baseLaunchDate: new Date('2021-11-21 1:00:00Z'),
     bondLaunchesAt: new Date('2020-12-03T15:00:00Z'),
@@ -67,16 +65,16 @@ const configurations: {[env: string]: Configuration} = {
     deployments: require('./bomb-finance/deployments/deployments.testing.json'),
     externalTokens: {
       // WBNB: ['0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18],
-      WBNB: ['0x0de8fcae8421fc79b29ade9fff97854a424cad09', 18], 
+      WBNB: ['0x0de8fcae8421fc79b29ade9fff97854a424cad09', 18],
       FUSDT: ['0xe0dfffc2e01a7f051069649ad4eb3f518430b6a4', 18], // This is actually BUSD on mainnet not fusdt
       BUSD: ['0xe0dfffc2e01a7f051069649ad4eb3f518430b6a4', 18],
       BTCB: ['0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', 18],
       ZOO: ['0x09e145a1d53c0045f41aeef25d8ff982ae74dd56', 0],
       SHIBA: ['0x9ba3e4f84a34df4e08c112e1a0ff148b81655615', 9],
       'WBNB-BUSD-LP': ['0x8e95e57241bbfa9aafbe5eeadde58f07e7a20b43', 18],
-      'GAIA-WBNB-LP': ['0xBD5bA679B197E8C6336b39188Cd6C685246B51E9', 18],
+      'GAIA-WBNB-LP': ['0x48267A3A6C2c0c85483467aD7DdD552eED5f2F21', 18],
       // 'GAIA-BNB-LP': ['0xBD5bA679B197E8C6336b39188Cd6C685246B51E9', 18],
-      'GSHARE-WBNB-LP': ['0xbE823F0f5943EAb513f5E737a77d7e65A9de8B34', 18],
+      'GSHARE-WBNB-LP': ['0x0eB38A0C9c1da6E19086D5cE32F35849a079EE40', 18],
     },
     baseLaunchDate: new Date('2021-11-20 1:00:00Z'),
     bondLaunchesAt: new Date('2020-12-03T15:00:00Z'),
@@ -196,20 +194,20 @@ export const bankDefinitions: {[contractName: string]: BankInfo} = {
   //   closedForStaking: true,
   // },
 
-  GaiaGenesisRewardWBNB: {
-    name: 'Earn GAIA by WBNB',
-    poolId: 0,
-    sectionInUI: 0,
-    contract: 'GaiaGenesisRewardPool',
-    depositTokenName: 'WBNB',
-    earnTokenName: 'GAIA',
-    finished: false,
-    sort: 1,
-    closedForStaking: false,
-  },
+  // GaiaGenesisRewardWBNB: {
+  //   name: 'Earn GAIA by WBNB',
+  //   poolId: 0,
+  //   sectionInUI: 0,
+  //   contract: 'GaiaGenesisRewardPool',
+  //   depositTokenName: 'WBNB',
+  //   earnTokenName: 'GAIA',
+  //   finished: false,
+  //   sort: 1,
+  //   closedForStaking: false,
+  // },
   GaiaGenesisRewardPoolBUSD: {
     name: 'Earn GAIA by BUSD',
-    poolId: 1,
+    poolId: 0,
     sectionInUI: 1,
     contract: 'GaiaGenesisRewardPool',
     depositTokenName: 'BUSD',

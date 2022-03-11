@@ -15,7 +15,7 @@ import config, {bankDefinitions} from '../config';
 import moment from 'moment';
 import {parseUnits} from 'ethers/lib/utils';
 import {BNB_TICKER, PANCAKESWAP_ROUTER_ADDR, GAIA_TICKER} from '../utils/constants';
-import { gShareLogo, gBondLogo, gaiaLogo } from '../assets/logos';
+import {gShareLogo, gBondLogo, gaiaLogo} from '../assets/logos';
 /**
  * An API module of Bomb Money contracts.
  * All contract-interacting domain logic should be defined in here.
@@ -54,8 +54,6 @@ export class BombFinance {
     this.GBOND = new ERC20(deployments.GBond.address, provider, 'GBOND');
     this.BNB = this.externalTokens['WBNB'];
     // this.BTC = this.externalTokens['BTCB'];
-
-    
 
     // Uniswap V2 Pair
     this.GAIAWBNB_LP = new Contract(externalTokens['GAIA-WBNB-LP'][0], IUniswapV2PairABI, provider);
@@ -100,7 +98,6 @@ export class BombFinance {
   //===================================================================
 
   async getGaiaStat(): Promise<TokenStat> {
-
     try {
       const {GaiaRewardPool, GaiaGenesisRewardPool} = this.contracts;
       const supply = await this.GAIA.totalSupply();
@@ -111,32 +108,29 @@ export class BombFinance {
 
       const gaiaCirculatingSupply = supply.sub(gaiaRewardPoolSupply).sub(gaiaRewardPoolSupply2);
 
-     
       const priceInBNB = await this.getTokenPriceFromPancakeswap(this.GAIA);
-      console.log(priceInBNB, 'Price in BNB')
+      console.log(priceInBNB, 'Price in BNB');
       const priceInBNBstring = priceInBNB?.toString();
- 
+
       // const priceInBTC = await this.getTokenPriceFromPancakeswapBTC(this.GAIA);
       const priceOfOneBNB = await this.getWBNBPriceFromPancakeswap();
-      console.log(priceOfOneBNB, "price of one BNB")
+      console.log(priceOfOneBNB, 'price of one BNB');
       // const priceOfOneBTC = await this.getBTCBPriceFromPancakeswap();
       // const priceInDollars = await this.getTokenPriceFromPancakeswapGAIAUSD();
       const priceOfBombInDollars = (Number(priceInBNB) * Number(priceOfOneBNB)).toFixed(2);
       // console.log('priceOfBombInDollars!!!!!!!!!', priceOfBombInDollars, priceInBNB, priceInBNBstring, priceInDollars);
 
       return {
-        tokenInBnb: (Number(priceInBNB)).toString(),
+        tokenInBnb: Number(priceInBNB).toString(),
         // tokenInBnb: priceInBTC.toString(),
         priceInDollars: priceOfBombInDollars,
         totalSupply: getDisplayBalance(supply, this.GAIA.decimal, 0),
         circulatingSupply: getDisplayBalance(gaiaCirculatingSupply, this.GAIA.decimal, 0),
       };
-    }catch (e) {
-      console.log({e})
+    } catch (e) {
+      console.log({e});
     }
-
   }
-
 
   async getBTCPriceUSD(): Promise<Number> {
     const priceOfOneBTC = await this.getBTCBPriceFromPancakeswap();
@@ -243,14 +237,12 @@ export class BombFinance {
 
     const priceOfSharesInDollars = (Number(priceInBNB) * Number(priceOfOneBNB)).toFixed(2);
 
-
     const data = {
       tokenInBnb: priceInBNB,
       priceInDollars: priceOfSharesInDollars,
       totalSupply: getDisplayBalance(supply, this.GSHARE.decimal, 0),
       circulatingSupply: getDisplayBalance(tShareCirculatingSupply, this.GSHARE.decimal, 0),
-
-    }
+    };
 
     // console.log({data})
     return {
@@ -277,7 +269,7 @@ export class BombFinance {
   }
 
   async getBombPriceInLastTWAP(): Promise<BigNumber> {
-    const { Treasury } = this.contracts;
+    const {Treasury} = this.contracts;
     return Treasury.getGaiaUpdatedPrice();
   }
 
@@ -307,11 +299,11 @@ export class BombFinance {
     const depositTokenPrice = await this.getDepositTokenPriceInDollars(bank.depositTokenName, depositToken);
 
     const stakeInPool = await depositToken.balanceOf(bank.address);
-    console.log(stakeInPool, "Stake In pool")
+    console.log(stakeInPool, 'Stake In pool');
 
     const TVL = Number(depositTokenPrice) * Number(getDisplayBalance(stakeInPool, depositToken.decimal));
 
-    console.log(TVL, 'TVL')
+    console.log(TVL, 'TVL');
     const stat = bank.earnTokenName === 'GAIA' ? await this.getGaiaStat() : await this.getShareStat();
     const tokenPerSecond = await this.getTokenPerSecond(
       bank.earnTokenName,
@@ -328,11 +320,11 @@ export class BombFinance {
       Number(depositTokenPrice) * Number(getDisplayBalance(stakeInPool, depositToken.decimal));
     const dailyAPR = (totalRewardPricePerDay / totalStakingTokenInPool) * 100;
     const yearlyAPR = (totalRewardPricePerYear / totalStakingTokenInPool) * 100;
- 
-    console.log("totalStakingTokenInPool", totalStakingTokenInPool);
-    console.log("totalRewardPricePerDay", totalRewardPricePerDay)
-    console.log("dailyAPR", dailyAPR);
-    console.log('APR', yearlyAPR)
+
+    console.log('totalStakingTokenInPool', totalStakingTokenInPool);
+    console.log('totalRewardPricePerDay', totalRewardPricePerDay);
+    console.log('dailyAPR', dailyAPR);
+    console.log('APR', yearlyAPR);
     return {
       dailyAPR: dailyAPR.toFixed(2).toString(),
       yearlyAPR: yearlyAPR.toFixed(2).toString(),
@@ -357,10 +349,10 @@ export class BombFinance {
       if (!contractName.endsWith('GaiaRewardPool')) {
         const rewardPerSecond = await poolContract.gaiaPerSecond();
         if (depositTokenName === 'WBNB') {
-          return rewardPerSecond.mul(6000).div(11000).div(24);
-        } else if (depositTokenName === 'CAKE') {
-          return rewardPerSecond.mul(2500).div(11000).div(24);
-        } else if (depositTokenName === 'SUSD') {
+          return rewardPerSecond.mul(1000).div(11000).div(24);
+        } else if (depositTokenName === 'BUSD') {
+          return rewardPerSecond.mul(1000).div(11000).div(24);
+        } else if (depositTokenName === 'BNB') {
           return rewardPerSecond.mul(1000).div(11000).div(24);
         } else if (depositTokenName === 'SVL') {
           return rewardPerSecond.mul(1500).div(11000).div(24);
@@ -596,19 +588,19 @@ export class BombFinance {
   async getTokenPriceFromPancakeswap(tokenContract: ERC20): Promise<string> {
     const ready = await this.provider.ready;
     if (!ready) return;
-    const { chainId } = this.config;
+    const {chainId} = this.config;
     const {WBNB} = this.config.externalTokens;
 
     const wftm = new Token(chainId, WBNB[0], WBNB[1], 'WBNB');
     const token = new Token(chainId, tokenContract.address, tokenContract.decimal, tokenContract.symbol);
     try {
       const wftmToToken = await Fetcher.fetchPairData(wftm, token, this.provider);
-      console.log('wftmToToken', wftmToToken)
+      console.log('wftmToToken', wftmToToken);
       const priceInBUSD = new Route([wftmToToken], token);
-      console.log(priceInBUSD, "PriceInUSD")
+      console.log(priceInBUSD, 'PriceInUSD');
 
-      const value = priceInBUSD.midPrice.toFixed(4)
-      return(value ? value : "0")
+      const value = priceInBUSD.midPrice.toFixed(4);
+      return value ? value : '0';
     } catch (err) {
       console.log(`Failed to fetch token price of ${tokenContract.symbol}: ${err}`);
     }
@@ -634,7 +626,7 @@ export class BombFinance {
   async getTokenPriceFromPancakeswapBNB(tokenContract: ERC20): Promise<string> {
     const ready = await this.provider.ready;
     if (!ready) return;
-    const { chainId } = this.config;
+    const {chainId} = this.config;
     // const {WBNB} = this.config.externalTokens;
 
     // const wbnb = new Token(56, WBNB[0], WBNB[1]);
@@ -712,14 +704,12 @@ export class BombFinance {
 
       let fusdt_amount = Number(getFullDisplayBalance(fusdt_amount_BN, FUSDT.decimal));
 
-      const value = (fusdt_amount / ftm_amount) ? (fusdt_amount / ftm_amount).toString() : "0"
-      return value
+      const value = fusdt_amount / ftm_amount ? (fusdt_amount / ftm_amount).toString() : '0';
+      return value;
     } catch (err) {
       console.error(`Failed to fetch token price of WBNB: ${err}`);
     }
   }
-
-  
 
   async getBTCBPriceFromPancakeswap(): Promise<string> {
     const ready = await this.provider.ready;
@@ -765,7 +755,7 @@ export class BombFinance {
   async getBoardroomAPR() {
     const Boardroom = this.currentBoardroom();
     const latestSnapshotIndex = await Boardroom.latestSnapshotIndex();
-    const lastHistory = await Boardroom.boardroomHistory(latestSnapshotIndex);
+    const lastHistory = await Boardroom.boardHistory(latestSnapshotIndex);
 
     const lastRewardsReceived = lastHistory.rewardPerShare;
 
@@ -937,7 +927,7 @@ export class BombFinance {
       let assetUrl;
       if (assetName === 'GAIA') {
         asset = this.GAIA;
-        assetUrl = gaiaLogo
+        assetUrl = gaiaLogo;
       } else if (assetName === 'GSHARE') {
         asset = this.GSHARE;
         assetUrl = gShareLogo;

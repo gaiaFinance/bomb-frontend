@@ -77,7 +77,7 @@ const Home = () => {
     // 'https://app.bogged.finance/bsc/swap?tokenIn=0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c&tokenOut='+bomb.address;
     `https://pcs.nhancv.com/#/swap?inputCurrency=BNB&outputCurrency=${bomb.address}`;
   //https://pancakeswap.finance/swap?outputCurrency=0x531780FAcE85306877D7e1F05d713D1B50a37F7A';
-  const buyBShareAddress = 
+  const buyBShareAddress =
   `https://pcs.nhancv.com/#/swap?inputCurrency=BNB&outputCurrency=${bShare.address}`;
   // 'https://app.bogged.finance/bsc/swap?tokenIn=BNB&tokenOut=0x4c528F579A2C69Bb9e3803fD820289345cDB2e98';
   const bombLPStats = useMemo(() => (bombBnbLpStats ? bombBnbLpStats : null), [bombBnbLpStats]);
@@ -170,7 +170,7 @@ const Home = () => {
           <div className='text-left text-white space-y-5 md:space-y-3 my-12 md:mt-0 md:w-2/5 w-full '>
             <h2 className='font-bold text-3xl'>Welcome to Gaia.finance</h2>
             <p>
-            The first algorithmic token pegged to BNB running on Binance Smart Chain. 
+            The first algorithmic token pegged to BNB running on Binance Smart Chain.
             Completely decentralized on-chain governance.
             </p>
             <button className="border rounded-md px-3 py-2">
@@ -195,7 +195,7 @@ const Home = () => {
         {/* GAIA */}
         <div  style={{borderRadius: '10px'}} className="border border-gray-800 w-full p-5 h-max-screen">
           <div>
-            <div style={{position: 'relative'}}> 
+            <div style={{position: 'relative'}}>
               <Button
                 onClick={() => {
                   bombFinance.watchAssetInMetamask('GAIA');
@@ -225,13 +225,13 @@ const Home = () => {
               </div>
               <div style={{ fontSize: '12px' }} className="space-y-3 w-full my-10">
                 <p className='flex w-full justify-between text-base text-gray-400'>
-                  Market Cap: 
+                  Market Cap:
                   <span className='font-bold text-white'>
                     ${roundAndFormatNumber(bombCirculatingSupply * bombPriceInDollars, 2)}
                   </span>
                 </p>
                 <p className='flex w-full justify-between text-base text-gray-400'>
-                  Circulating Supply: 
+                  Circulating Supply:
                   <span className='font-bold text-white'>
                     {roundAndFormatNumber(bombCirculatingSupply, 2)}
                   </span>
@@ -240,14 +240,14 @@ const Home = () => {
                   Total Supply:
                   <span className='font-bold text-white'>
                     {roundAndFormatNumber(bombTotalSupply, 2)}
-                  </span> 
+                  </span>
                 </p>
               </div>
             </div>
             <button
                 className='bg-primary p-3 text-gray-800 w-full font-bold'
               >
-                <a 
+                <a
                 target="_blank"
                 href={buyBombAddress}>
                   Buy GAIA
@@ -292,19 +292,19 @@ const Home = () => {
                 </div>
                 <div style={{ fontSize: '12px' }} className="space-y-3 w-full my-10">
                   <p className='flex w-full justify-between text-base text-gray-400'>
-                  Market Cap: 
+                  Market Cap:
                     <span className='font-bold text-white'>
                       ${roundAndFormatNumber((bShareCirculatingSupply * bSharePriceInDollars).toFixed(2), 2)}{' '}
                     </span>
                   </p>
                   <p className='flex w-full justify-between text-base text-gray-400'>
-                  Circulating Supply: 
+                  Circulating Supply:
                     <span className='font-bold text-white'>
                       {roundAndFormatNumber(bShareCirculatingSupply, 2)}
                     </span>
                   </p>
                   <p className='flex w-full justify-between text-base text-gray-400'>
-                  Total Supply: 
+                  Total Supply:
                     <span className='font-bold text-white'>
                     {roundAndFormatNumber(bShareTotalSupply, 2)}
                     </span>
@@ -322,7 +322,7 @@ const Home = () => {
                 </button>
               </div>
           </div>
-        
+
 
         {/* GBOND */}
         <div  style={{borderRadius: '10px'}} className="border border-gray-800 w-full p-5 h-max-screen">
@@ -365,23 +365,23 @@ const Home = () => {
                   </span>
                 </p>
                 <p className='flex w-full justify-between text-base text-gray-400'>
-                  Circulating Supply: 
+                  Circulating Supply:
                   <span className='font-bold text-white'>
                     {roundAndFormatNumber(gBondCirculatingSupply, 2)}
                   </span>
-                </p> 
+                </p>
                   <p className='flex w-full justify-between text-base text-gray-400'>
                     Total Supply:
                     <span className='font-bold text-white'>
                       {roundAndFormatNumber(gBondTotalSupply, 2)}
-                    </span> 
+                    </span>
                   </p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
+
         {/* <Grid item xs={12} sm={6}>
           <Card>
             <CardContent align="center">
