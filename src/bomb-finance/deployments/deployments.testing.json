@@ -1,7 +1,5 @@
 {
-  "name": "bsc-testnet",
-  "chainId": "97",
-  "contracts": {
+
     "Boardroom": {
       "address": "0x5a489fEB5e30040A12f84c87bBf20E20e1292B81",
       "abi": [
@@ -5696,5 +5694,5 @@
         }
       ]
     }
-  }
+
 }
